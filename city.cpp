@@ -216,14 +216,11 @@ void City::add_building(string building_type, int amount_to_build,
 
       if (user_confirmation == "y" || user_confirmation == "yes") {
 
-        for (int i = 0; i < amount_to_build; i++) {
+        Building* new_building = new Building(lowercase_building_type);
+        Node<Building>* new_node = new Node<Building>(new_building);
+        new_node->set_next_node(first_building_node);
+        first_building_node = new_node;
 
-          Building* new_building = new Building(lowercase_building_type);
-          Node<Building>* new_node = new Node<Building>(new_building);
-          new_node->set_next_node(first_building_node);
-          first_building_node = new_node;
-
-        }
 
         std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                     << ", successfully built." << DEFAULT_COLOR << '\n';
