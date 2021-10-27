@@ -6,28 +6,28 @@
 #include "constants.h"
 using namespace std;
 
+struct Building_record{
+  string building_type;
+  int stone_cost = 0;
+  int wood_cost = 0;
+  int steel_cost = 0;
+  int max_quantity = 0;
+};
+
+struct Material{
+  string material_name;
+  int quantity = 0;
+};
+
 class City {
 private:
 
-  struct Building_record{
-    string building_type;
-    int stone_cost = 0;
-    int wood_cost = 0;
-    int steel_cost = 0;
-    int max_quantity = 0;
-  };
+  Node<Building>* first_building_node;
+  Node<Material>* first_material_node;
 
-  struct Material{
-    string material_name;
-    int quantity = 0;
-  };
-
-  Node<Building>* first_building_node = 0;
-  Node<Material>* first_material_node = 0;
-
-  int record_capacity = 5;
-  int current_position = 0;
-  Building_record* record = new Building_record[record_capacity];
+  int record_capacity;
+  int current_position;
+  Building_record* record;
 
 
 
@@ -153,6 +153,10 @@ private:
   //PRE: -
   //POS: returns the word in lowercase.
   string lowercase_word(string word);
+
+  //PRE: -
+  //POS: returns the word capitalized.
+  string capitalize_word(string word);
 
 };
 

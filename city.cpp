@@ -2,6 +2,14 @@
 
 
 City::City(){
+
+  first_building_node = 0;
+  first_material_node = 0;
+
+  record_capacity = 5;
+  current_position = 0;
+
+  record = new Building_record[record_capacity];
 }
 
 
@@ -28,8 +36,7 @@ void City::show_materials() {
 
   while (current_node != 0) {
 
-    string capitalized_material = current_node->get_value()->material_name;
-    capitalized_material[0] = toupper(capitalized_material[0]);
+    string capitalized_material = capitalize_word(current_node->get_value()->material_name);
 
     if (current_node->get_value()->material_name == "piedra") {
 
@@ -151,8 +158,7 @@ void City::add_building(string building_type, int amount_to_build,
 
   string lowercase_building_type = lowercase_word(building_type);
 
-  string capitalized_building_type = lowercase_building_type;
-  capitalized_building_type[0] = toupper(capitalized_building_type[0]);
+  string capitalized_building_type = capitalize_word(lowercase_building_type);
 
   //checks if the type is valid
   bool valid_type = validate_building_type(lowercase_building_type);
@@ -187,8 +193,8 @@ void City::add_building(string building_type, int amount_to_build,
         if(record[i].building_type == lowercase_building_type){
 
           set_material_amount("piedra", amount_of_stone - record[i].stone_cost);
-          set_material_amount("madera", amount_of_stone - record[i].wood_cost);
-          set_material_amount("metal", amount_of_stone - record[i].steel_cost);
+          set_material_amount("madera", amount_of_wood - record[i].wood_cost);
+          set_material_amount("metal", amount_of_steel - record[i].steel_cost);
 
         }
 
@@ -199,7 +205,9 @@ void City::add_building(string building_type, int amount_to_build,
   }
 
   else {
+
     enough_materials = true;
+
   }
 
   if (valid_type && valid_amount && enough_materials) {
@@ -213,7 +221,6 @@ void City::add_building(string building_type, int amount_to_build,
 
       std::cin >> user_confirmation;
 
-
       if (user_confirmation == "y" || user_confirmation == "yes") {
 
         Building* new_building = new Building(lowercase_building_type);
@@ -226,7 +233,6 @@ void City::add_building(string building_type, int amount_to_build,
                     << ", successfully built." << DEFAULT_COLOR << '\n';
 
       }
-
 
       else {
         std::cout << BOLD_RED << "ERROR:" << DEFAULT_COLOR << " Building: "
@@ -278,8 +284,7 @@ void City::demolish_building(string building_type) {
 
   string lowercase_building_type = lowercase_word(building_type);
 
-  string capitalized_building_type = lowercase_building_type;
-  capitalized_building_type[0] = toupper(capitalized_building_type[0]);
+  string capitalized_building_type = capitalize_word(lowercase_building_type);
 
   bool building_demolished = false;
 
@@ -355,7 +360,7 @@ void City::demolish_building(string building_type) {
 
   else
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building: '"
-               <<capitalized_building_type << "' not founded. "
+               <<capitalized_building_type << "' not found. "
                 << "Check option 3 to see all built buildings"<< '\n';
 }
 
@@ -373,8 +378,7 @@ void City::show_buildings() {
 
     string type_being_counted = record[i].building_type;
 
-    string capitalized_building_type = type_being_counted;
-    capitalized_building_type[0] = toupper(capitalized_building_type[0]);
+    string capitalized_building_type = capitalize_word(type_being_counted);
 
     while (current_node != 0 && record[i].max_quantity != 0) {
 
@@ -538,8 +542,7 @@ void City::show_record() {
 
     if (record[i].building_type != "") {
 
-      string capitalized_building_type = record[i].building_type;
-      capitalized_building_type[0] = toupper(capitalized_building_type[0]);
+      string capitalized_building_type = capitalize_word(record[i].building_type);
 
       enough_materials = validate_material_requirement(record[i].building_type);
       valid_amount = validate_building_amount(record[i].building_type, 1);
@@ -608,6 +611,13 @@ string City::lowercase_word(string word){
     }
 
     return word;
+}
+
+string City::capitalize_word(string word){
+
+  word[0] = char(toupper(int(word[0])));
+
+  return word;
 }
 
 //------------------------------------------------------------------------------
