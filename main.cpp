@@ -1,4 +1,8 @@
 #include "menu.h"
+#include "inaccesible_square.h"
+#include "buildable_square.h"
+#include "passable_square.h"
+
 using namespace std;
 
 //---------------------------Loading from txt files-----------------------------
@@ -116,7 +120,9 @@ void save_data(City* city) {
 //------------------------------Menu Options------------------------------------
 
 int main(){
+  
   system (CLR_SCREEN);
+  
   City andypolis;
 
   bool not_end_program = true;
