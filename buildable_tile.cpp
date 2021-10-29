@@ -1,11 +1,11 @@
 #include "buildable_tile.h"
 
-Buildable_tile::Buildable_tile() {
+BuildableTile::BuildableTile() {
     tile_empty = true;
     type_building_contained = " ";
 }
 
-void Buildable_tile::show() {
+void BuildableTile::show() {
     if (tile_empty)
         cout << "Cansillero consultado es construible y se encuentra " << state_of_tile() << endl;
     else
@@ -13,7 +13,7 @@ void Buildable_tile::show() {
              << ", contiene el edificio: " << type_building_contained << endl;
 }
 
-void Buildable_tile::build(string building) {
+void BuildableTile::build(string building) {
     tile_empty = false;
     type_building_contained = building;
 }

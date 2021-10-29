@@ -2,7 +2,6 @@
 #include "inaccesible_tile.h"
 #include "buildable_tile.h"
 #include "passable_tile.h"
-#include "map.h"
 
 using namespace std;
 
@@ -92,6 +91,41 @@ bool load_buildings(City* city) {
 
 }
 
+bool load_tiles(City* city){
+
+  return false;
+
+  ifstream file;
+  file.open(MAP_FILE_ROUTE);
+
+  if (!file) {
+
+    cout << BOLD_RED << "ERROR!:" <<  DEFAULT_COLOR << " Could not find file: "
+                                     "'materiales.txt', ending program" << endl;
+    return false;
+
+  }
+
+  //both are string because function getline takes a - string& str as second argument.
+
+  string total_of_rows;
+  string total_of_columns;
+
+  // while ((file.peek() != EOF)) {
+  //
+  //   getline(file, current_material, ' ');
+  //   getline(file, quantity_of_material);
+  //
+  //   city->add_material(current_material, stoi(quantity_of_material));
+  //
+  // }
+
+
+  file.close();
+  return true;
+
+}
+
 void save_data(City* city) {
 
   fstream material_file;
@@ -124,18 +158,15 @@ int main(){
 
   system (CLR_SCREEN);
 
-  Map map(3, 4);
-  // map.add_tile("L"); // 0 0
-  // map.add_tile("L"); // 0 1
-  // map.add_tile("T");
-  // map.add_tile("C");
-
-  // map.consult(0, 2); // construible
-  // map.consult(0, 1); // inaccesible
-  // map.consult(0, 3); // transitable
-  // map.consult(0, 0); // inaccesible
-
   City andypolis;
+
+  andypolis.generate_map(3, 4);
+
+  andypolis.add_tile("L");
+  andypolis.add_tile("C");
+
+  andypolis.consult_tile(0, 0);
+  andypolis.consult_tile(0, 1);
 
   bool not_end_program = true;
 

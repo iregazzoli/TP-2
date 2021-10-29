@@ -3,12 +3,12 @@
 
 #include "tile.h"
 
-class Buildable_tile : public Tile {
+class BuildableTile : public Tile {
 private:
     string type_building_contained;
 
 public:
-    Buildable_tile();
+    BuildableTile();
     void show();
     void build(string building);
 };

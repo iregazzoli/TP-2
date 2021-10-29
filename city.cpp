@@ -10,6 +10,9 @@ City::City(){
   current_position = 0;
 
   record = new Building_record[record_capacity];
+
+  city_map = 0;
+
 }
 
 
@@ -437,7 +440,7 @@ void City::clear_building_list() {
 }
 
 
-bool City::validate_building_type(string building_type){
+bool City::validate_building_type(string building_type) {
 
   bool valid_type = false;
 
@@ -456,7 +459,7 @@ bool City::validate_building_type(string building_type){
 }
 
 
-bool City::validate_building_amount(string building_type, int amount_to_build){
+bool City::validate_building_amount(string building_type, int amount_to_build) {
 
   bool valid_amount = false;
 
@@ -477,7 +480,7 @@ bool City::validate_building_amount(string building_type, int amount_to_build){
 }
 
 
-bool City::validate_material_requirement(string building_type){
+bool City::validate_material_requirement(string building_type) {
 
   bool enough_materials = false;
 
@@ -500,8 +503,8 @@ bool City::validate_material_requirement(string building_type){
 
 //-----------------------------Record Management--------------------------------
 
-void City::add_building(string type, int stone_cost, int wood_cost,
-                        int steel_cost, int max_building_quantity){
+void City::add_building(string building_type, int stone_cost, int wood_cost,
+                        int steel_cost, int max_building_quantity) {
 
   if (this->full_record()) {
     this->record_capacity += 5;
@@ -518,7 +521,7 @@ void City::add_building(string type, int stone_cost, int wood_cost,
 
   }
 
-  struct Building_record new_bulding{lowercase_word(type),stone_cost, wood_cost, steel_cost, max_building_quantity};
+  struct Building_record new_bulding{lowercase_word(building_type),stone_cost, wood_cost, steel_cost, max_building_quantity};
   record[current_position] = new_bulding;
   current_position++;
 
@@ -594,10 +597,33 @@ string City::building_data_to_string() {
 }
 
 
+//-------------------------------Map Management---------------------------------
+
+void City::generate_map(int rows, int columns){
+
+  city_map = new Map(rows, columns);
+
+}
+
+void City::add_tile(string tile_type){
+
+  city_map->add_tile(tile_type);
+
+}
+
+void City::consult_tile(int x_coordinate, int y_coordinate){
+
+  city_map->consult(x_coordinate, y_coordinate);
+
+}
+
+
 //---------------------------Private Record methods-----------------------------
 
 bool City::full_record() {
+
   return current_position == record_capacity;
+
 }
 
 //---------------------------Private Naming methods-----------------------------

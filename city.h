@@ -1,6 +1,7 @@
 #ifndef CITY_H
 #define CITY_H
 #include "node.h"
+#include "map.h"
 #include <iomanip>
 #include "system.h"
 #include "constants.h"
@@ -29,8 +30,7 @@ private:
   int current_position;
   Building_record* record;
 
-
-
+  Map* city_map;
 
 public:
   // PRE: -
@@ -98,7 +98,20 @@ public:
   //POS: returns all the building related information.
   string building_data_to_string();
 
-//------------------------------------------------------------------------------
+
+//-------------------------------Map Management---------------------------------
+
+//PRE: -
+//POS: .
+void generate_map(int rows, int columns);
+
+//PRE: -
+//POS: .
+void add_tile(string tile_type);
+
+//PRE: -
+//POS: .
+void consult_tile(int x_coordinate, int y_coordinate);
 
 
 private:

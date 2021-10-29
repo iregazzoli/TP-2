@@ -3,10 +3,10 @@
 
 #include "tile.h"
 
-class Inaccesible_tile : public Tile {
+class InaccesibleTile : public Tile {
 
 public:
-    Inaccesible_tile();
+    InaccesibleTile();
     void show();
 };
 

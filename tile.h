@@ -17,6 +17,7 @@ public:
     virtual void show() = 0;
 
     string state_of_tile();
+
 };
 
 #endif

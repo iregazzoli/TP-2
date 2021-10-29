@@ -3,13 +3,13 @@
 
 #include "tile.h"
 
-class Passable_tile : public Tile {
+class PassableTile : public Tile {
 private:
     string material_contained;
     int material_amount;
 
 public:
-    Passable_tile();
+    PassableTile();
     void show();
     void add_material(string material);
     void remove_material();

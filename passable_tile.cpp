@@ -1,12 +1,12 @@
 #include "passable_tile.h"
 
-Passable_tile::Passable_tile () {
+PassableTile::PassableTile () {
     tile_empty = true;
     material_contained = "";
     material_amount = 0;
 }
 
-void Passable_tile::show() {
+void PassableTile::show() {
     if (tile_empty)
         cout << "Cansillero consultado es transitable y se encuentra " << state_of_tile() << endl;
     else
@@ -14,13 +14,13 @@ void Passable_tile::show() {
              << ", contiene: " << material_contained << endl;
 }
 
-void Passable_tile::add_material(string material) {
+void PassableTile::add_material(string material) {
     material_contained = material;
     material_amount = 1;
     tile_empty = false;
 }
 
-void Passable_tile::remove_material() {
+void PassableTile::remove_material() {
     tile_empty = true;
     material_contained = "";
     material_amount = 0;

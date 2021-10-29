@@ -14,7 +14,7 @@ private:
   int total_of_rows;
   int total_of_columns;
 
-  Tile* current_tile;
+  Tile** current_tile;
   int current_row;
   int current_column;
 

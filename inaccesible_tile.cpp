@@ -1,9 +1,9 @@
 #include "inaccesible_tile.h"
 
-Inaccesible_tile::Inaccesible_tile () {
+InaccesibleTile::InaccesibleTile () {
     tile_empty = true;
 }
 
-void Inaccesible_tile::show() {
+void InaccesibleTile::show() {
     cout << "Cansillero consultado es inaccesible" << endl;
 }
