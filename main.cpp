@@ -2,6 +2,7 @@
 #include "inaccesible_tile.h"
 #include "buildable_tile.h"
 #include "passable_tile.h"
+#include "map.h"
 
 using namespace std;
 
@@ -122,6 +123,17 @@ void save_data(City* city) {
 int main(){
 
   system (CLR_SCREEN);
+
+  Map map(3, 4);
+  // map.add_tile("L"); // 0 0
+  // map.add_tile("L"); // 0 1
+  // map.add_tile("T");
+  // map.add_tile("C");
+
+  // map.consult(0, 2); // construible
+  // map.consult(0, 1); // inaccesible
+  // map.consult(0, 3); // transitable
+  // map.consult(0, 0); // inaccesible
 
   City andypolis;
 
