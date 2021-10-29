@@ -1,22 +1,22 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef TILE_H
+#define TILE_H
 #include <fstream>
 #include <iostream>
 using namespace std;
 
-class Square {
+class Tile {
 protected:
-    bool square_empty;
+    bool tile_empty;
 
 public:
-    
-    Square(){};
+
+    Tile(){};
 
     //PRE:
     //POST:
     virtual void show() = 0;
 
-    string state_of_square();
+    string state_of_tile();
 };
 
 #endif

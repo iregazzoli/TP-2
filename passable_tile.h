@@ -1,18 +1,18 @@
-#ifndef PASSABLE_SQUARE_H
-#define PASSABLE_SQUARE_H
+#ifndef PASSABLE_TILE_H
+#define PASSABLE_TILE_H
 
-#include "square.h"
+#include "tile.h"
 
-class Passable_square : public Square {
+class Passable_tile : public Tile {
 private:
     string material_contained;
     int material_amount;
 
 public:
-    Passable_square();
+    Passable_tile();
     void show();
     void add_material(string material);
     void remove_material();
 };
 
-#endif // PASSABLE_SQUARE_H
+#endif // PASSABLE_TILE_H
