@@ -17,7 +17,7 @@ const int WIDTH = 10;
 
 const string MATERIAL_FILE_ROUTE = "materiales.txt";
 const string BUILDING_FILE_ROUTE = "edificios.txt";
-const string MAP_FILE_ROUTE = "map.txt";
+const string MAP_FILE_ROUTE = "mapa.txt";
 
 const string LAKE = "L";
 const string TERRAIN = "T";

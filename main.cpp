@@ -93,15 +93,13 @@ bool load_buildings(City* city) {
 
 bool load_tiles(City* city){
 
-  return false;
-
   ifstream file;
   file.open(MAP_FILE_ROUTE);
 
   if (!file) {
 
     cout << BOLD_RED << "ERROR!:" <<  DEFAULT_COLOR << " Could not find file: "
-                                     "'materiales.txt', ending program" << endl;
+                                     "'mapa.txt', ending program" << endl;
     return false;
 
   }
@@ -111,15 +109,27 @@ bool load_tiles(City* city){
   string total_of_rows;
   string total_of_columns;
 
-  // while ((file.peek() != EOF)) {
-  //
-  //   getline(file, current_material, ' ');
-  //   getline(file, quantity_of_material);
-  //
-  //   city->add_material(current_material, stoi(quantity_of_material));
-  //
-  // }
+  getline(file, total_of_rows, ' ');
+  getline(file, total_of_columns);
 
+  city->generate_map(stoi(total_of_rows), stoi(total_of_columns));
+
+  string line;
+  string tile_type;
+
+  while ((file.peek() != EOF)) {
+
+    getline(file, line);
+
+    stringstream ss(line); //from API stringstream
+
+    while (ss >> tile_type) {
+
+      city->add_tile(tile_type);
+
+    }
+
+  }
 
   file.close();
   return true;
@@ -160,20 +170,15 @@ int main(){
 
   City andypolis;
 
-  andypolis.generate_map(3, 4);
-
-  andypolis.add_tile("L");
-  andypolis.add_tile("C");
-
-  andypolis.consult_tile(0, 0);
-  andypolis.consult_tile(0, 1);
-
   bool not_end_program = true;
 
   not_end_program = load_buildings(&andypolis);
 
-  if(not_end_program)
-    not_end_program = load_materials(&andypolis);
+  not_end_program = load_materials(&andypolis);
+
+  not_end_program = load_tiles(&andypolis);
+
+  andypolis.consult_tile(5, 8);
 
   string user_option;
 
