@@ -1,6 +1,5 @@
 #ifndef NODE_H
 #define NODE_H
-#include "building.h"
 
 template <class T>
 class Node{
@@ -15,6 +14,13 @@ public:
   Node(T* value){
     this->value = value;
   }
+
+  //PRE:
+  //POS:
+  ~Node() {
+    delete value;
+  }
+
 
   //PRE: Pointer needs to be a valid pointer to a node object
   //POS: Changes the pointer "next_node" to point to 'pointer'.

@@ -226,7 +226,7 @@ void City::add_building(string building_type, int amount_to_build,
 
       if (user_confirmation == "y" || user_confirmation == "yes") {
 
-        Building* new_building = new Building(lowercase_building_type, 1,1);
+        Building* new_building = new Building(lowercase_building_type);
         Node<Building>* new_node = new Node<Building>(new_building);
         new_node->set_next_node(first_building_node);
         first_building_node = new_node;
@@ -249,7 +249,7 @@ void City::add_building(string building_type, int amount_to_build,
 
       for (int i = 0; i < amount_to_build; i++) {
 
-        Building* new_building = new Building(lowercase_building_type, 1, 1);
+        Building* new_building = new Building(lowercase_building_type);
         Node<Building>* new_node = new Node<Building>(new_building);
         new_node->set_next_node(first_building_node);
         first_building_node = new_node;
