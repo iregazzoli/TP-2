@@ -5,8 +5,6 @@
 using namespace std;
 
 class Tile {
-protected:
-    bool tile_empty;
 
 public:
 
@@ -16,7 +14,7 @@ public:
     //POST:
     virtual void show() = 0;
 
-    string state_of_tile();
+    virtual bool tile_empty();
 
 };
 

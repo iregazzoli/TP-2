@@ -1,19 +1,37 @@
 #include "buildable_tile.h"
 
 BuildableTile::BuildableTile() {
-    tile_empty = true;
-    type_building_contained = " ";
+    building_contained = 0;
 }
 
 void BuildableTile::show() {
-    if (tile_empty)
+    if (tile_empty())
         cout << "Cansillero consultado es construible y se encuentra " << state_of_tile() << endl;
     else
         cout << "Cansillero consultado es construible y se encuentra " << state_of_tile()
-             << ", contiene el edificio: " << type_building_contained << endl;
+             << ", contiene el edificio: " << building_contained << endl;
 }
 
-void BuildableTile::build(string building) {
-    tile_empty = false;
-    type_building_contained = building;
+void BuildableTile::build(Building building) {
+
+    building_contained = &building;
+
+}
+
+bool BuildableTile::tile_empty(){
+
+  if(building_contained == 0)
+    return true;
+
+  return false;
+
+}
+
+string BuildableTile::state_of_tile(){
+
+  if(tile_empty())
+    return "vacio";
+
+  return "ocupado";
+
 }

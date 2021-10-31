@@ -1,8 +1,7 @@
 #include "tile.h"
 
-string Tile::state_of_tile() {
-    if (tile_empty)
-        return "vacio";
+bool Tile::tile_empty(){
 
-    return "ocupado";
+  return false;
+  
 }

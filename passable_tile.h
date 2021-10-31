@@ -13,6 +13,8 @@ public:
     void show();
     void add_material(string material);
     void remove_material();
+    bool tile_empty();
+    string state_of_tile();
 };
 
 #endif // PASSABLE_TILE_H

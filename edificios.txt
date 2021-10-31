@@ -1,6 +1,6 @@
-aserradero 30 100 50 1 2
-fabrica 100 100 250 0 4
-escuela 250 200 45 1 1
-yacimiento 125 140 0 1 2
-casa 50 50 50 3 4
-edificio 500 80 310 1 2
+aserradero 30 100 50 2
+fabrica 100 100 250 4
+escuela 250 200 45 1
+yacimiento 125 140 0 2
+casa 50 50 50 4
+edificio 500 80 310 2

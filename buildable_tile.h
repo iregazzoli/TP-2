@@ -2,15 +2,18 @@
 #define BUILDABLE_TILE_H
 
 #include "tile.h"
+#include "building.h"
 
 class BuildableTile : public Tile {
 private:
-    string type_building_contained;
+    Building* building_contained;
 
 public:
     BuildableTile();
     void show();
-    void build(string building);
+    void build(Building building);
+    bool tile_empty();
+    string state_of_tile();
 };
 
 #endif //
