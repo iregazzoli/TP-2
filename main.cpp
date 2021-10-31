@@ -115,7 +115,7 @@ bool load_tiles(City* city){
   city->generate_map(stoi(total_of_rows), stoi(total_of_columns));
 
   string line;
-  string tile_type;
+  char tile_type;
 
   while ((file.peek() != EOF)) {
 
@@ -174,11 +174,11 @@ int main(){
 
   not_end_program = load_buildings(&andypolis);
 
-  not_end_program = load_materials(&andypolis);
+  if(not_end_program)
+    not_end_program = load_materials(&andypolis);
 
-  not_end_program = load_tiles(&andypolis);
-
-  andypolis.consult_tile(5, 8);
+  if(not_end_program)
+    not_end_program = load_tiles(&andypolis);
 
   string user_option;
 

@@ -605,7 +605,7 @@ void City::generate_map(int rows, int columns){
 
 }
 
-void City::add_tile(string tile_type){
+void City::add_tile(char tile_type){
 
   city_map->add_tile(tile_type);
 

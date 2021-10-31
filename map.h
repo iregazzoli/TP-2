@@ -24,7 +24,7 @@ public:
 
   //PRE: (maybe clarify that the amount on letters on the, nah don't bother)
   //POS:
-  void add_tile(string tile_type);
+  void add_tile(char tile_type);
   void consult(int x_coordinate, int y_coordinate);
 
 };

@@ -19,8 +19,8 @@ const string MATERIAL_FILE_ROUTE = "materiales.txt";
 const string BUILDING_FILE_ROUTE = "edificios.txt";
 const string MAP_FILE_ROUTE = "mapa.txt";
 
-const string LAKE = "L";
-const string TERRAIN = "T";
-const string ROAD = "C";
+const char LAKE = 'L';
+const char TERRAIN = 'T';
+const char ROAD = 'C';
 
 #endif

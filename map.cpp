@@ -35,7 +35,7 @@ void Map::initialize(){
 
 }
 
-void Map::add_tile(string tile_type){
+void Map::add_tile(char tile_type){
 
   if(tile_type == LAKE)
     *current_tile = new InaccesibleTile;
