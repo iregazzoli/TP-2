@@ -501,6 +501,7 @@ bool City::validate_material_requirement(string building_type) {
 
 }
 
+
 //-----------------------------Record Management--------------------------------
 
 void City::add_building(string building_type, int stone_cost, int wood_cost,
@@ -530,7 +531,7 @@ void City::add_building(string building_type, int stone_cost, int wood_cost,
 
 void City::show_record() {
 
-    system (CLR_SCREEN);
+  system (CLR_SCREEN);
 
   std::cout << "All the types of buildings are:" << '\n';
 
@@ -597,6 +598,15 @@ string City::building_data_to_string() {
 }
 
 
+//---------------------------Private Record methods-----------------------------
+
+bool City::full_record() {
+
+  return current_position == record_capacity;
+
+}
+
+
 //-------------------------------Map Management---------------------------------
 
 void City::generate_map(int rows, int columns){
@@ -614,15 +624,6 @@ void City::add_tile(char tile_type){
 void City::consult_tile(int x_coordinate, int y_coordinate){
 
   city_map->consult(x_coordinate, y_coordinate);
-
-}
-
-
-//---------------------------Private Record methods-----------------------------
-
-bool City::full_record() {
-
-  return current_position == record_capacity;
 
 }
 

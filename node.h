@@ -18,7 +18,9 @@ public:
   //PRE:
   //POS:
   ~Node() {
+
     delete value;
+
   }
 
 
@@ -47,28 +49,37 @@ public:
 
 template <class T>
 void Node<T>::set_next_node(Node* pointer){
+
   next_node = pointer;
+
 }
 
 template <class T>
-Node<T>* Node<T>::get_next_node(){
+Node<T>* Node<T>::get_next_node() {
+
   return next_node;
+
 }
 
 template <class T>
-T* Node<T>::get_value(){
+T* Node<T>::get_value() {
+
   return value;
+
 }
 
 template <class T>
-void Node<T>::set_value(T new_value){
+void Node<T>::set_value(T new_value) {
+
   value = new_value;
+
 }
 
 template <class T>
-bool Node<T>::next_node_not_null(){
-  return (next_node != 0);
-}
+bool Node<T>::next_node_not_null() {
 
+  return (next_node != 0);
+
+}
 
 #endif
