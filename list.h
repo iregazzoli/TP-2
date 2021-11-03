@@ -29,11 +29,9 @@ public:
 
         Node<T>* aux = first_node->get_next_node();
 
-        delete_current_node();
+        delete first_node;
 
         first_node = aux;
-
-        reset_current_node();
 
       }
 
@@ -42,6 +40,10 @@ public:
     void add_node(T* value);
 
     void reset_current_node();
+
+    Node<T>* get_first_node();
+
+    bool current_node_null();
 
     T* get_current_value();
 
@@ -60,6 +62,8 @@ void List<T>::add_node(T* value) {
 
   first_node = new_node;
 
+  reset_current_node();
+
 }
 
 template <class T>
@@ -67,6 +71,20 @@ void List<T>::reset_current_node() {
 
   previous_node = 0;
   current_node = first_node;
+
+}
+
+template<class T>
+Node<T>* List<T>::get_first_node(){
+
+  return first_node;
+
+}
+
+template <class T>
+bool List<T>::current_node_null(){
+
+  return current_node == 0;
 
 }
 

@@ -199,7 +199,7 @@ void save_data(City* city) {
 
 int main(){
 
-  system (CLR_SCREEN);
+  // system (CLR_SCREEN);
 
   City andypolis;
 
@@ -209,6 +209,9 @@ int main(){
 
   if(not_end_program)
     not_end_program = load_materials(&andypolis);
+
+  if(not_end_program)
+    not_end_program = load_buildings(&andypolis);
 
   // if(not_end_program)
   //   not_end_program = load_tiles(&andypolis);

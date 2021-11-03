@@ -113,8 +113,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
         materials->set_material_amount("madera", user_wood - wood_cost);
         materials->set_material_amount("metal", user_steel - steel_cost);
 
-        buildings->add_building(building_type, x_coordinate, y_coordinate);
-        record->modify_building_amount(building_type, 1);
+        buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
+        record->modify_building_amount(lowercase_building_type, 1);
 
         std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                     << ", successfully built." << DEFAULT_COLOR << '\n';
@@ -204,13 +204,24 @@ void City::show_buildings() {
 
   system (CLR_SCREEN);
 
+  std::cout << "Entered show buildings" << '\n';
+
   while(record->get_current_building_type() != "0"){
 
-    int amount_built = record->get_building_amount(record->get_current_building_type());
+    int amount_built = buildings->get_building_built_amount(record->get_current_building_type());
 
-    buildings->show_building(record->get_current_building_type(), amount_built);
+    std::cout << "Type: " << record->get_current_building_type() << " Amount : " << amount_built << '\n';
+
+    if(amount_built > 0){
+
+      std::cout << "entered if" << '\n';
+      buildings->show_building(record->get_current_building_type(), amount_built);
+      std::cout << "out of if" << '\n';
+    }
 
   }
+
+  std::cout << "Exited show buildings" << '\n';
 
 }
 

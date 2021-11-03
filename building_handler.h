@@ -21,6 +21,8 @@ public:
 
   void show_building(string building_type, int amount_built);
 
+  int get_building_built_amount(string building_type_to_count);
+
 };
 
 #endif

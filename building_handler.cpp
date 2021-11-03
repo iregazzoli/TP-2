@@ -40,24 +40,26 @@ bool BuildingHandler::demolish_building(int x_coordinate, int y_coordinate) {
 
 }
 
-// int BuildingHandler::get_building_built_amount(string building_type_to_count){
-//
-//   buildings->reset_current_node();
-//
-//   int building_amount = 0;
-//
-//   while(buildings->get_current_value() != 0){
-//
-//     if(buildings->get_current_value()->get_type() == building_type_to_count)
-//       building_amount++;
-//
-//     buildings->next_node();
-//
-//   }
-//
-//   return building_amount;
-//
-// }
+int BuildingHandler::get_building_built_amount(string building_type_to_count){
+
+  buildings->reset_current_node();
+
+  int building_amount = 0;
+
+  while(buildings->get_current_value() != 0){
+
+    if(buildings->get_current_value()->get_type() == building_type_to_count)
+      building_amount++;
+
+    buildings->next_node();
+
+  }
+
+  // std::cout << "(In building handler), amount of buildings: " << building_type_to_count << " amount " << building_amount << '\n';
+
+  return building_amount;
+
+}
 
 void BuildingHandler::show_building(string building_type, int amount_built){
 
@@ -80,14 +82,12 @@ void BuildingHandler::show_building(string building_type, int amount_built){
   std::cout << left << setw(WIDTH) << "Amount of: " << BOLD_GREEN
     << setw(WIDTH) << building_type << DEFAULT_COLOR <<
      setw(WIDTH) << " is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR <<
-      " in coordinates" << BOLD_YELLOW << setw(WIDTH) << coordinates << '\n';
+      " in coordinates" << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
 
 }
 
 
 BuildingHandler::~BuildingHandler(){
-
-  buildings->reset_current_node();
 
   delete buildings;
 

@@ -93,12 +93,12 @@ void build(City* city) {
 
   system (CLR_SCREEN);
 
-  string building_to_add = "casa";
-  string x_coordinate = "1";
-  string y_coordinate = "1";
+  string building_to_add;
+  string x_coordinate;
+  string y_coordinate;
 
-  // std::cout << "Enter the type of building you wish to build: ";
-  // std::cin >> building_to_add;
+  std::cout << "Enter the type of building you wish to build: ";
+  std::cin >> building_to_add;
 
   while(!city->validate_building_type(lowercase_word(building_to_add))) {
 
@@ -107,8 +107,8 @@ void build(City* city) {
 
   }
 
-  // std::cout << "Enter the X coordinate of building you wish to build: ";
-  // std::cin >> x_coordinate;
+  std::cout << "Enter the X coordinate of building you wish to build: ";
+  std::cin >> x_coordinate;
 
   while(!is_numeric(x_coordinate)) {
 
@@ -117,8 +117,8 @@ void build(City* city) {
 
   }
 
-  // std::cout << "Enter the Y coordinate of building you wish to build: ";
-  // std::cin >> y_coordinate;
+  std::cout << "Enter the Y coordinate of building you wish to build: ";
+  std::cin >> y_coordinate;
 
   while(!is_numeric(y_coordinate)) {
 

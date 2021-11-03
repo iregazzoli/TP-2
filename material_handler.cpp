@@ -65,8 +65,6 @@ void MaterialHandler::show_materials(){
 
 void MaterialHandler::set_material_amount(string material_to_modify, int new_quantity) {
 
-  std::cout << "MAterial: " << material_to_modify << " new quantity: " <<  new_quantity << '\n' << '\n';
-
   materials->reset_current_node();
 
   while (materials->get_current_value() != 0) {
@@ -74,7 +72,6 @@ void MaterialHandler::set_material_amount(string material_to_modify, int new_qua
     if (materials->get_current_value()->material_name == material_to_modify)
       materials->get_current_value()->quantity = new_quantity;
 
-    std::cout << "MAterial: " << materials->get_current_value()->material_name << " new quantity: " <<  materials->get_current_value()->quantity << '\n';
     materials->next_node();
 
   }
@@ -115,8 +112,6 @@ string MaterialHandler::materials_data_to_string() {
 }
 
 MaterialHandler::~MaterialHandler(){
-
-  materials->reset_current_node();
 
   delete materials;
 

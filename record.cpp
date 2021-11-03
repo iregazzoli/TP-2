@@ -47,13 +47,12 @@ int Record::get_building_amount(string building_type){
   }
 
   record->reset_current_node();
+
   return 0;
 
 }
 
 void Record::show_record(int user_stone, int user_wood, int user_steel) {
-
-  record->reset_current_node();
 
   std::cout << "All the types of buildings are:" << '\n';
 
@@ -64,36 +63,36 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
   bool enough_materials = false;
   bool valid_amount = false;
 
-  while(record->get_current_value() != 0){
+  Node<Building_record>* aux_node = record->get_first_node();
 
-    string capitalized_building_type = capitalize_word(record->get_current_value()->building_type);
+  while(aux_node != 0){
 
-    int amount_of_buildings_built = get_building_amount(record->get_current_value()->building_type);
+    string capitalized_building_type = capitalize_word(aux_node->get_value()->building_type);
 
-    enough_materials = validate_material_requirement(record->get_current_value()->building_type,
+    int amount_of_buildings_built = get_building_amount(aux_node->get_value()->building_type);
+
+    enough_materials = validate_material_requirement(aux_node->get_value()->building_type,
                                                       user_stone, user_wood, user_steel);
 
-    valid_amount = validate_building_amount(record->get_current_value()->building_type,
+    valid_amount = validate_building_amount(aux_node->get_value()->building_type,
                                                   amount_of_buildings_built);
 
     if(enough_materials && valid_amount)
-      std::cout << DEFAULT_COLOR << "Building:            " << BOLD_GREEN << capitalized_building_type << '\n';
+      std::cout << DEFAULT_COLOR << "Building:                " << BOLD_GREEN << capitalized_building_type << '\n';
 
     else
-      std::cout << DEFAULT_COLOR << "Building:            " << BOLD_RED << capitalized_building_type << '\n';
+      std::cout << DEFAULT_COLOR << "Building:                " << BOLD_RED << capitalized_building_type << '\n';
 
-    std::cout << DEFAULT_COLOR << "Stone cost:            " << BOLD_BLACK  << record->get_current_value()->stone_cost << '\n';
-    std::cout << DEFAULT_COLOR << "Wood cost:             " << BOLD_GREEN << record->get_current_value()->wood_cost << '\n';
-    std::cout << DEFAULT_COLOR << "Steel cost:            " << BOLD_CYAN  << record->get_current_value()->steel_cost << '\n';
-    std::cout << DEFAULT_COLOR << "Amount of buildigns:   " << BOLD_BLUE  << amount_of_buildings_built << '\n';
-    std::cout << DEFAULT_COLOR << "Amount allow to build: " << BOLD_RED << record->get_current_value()->max_quantity - amount_of_buildings_built << '\n';
+    std::cout << DEFAULT_COLOR << "Stone cost:              " << BOLD_BLACK  << aux_node->get_value()->stone_cost << '\n';
+    std::cout << DEFAULT_COLOR << "Wood cost:               " << BOLD_GREEN << aux_node->get_value()->wood_cost << '\n';
+    std::cout << DEFAULT_COLOR << "Steel cost:              " << BOLD_CYAN  << aux_node->get_value()->steel_cost << '\n';
+    std::cout << DEFAULT_COLOR << "Amount of buildigns:     " << BOLD_BLUE  << amount_of_buildings_built << '\n';
+    std::cout << DEFAULT_COLOR << "Amount allowed to build: " << BOLD_RED << aux_node->get_value()->max_quantity - amount_of_buildings_built << '\n';
     std::cout << "\n" << BOLD_VIOLET << DIVISORY_LINE << DEFAULT_COLOR << "\n" << "\n";
 
-    record->next_node();
+    aux_node = aux_node->get_next_node();
 
   }
-
-  record->reset_current_node();
 
 }
 
@@ -123,14 +122,15 @@ string Record::building_data_to_string() {
 
 string Record::get_current_building_type() {
 
-  string building_type;
+  if(!record->current_node_null()){
 
-  building_type = record->get_current_value()->building_type;
+    string building_type = record->get_current_value()->building_type;
 
-  record->next_node();
+    record->next_node();
 
-  if(building_type != "0")
     return building_type;
+
+  }
 
   return "0";
 
@@ -184,7 +184,7 @@ int Record::get_steel_cost(string building_type){
       return record->get_current_value()->steel_cost;
 
     record->next_node();
-    
+
   }
 
   record->reset_current_node();
@@ -266,8 +266,6 @@ bool Record::validate_material_requirement(string building_type, int stone_amoun
 }
 
 Record::~Record(){
-
-  record->reset_current_node();
 
   delete record;
 
