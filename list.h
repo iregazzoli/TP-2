@@ -2,6 +2,8 @@
 #define LIST_H
 #include <fstream>
 #include <iostream>
+#include "constants.h"
+#include "auxiliary_functions.h"
 #include "node.h"
 
 template <class T>
@@ -48,7 +50,6 @@ public:
     void delete_current_node();
 
 };
-
 
 template <class T>
 void List<T>::add_node(T* value) {

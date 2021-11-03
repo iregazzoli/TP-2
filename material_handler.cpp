@@ -19,8 +19,43 @@ void MaterialHandler::show_materials(){
 
   while(materials->get_current_value() != 0){
 
-    std::cout << "name: " << materials->get_current_value()->material_name <<
-          ", Quantity: " << materials->get_current_value()->quantity << '\n';
+    string capitalized_material = capitalize_word(materials->get_current_value()->material_name);
+
+    if (materials->get_current_value()->material_name == "piedra") {
+
+      std::cout << left << setw(WIDTH) << "Material: " << BOLD_BLACK <<
+       setw(WIDTH) << capitalized_material << DEFAULT_COLOR
+        << setw(WIDTH) << " Quantity: "<< BOLD_BLUE << setw(WIDTH) <<
+          materials->get_current_value()->quantity << DEFAULT_COLOR << '\n';
+    }
+
+    else if (materials->get_current_value()->material_name == "madera") {
+
+      std::cout << left << setw(WIDTH) << "Material: " << BOLD_GREEN <<
+       setw(WIDTH) << capitalized_material << DEFAULT_COLOR
+        << setw(WIDTH) << " Quantity: "<< BOLD_BLUE << setw(WIDTH) <<
+          materials->get_current_value()->quantity << DEFAULT_COLOR << '\n';
+
+    }
+
+    else if (materials->get_current_value()->material_name == "metal") {
+
+      std::cout << left << setw(WIDTH) << "Material: " << BOLD_CYAN <<
+       setw(WIDTH) << capitalized_material << DEFAULT_COLOR
+        << setw(WIDTH) << " Quantity: "<< BOLD_BLUE << setw(WIDTH) <<
+          materials->get_current_value()->quantity << DEFAULT_COLOR << '\n';
+
+    }
+
+    else {
+
+      std::cout << left << setw(WIDTH) << "Material: " << BOLD_YELLOW <<
+       setw(WIDTH) << capitalized_material << DEFAULT_COLOR
+        << setw(WIDTH) << " Quantity: "<< BOLD_BLUE << setw(WIDTH) <<
+          materials->get_current_value()->quantity << DEFAULT_COLOR << '\n';
+
+
+    }
 
     materials->next_node();
 
@@ -30,6 +65,8 @@ void MaterialHandler::show_materials(){
 
 void MaterialHandler::set_material_amount(string material_to_modify, int new_quantity) {
 
+  std::cout << "MAterial: " << material_to_modify << " new quantity: " <<  new_quantity << '\n' << '\n';
+
   materials->reset_current_node();
 
   while (materials->get_current_value() != 0) {
@@ -37,6 +74,7 @@ void MaterialHandler::set_material_amount(string material_to_modify, int new_qua
     if (materials->get_current_value()->material_name == material_to_modify)
       materials->get_current_value()->quantity = new_quantity;
 
+    std::cout << "MAterial: " << materials->get_current_value()->material_name << " new quantity: " <<  materials->get_current_value()->quantity << '\n';
     materials->next_node();
 
   }

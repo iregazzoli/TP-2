@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include <string>
+#include <iostream>
+
+using namespace std;
 
 const string DEFAULT_COLOR = "\e[0m";
 const string BOLD_RED = "\e[1;31m";

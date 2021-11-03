@@ -4,8 +4,6 @@
 #include <fstream>
 #include "city.h"
 #include "building.h"
-#include <cctype>
-#include <cstring>
 
 using namespace std;
 
@@ -94,20 +92,58 @@ void press_enter_to_continue() {
 void build(City* city) {
 
   system (CLR_SCREEN);
-  string building_to_add;
-  std::cout << "Enter the type of building you wish to build: ";
-  std::cin >> building_to_add;
-  city->add_building(building_to_add, 1, false);
+
+  string building_to_add = "casa";
+  string x_coordinate = "1";
+  string y_coordinate = "1";
+
+  // std::cout << "Enter the type of building you wish to build: ";
+  // std::cin >> building_to_add;
+
+  while(!city->validate_building_type(lowercase_word(building_to_add))) {
+
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Please Enter a valid type: ";
+    std::cin >> building_to_add; //we could instead do that if the user enters an invalid name it goes back to menu instaead of continuing the function
+
+  }
+
+  // std::cout << "Enter the X coordinate of building you wish to build: ";
+  // std::cin >> x_coordinate;
+
+  while(!is_numeric(x_coordinate)) {
+
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "X coordinate must be a number: ";
+  std::cin >> x_coordinate;
+
+  }
+
+  // std::cout << "Enter the Y coordinate of building you wish to build: ";
+  // std::cin >> y_coordinate;
+
+  while(!is_numeric(y_coordinate)) {
+
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Y coordinate must be a number: ";
+  std::cin >> y_coordinate;
+
+  }
+
+  city->add_building(building_to_add, stoi(x_coordinate), stoi(y_coordinate), false);
 
 }
 
 void demolish(City* city) {
 
   system (CLR_SCREEN);
-  string building_to_demolish;
-  std::cout << "Enter the type of building you wish to demolish: ";
-  std::cin >> building_to_demolish;
-  city->demolish_building(building_to_demolish);
+
+  int x_coordinate;
+  int y_coordinate;
+
+  std::cout << "Enter the X coordinate of building you wish to build: ";
+  std::cin >> x_coordinate;
+  std::cout << "Enter the Y coordinate of building you wish to build: ";
+  std::cin >> y_coordinate;
+
+  city->demolish_building(x_coordinate, y_coordinate);
 
 }
 

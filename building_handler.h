@@ -17,9 +17,9 @@ public:
 
   void add_building(string building_type, int x_coordinate, int y_coordinate);
 
-  void demolish_building(int x_coordinate, int y_coordinate);
+  bool demolish_building(int x_coordinate, int y_coordinate);
 
-  int get_building_built_amount(string building_type_to_count);
+  void show_building(string building_type, int amount_built);
 
 };
 

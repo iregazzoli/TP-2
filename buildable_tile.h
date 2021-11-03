@@ -14,6 +14,7 @@ public:
     void build(Building building);
     bool tile_empty();
     string state_of_tile();
+    string get_value();
 };
 
 #endif //

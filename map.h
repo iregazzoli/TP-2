@@ -26,6 +26,7 @@ public:
   //POS:
   void add_tile(char tile_type);
   void consult(int x_coordinate, int y_coordinate);
+  string get_building_type(int x_coordinate, int y_coordinate);
 
 };
 

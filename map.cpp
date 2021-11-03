@@ -66,3 +66,8 @@ void Map::consult(int x_coordinate, int y_coordinate){
   map[x_coordinate][y_coordinate]->show();
 
 }
+
+string Map::get_building_type(int x_coordinate, int y_coordinate){
+
+  return map[x_coordinate][y_coordinate]->get_value();
+}

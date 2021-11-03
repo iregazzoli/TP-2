@@ -16,6 +16,8 @@ public:
 
     virtual bool tile_empty();
 
+    virtual string get_value();
+
 };
 
 #endif

@@ -35,3 +35,9 @@ string BuildableTile::state_of_tile(){
   return "ocupado";
 
 }
+
+string BuildableTile::get_value(){
+
+  return building_contained->get_type();
+
+}
