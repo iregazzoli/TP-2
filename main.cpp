@@ -199,7 +199,7 @@ void save_data(City* city) {
 
 int main(){
 
-  // system (CLR_SCREEN);
+  system (CLR_SCREEN);
 
   City andypolis;
 

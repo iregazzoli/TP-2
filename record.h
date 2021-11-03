@@ -42,6 +42,10 @@ public:
 
   int get_steel_cost(string building_type);
 
+  void reset_current_node();
+
+  void next_node();
+
   //PRE: -
   //POS:
   bool validate_building_type(string building_type);

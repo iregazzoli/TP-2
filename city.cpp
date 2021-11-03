@@ -204,24 +204,21 @@ void City::show_buildings() {
 
   system (CLR_SCREEN);
 
-  std::cout << "Entered show buildings" << '\n';
+  record->reset_current_node();
 
   while(record->get_current_building_type() != "0"){
 
     int amount_built = buildings->get_building_built_amount(record->get_current_building_type());
 
-    std::cout << "Type: " << record->get_current_building_type() << " Amount : " << amount_built << '\n';
-
     if(amount_built > 0){
 
-      std::cout << "entered if" << '\n';
       buildings->show_building(record->get_current_building_type(), amount_built);
-      std::cout << "out of if" << '\n';
+
     }
 
-  }
+    record->next_node();
 
-  std::cout << "Exited show buildings" << '\n';
+  }
 
 }
 

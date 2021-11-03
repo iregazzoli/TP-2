@@ -55,8 +55,6 @@ int BuildingHandler::get_building_built_amount(string building_type_to_count){
 
   }
 
-  // std::cout << "(In building handler), amount of buildings: " << building_type_to_count << " amount " << building_amount << '\n';
-
   return building_amount;
 
 }
@@ -65,13 +63,14 @@ void BuildingHandler::show_building(string building_type, int amount_built){
 
   buildings->reset_current_node();
   string coordinates = "";
+  string capitalized_building_type = capitalize_word(building_type);
 
   while(buildings->get_current_value() != 0){
 
     if(buildings->get_current_value()->get_type() == building_type){
       coordinates = coordinates + "(" + to_string(buildings->get_current_value()->get_x_coordinate())
                     + ", " + to_string(buildings->get_current_value()->get_y_coordinate())
-                    + ")";
+                    + ") ";
 
     }
 
@@ -79,10 +78,10 @@ void BuildingHandler::show_building(string building_type, int amount_built){
 
   }
 
-  std::cout << left << setw(WIDTH) << "Amount of: " << BOLD_GREEN
-    << setw(WIDTH) << building_type << DEFAULT_COLOR <<
-     setw(WIDTH) << " is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR <<
-      " in coordinates" << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
+  std::cout << left << setw(WIDTH) << "Amount of: " << BOLD_GREEN <<
+             capitalized_building_type  << "s" << DEFAULT_COLOR <<
+              setw(WIDTH) << " is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR <<
+               " in coordinates: " << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
 
 }
 

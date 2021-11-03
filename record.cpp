@@ -126,8 +126,6 @@ string Record::get_current_building_type() {
 
     string building_type = record->get_current_value()->building_type;
 
-    record->next_node();
-
     return building_type;
 
   }
@@ -262,6 +260,18 @@ bool Record::validate_material_requirement(string building_type, int stone_amoun
   record->reset_current_node();
 
   return enough_materials;
+
+}
+
+void Record::reset_current_node(){
+
+  record->reset_current_node();
+
+}
+
+void Record::next_node(){
+
+  record->next_node();
 
 }
 
