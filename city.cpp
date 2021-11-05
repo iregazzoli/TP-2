@@ -49,15 +49,31 @@ int City::get_material_amount(string target_material) {
 }
 
 
-void City::deduct_building_cost(int user_stone, int user_wood, int user_steel) {
+void City::deduct_building_cost(int user_stone, int user_wood, int user_steel, string building_type) {
 
-  int stone_cost = record->get_stone_cost(lowercase_building_type);
-  int wood_cost = record->get_wood_cost(lowercase_building_type);
-  int steel_cost = record->get_steel_cost(lowercase_building_type);
+  int stone_cost = record->get_stone_cost(building_type);
+  int wood_cost = record->get_wood_cost(building_type);
+  int steel_cost = record->get_steel_cost(building_type);
 
   materials->set_material_amount("piedra", user_stone - stone_cost);
   materials->set_material_amount("madera", user_wood - wood_cost);
   materials->set_material_amount("metal", user_steel - steel_cost);
+
+}
+
+void City::refund_building_cost(string building_type) {
+
+  int user_stone = materials->get_material_amount("piedra");
+  int user_wood = materials->get_material_amount("madera");
+  int user_steel = materials->get_material_amount("metal");
+
+  int stone_cost = record->get_stone_cost(building_type);
+  int wood_cost = record->get_wood_cost(building_type);
+  int steel_cost = record->get_steel_cost(building_type);
+
+  materials->set_material_amount("piedra", user_stone + stone_cost / 2);
+  materials->set_material_amount("madera", user_wood + wood_cost / 2);
+  materials->set_material_amount("metal", user_steel + steel_cost / 2);
 
 }
 
@@ -67,7 +83,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
                          bool loading_from_txt){
 
   string lowercase_building_type = lowercase_word(building_type);
-  string capitalize_building_type = capitalize_word(lowercase_building_type);
+  string capitalized_building_type = capitalize_word(lowercase_building_type);
 
 
   bool valid_type = record->validate_building_type(lowercase_building_type);
@@ -128,20 +144,20 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
 
 
-    if (ask_user_confirmation()) {
+    if (ask_user_confirmation(capitalized_building_type)) {
 
-      deduct_building_cost(user_stone, user_wood, user_steel)
+      deduct_building_cost(user_stone, user_wood, user_steel, lowercase_building_type);
 
-      add_building();
+      add_building(lowercase_building_type, x_coordinate, y_coordinate);
 
-      std::cout << BOLD_GREEN<< "Building: " << capitalize_building_type
+      std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                   << ", successfully built." << DEFAULT_COLOR << '\n';
 
     }
 
     else {
       std::cout << BOLD_RED << "ERROR:" << DEFAULT_COLOR << " Building: "
-                  << BOLD_GREEN << capitalize_building_type << DEFAULT_COLOR
+                  << BOLD_GREEN << capitalized_building_type << DEFAULT_COLOR
                     << " wasn't successfully constucted."<< '\n';
     }
 
@@ -150,20 +166,20 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   else if (!valid_type && valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
-                 "Invalid building type: " << capitalize_building_type <<
+                 "Invalid building type: " << capitalized_building_type <<
                   ", check menu option '4' to see all valid types." << '\n';
   }
 
   else if (valid_type && !valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
   std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building type: " <<
-                capitalize_building_type << " surpasses max quantity allow,"
+                capitalized_building_type << " surpasses max quantity allow,"
                 " check menu option '3' to see amount built." << '\n';
   }
 
   else if (valid_type && valid_amount && !enough_materials && valid_tile && empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
                   "You don't have enough materials to build building: " <<
-                    capitalize_building_type << ", check menu option '1' and '4' to see "
+                    capitalized_building_type << ", check menu option '1' and '4' to see "
                      "materials amount and building costs." << '\n';
   }
 
@@ -183,18 +199,18 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
 
-    add_building();
+    add_building(lowercase_building_type, x_coordinate, y_coordinate);
 
   }
 
   else if(valid_type && !valid_tile && empty_tile && loading_from_txt) {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Invalid tile for building: " <<
-               BOLD_GREEN << capitalize_building_type << DEFAULT_COLOR << ", coordinates: (" <<
+               BOLD_GREEN << capitalized_building_type << DEFAULT_COLOR << ", coordinates: (" <<
                 BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
                  ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR << '\n';
 
-    std::cout << BOLD_RED << "Building: " << capitalize_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
+    std::cout << BOLD_RED << "Building: " << capitalized_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
 
   }
 
@@ -205,7 +221,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
                 ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR <<
                  " already has a building in it" <<'\n';
 
-    std::cout << BOLD_RED << "Building: " << capitalize_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
+    std::cout << BOLD_RED << "Building: " << capitalized_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
 
   }
 
@@ -225,7 +241,7 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
   }
 
   string building_type;
-  string capitalize_building_type;
+  string capitalized_building_type;
   string lowercase_building_type;
 
   bool building_demolished = false;
@@ -233,11 +249,10 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
   if(valid_tile && !empty_tile) {
 
     building_type = city_map->get_building_type(x_coordinate, y_coordinate);
-    capitalize_building_type = capitalize_word(building_type);
+    capitalized_building_type = capitalize_word(building_type);
     lowercase_building_type = lowercase_word(building_type);
 
     building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
-
     city_map->remove_building(x_coordinate, y_coordinate);
 
   }
@@ -247,22 +262,12 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
 
     record->modify_building_amount(building_type, -1);
 
-    int user_stone = materials->get_material_amount("piedra");
-    int user_wood = materials->get_material_amount("madera");
-    int user_steel = materials->get_material_amount("metal");
-
-    int stone_cost = record->get_stone_cost(lowercase_building_type);
-    int wood_cost = record->get_wood_cost(lowercase_building_type);
-    int steel_cost = record->get_steel_cost(lowercase_building_type);
-
-    materials->set_material_amount("piedra", user_stone + stone_cost / 2);
-    materials->set_material_amount("madera", user_wood + wood_cost / 2);
-    materials->set_material_amount("metal", user_steel + steel_cost / 2);
+    refund_building_cost(lowercase_building_type);
 
   }
 
   if (building_demolished)
-    std::cout << BOLD_GREEN << "Building: '" << capitalize_building_type <<
+    std::cout << BOLD_GREEN << "Building: '" << capitalized_building_type <<
                             "' successfully demolish." << DEFAULT_COLOR << '\n';
 
   else if (valid_tile && empty_tile)
@@ -311,11 +316,11 @@ bool City::validate_building_type(string type_to_check){
 
 //--------------------------Private Building Management-------------------------
 
-void City::add_building() {
+void City::add_building(string building_type, int x_coordinate, int y_coordinate) {
 
-  buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
-  record->modify_building_amount(lowercase_building_type, 1);
-  Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+  buildings->add_building(building_type, x_coordinate, y_coordinate);
+  record->modify_building_amount(building_type, 1);
+  Building* new_building = buildings->get_building(building_type, x_coordinate, y_coordinate);
   city_map->add_building(new_building, x_coordinate, y_coordinate);
 
 }
@@ -392,19 +397,19 @@ int City::get_max_columns() {
 
 //-----------------------------User Input Management----------------------------
 
-bool City::ask_user_confirmation() {
+bool City::ask_user_confirmation(string building_type) {
 
-  bool user_confirmation = false;
+  string user_confirmation;
 
   std::cout << "Are you sure you want to add a building: " << BOLD_GREEN
-              << capitalize_building_type << DEFAULT_COLOR << " (y/n): ";
+              << building_type << DEFAULT_COLOR << " (y/n): ";
 
   std::cin >> user_confirmation;
 
   if(user_confirmation == "y" || user_confirmation == "yes")
-    user_confirmation = true;
+    return true;
 
-  return user_confirmation;
+  return false;
 
 }
 //------------------------------------------------------------------------------

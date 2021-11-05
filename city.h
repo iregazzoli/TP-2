@@ -110,15 +110,17 @@ private:
   // //POS: Returns the quantity of the material "material_name_to_obtain".
   int get_material_amount(string material_name_to_obtain);
 
-  void deduct_building_cost(int user_stone, int user_wood, int user_steel);
+  void deduct_building_cost(int user_stone, int user_wood, int user_steel, string building_type);
+
+  void refund_building_cost(string building_type);
 
 //----------------------------Building Management-------------------------------
 
-void add_building();
+void add_building(string building_type, int x_coordinate, int y_coordinate);
 
 //-----------------------------User Input Management----------------------------
 
-bool ask_user_confirmation();
+bool ask_user_confirmation(string building_type);
 
 };
 #endif
