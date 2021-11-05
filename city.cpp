@@ -48,6 +48,19 @@ int City::get_material_amount(string target_material) {
 
 }
 
+
+void City::deduct_building_cost(int user_stone, int user_wood, int user_steel) {
+
+  int stone_cost = record->get_stone_cost(lowercase_building_type);
+  int wood_cost = record->get_wood_cost(lowercase_building_type);
+  int steel_cost = record->get_steel_cost(lowercase_building_type);
+
+  materials->set_material_amount("piedra", user_stone - stone_cost);
+  materials->set_material_amount("madera", user_wood - wood_cost);
+  materials->set_material_amount("metal", user_steel - steel_cost);
+
+}
+
 //-----------------------------Building Management------------------------------
 
 void City::add_building(string building_type, int x_coordinate, int y_coordinate,
@@ -92,7 +105,6 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
     valid_amount = true;
 
 
-
   bool enough_materials = false;
 
   int user_stone = materials->get_material_amount("piedra");
@@ -114,27 +126,13 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   //Section related with building by user command
   if (valid_type && valid_tile && empty_tile && valid_amount && enough_materials && !loading_from_txt) {
 
-    string user_confirmation;
 
-    std::cout << "Are you sure you want to add a building: " << BOLD_GREEN
-                << capitalize_building_type << DEFAULT_COLOR << " (y/n): ";
 
-    std::cin >> user_confirmation;
+    if (ask_user_confirmation()) {
 
-    if (user_confirmation == "y" || user_confirmation == "yes") {
+      deduct_building_cost(user_stone, user_wood, user_steel)
 
-      int stone_cost = record->get_stone_cost(lowercase_building_type);
-      int wood_cost = record->get_wood_cost(lowercase_building_type);
-      int steel_cost = record->get_steel_cost(lowercase_building_type);
-
-      materials->set_material_amount("piedra", user_stone - stone_cost);
-      materials->set_material_amount("madera", user_wood - wood_cost);
-      materials->set_material_amount("metal", user_steel - steel_cost);
-
-      buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
-      record->modify_building_amount(lowercase_building_type, 1);
-      Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
-      city_map->add_building(new_building, x_coordinate, y_coordinate);
+      add_building();
 
       std::cout << BOLD_GREEN<< "Building: " << capitalize_building_type
                   << ", successfully built." << DEFAULT_COLOR << '\n';
@@ -185,10 +183,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
 
-    buildings->add_building(building_type, x_coordinate, y_coordinate);
-    record->modify_building_amount(building_type, 1);
-    Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
-    city_map->add_building(new_building, x_coordinate, y_coordinate);
+    add_building();
 
   }
 
@@ -307,6 +302,25 @@ void City::show_buildings() {
 }
 
 
+bool City::validate_building_type(string type_to_check){
+
+  return record->validate_building_type(type_to_check);
+
+}
+
+
+//--------------------------Private Building Management-------------------------
+
+void City::add_building() {
+
+  buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
+  record->modify_building_amount(lowercase_building_type, 1);
+  Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+  city_map->add_building(new_building, x_coordinate, y_coordinate);
+
+}
+
+
 //-----------------------------Record Management--------------------------------
 
 void City::add_building(string building_type, int stone_cost, int wood_cost,
@@ -347,7 +361,7 @@ void City::generate_map(int rows, int columns) {
 
 }
 
-void City::add_tile(char tile_type){
+void City::add_tile(char tile_type) {
 
   city_map->add_tile(tile_type);
 
@@ -365,7 +379,7 @@ int City::get_max_rows() {
 
 }
 
-int City::get_max_columns(){
+int City::get_max_columns() {
 
   return city_map->get_columns();
 
@@ -375,14 +389,24 @@ int City::get_max_columns(){
 //------------------------Private Map Management--------------------------------
 
 
-//--------------------------Names Management------------------------------------
-bool City::validate_building_type(string type_to_check){
 
-  return record->validate_building_type(type_to_check);
+//-----------------------------User Input Management----------------------------
+
+bool City::ask_user_confirmation() {
+
+  bool user_confirmation = false;
+
+  std::cout << "Are you sure you want to add a building: " << BOLD_GREEN
+              << capitalize_building_type << DEFAULT_COLOR << " (y/n): ";
+
+  std::cin >> user_confirmation;
+
+  if(user_confirmation == "y" || user_confirmation == "yes")
+    user_confirmation = true;
+
+  return user_confirmation;
 
 }
-
-
 //------------------------------------------------------------------------------
 
 City::~City() {

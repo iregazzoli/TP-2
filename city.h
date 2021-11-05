@@ -99,7 +99,7 @@ int get_max_columns();
 
 private:
 
-//--------------------------Material Management---------------------------------
+//----------------------------Material Management-------------------------------
 
   //PRE: -
   //POS: Changes the quantity of the struct with "material_name" = "material_to_modify"
@@ -110,10 +110,15 @@ private:
   // //POS: Returns the quantity of the material "material_name_to_obtain".
   int get_material_amount(string material_name_to_obtain);
 
-//-----------------------------Building Management------------------------------
+  void deduct_building_cost(int user_stone, int user_wood, int user_steel);
 
+//----------------------------Building Management-------------------------------
 
-//-------------------------------Map Management---------------------------------
+void add_building();
+
+//-----------------------------User Input Management----------------------------
+
+bool ask_user_confirmation();
 
 };
 #endif
