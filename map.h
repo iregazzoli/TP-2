@@ -2,8 +2,10 @@
 #define MAP_H
 #include "tile.h"
 #include "buildable_tile.h"
+#include "building.h"
 #include "passable_tile.h"
 #include "inaccesible_tile.h"
+
 
 
 class Map {
@@ -20,13 +22,22 @@ private:
 
 public:
   Map(int rows, int columns);
+  
   void initialize();
 
   //PRE: (maybe clarify that the amount on letters on the, nah don't bother)
   //POS:
   void add_tile(char tile_type);
+
   void consult(int x_coordinate, int y_coordinate);
+
   string get_building_type(int x_coordinate, int y_coordinate);
+
+  bool tile_buildable(int x_coordinate, int y_coordinate);
+
+  bool tile_passable(int x_coordinate, int y_coordinate);
+
+  void add_building(int x_coordinate, int y_coordinate);
 
 };
 

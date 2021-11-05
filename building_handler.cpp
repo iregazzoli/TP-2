@@ -85,6 +85,18 @@ void BuildingHandler::show_building(string building_type, int amount_built){
 
 }
 
+Building* BuildingHandler::get_building(string building_type) {
+  
+  while(buildings->get_current_value() != 0){
+
+    if(buildings->get_current_value()->get_type() == building_type)
+      return buildings->get_current_value();
+  
+  }
+
+  return 0;
+}
+
 
 BuildingHandler::~BuildingHandler(){
 

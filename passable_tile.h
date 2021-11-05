@@ -15,6 +15,8 @@ public:
     void remove_material();
     bool tile_empty();
     string state_of_tile();
+
+    string get_tile_class();
 };
 
 #endif // PASSABLE_TILE_H

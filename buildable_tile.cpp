@@ -9,21 +9,18 @@ void BuildableTile::show() {
         cout << "Cansillero consultado es construible y se encuentra " << state_of_tile() << endl;
     else
         cout << "Cansillero consultado es construible y se encuentra " << state_of_tile()
-             << ", contiene el edificio: " << building_contained << endl;
+             << ", contiene el edificio: " << building_contained->get_type() << endl;
 }
 
-void BuildableTile::build(Building building) {
+void BuildableTile::add_value(Building* building) {
 
-    building_contained = &building;
+    building_contained = building;
 
 }
 
-bool BuildableTile::tile_empty(){
+bool BuildableTile::tile_not_empty(){
 
-  if(building_contained == 0)
-    return true;
-
-  return false;
+  return building_contained != 0;
 
 }
 
@@ -39,5 +36,11 @@ string BuildableTile::state_of_tile(){
 string BuildableTile::get_value(){
 
   return building_contained->get_type();
+
+}
+
+string BuildableTile::get_tile_class() {
+
+  return BUILDABLE;
 
 }

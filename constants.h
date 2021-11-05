@@ -27,4 +27,8 @@ const char LAKE = 'L';
 const char TERRAIN = 'T';
 const char ROAD = 'C';
 
+const string BUILDABLE = "buildable";
+const string INACCESIBLE = "inaccesible";
+const string PASSABLE = "passable";
+
 #endif

@@ -2,6 +2,7 @@
 #define TILE_H
 #include <fstream>
 #include <iostream>
+#include "constants.h"
 using namespace std;
 
 class Tile {
@@ -17,6 +18,10 @@ public:
     virtual bool tile_empty();
 
     virtual string get_value();
+
+    virtual string get_tile_class() = 0;
+
+    virtual void add_value() = 0;
 
 };
 

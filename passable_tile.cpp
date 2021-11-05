@@ -13,10 +13,10 @@ void PassableTile::show() {
              << ", contiene: " << material_contained << endl;
 }
 
-void PassableTile::add_material(string material) {
+void PassableTile::add_value() {
 
-    material_contained = material;
-    material_amount = 1;
+    // material_contained = material;
+    // material_amount = 1;
 
 }
 
@@ -44,3 +44,10 @@ string PassableTile::state_of_tile(){
   return "ocupado";
 
 }
+
+string PassableTile::get_tile_class() {
+
+  return PASSABLE;
+
+}
+

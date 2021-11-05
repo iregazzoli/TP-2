@@ -11,10 +11,14 @@ private:
 public:
     BuildableTile();
     void show();
-    void build(Building building);
-    bool tile_empty();
+    void add_value(Building* building);
+    bool tile_not_empty();
     string state_of_tile();
     string get_value();
+    
+    string get_tile_class();
+
+    
 };
 
 #endif //
