@@ -65,18 +65,27 @@ bool load_buildings_attributes(City* city) {
   string wood_cost;
   string steel_cost;
   string max_building_quantity;
+  string auxiliar;
 
   while ((file.peek() != EOF)) {
 
     getline(file, building_type, ' ');
+
+    if(building_type == "planta")
+      getline(file, auxiliar, ' ');
+
     getline(file, stone_cost, ' ');
     getline(file, wood_cost, ' ');
     getline(file, steel_cost, ' ');
     getline(file, max_building_quantity);
 
     //Creates the bulding struct in the record of the City
-    city->add_building(building_type, stoi(stone_cost), stoi(wood_cost),
-                        stoi(steel_cost), stoi(max_building_quantity));
+    if(building_type == "planta")
+      city->add_building("planta electrica", stoi(stone_cost), stoi(wood_cost),
+                          stoi(steel_cost), stoi(max_building_quantity));
+    else
+      city->add_building(building_type, stoi(stone_cost), stoi(wood_cost),
+                          stoi(steel_cost), stoi(max_building_quantity));
 
   }
 
