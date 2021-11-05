@@ -21,8 +21,6 @@ public:
 
     virtual string get_tile_class() = 0;
 
-    virtual void add_value() = 0;
-
 };
 
 #endif

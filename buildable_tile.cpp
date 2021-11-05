@@ -12,13 +12,13 @@ void BuildableTile::show() {
              << ", contiene el edificio: " << building_contained->get_type() << endl;
 }
 
-void BuildableTile::add_value(Building* building) {
+void BuildableTile::add_building(Building* building) {
 
     building_contained = building;
 
 }
 
-bool BuildableTile::tile_not_empty(){
+bool BuildableTile::tile_empty(){
 
   return building_contained != 0;
 

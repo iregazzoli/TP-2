@@ -11,7 +11,6 @@ private:
 public:
     PassableTile();
     void show();
-    void add_material(string material);
     void remove_material();
     bool tile_empty();
     string state_of_tile();

@@ -164,6 +164,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
 void City::demolish_building(int x_coordinate, int y_coordinate) {
 
+  if()
+
   bool building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
 
   string building_type = city_map->get_building_type(x_coordinate, y_coordinate);

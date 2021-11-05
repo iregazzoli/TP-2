@@ -11,7 +11,3 @@ string InaccesibleTile::get_tile_class() {
   return INACCESIBLE;
 
 }
-
-void InaccesibleTile::add_value() {
-    
-}

@@ -22,7 +22,7 @@ private:
 
 public:
   Map(int rows, int columns);
-  
+
   void initialize();
 
   //PRE: (maybe clarify that the amount on letters on the, nah don't bother)
@@ -33,11 +33,15 @@ public:
 
   string get_building_type(int x_coordinate, int y_coordinate);
 
+  Tile* get_tile(int x_coordinate, int y_coordinate);
+
   bool tile_buildable(int x_coordinate, int y_coordinate);
 
   bool tile_passable(int x_coordinate, int y_coordinate);
 
-  void add_building(int x_coordinate, int y_coordinate);
+  bool tile_empty(int x_coordinate, int y_coordinate);
+
+  void add_building(int x_coordinate, int y_coordinate, Building* building);
 
 };
 

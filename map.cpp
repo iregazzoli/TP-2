@@ -73,27 +73,28 @@ string Map::get_building_type(int x_coordinate, int y_coordinate){
 }
 
 bool Map::tile_buildable(int x_coordinate, int y_coordinate){
-  
+
   return map[x_coordinate][y_coordinate]->get_tile_class() == BUILDABLE;
-   
+
 }
 
 bool Map::tile_passable(int x_coordinate, int y_coordinate){
-  
+
   return map[x_coordinate][y_coordinate]->get_tile_class() == PASSABLE;
-   
+
 }
 
 Tile* Map::get_tile(int x_coordinate, int y_coordinate){
 
   return map[x_coordinate][y_coordinate];
+
 }
 
 void Map::add_building(int x_coordinate, int y_coordinate, Building* building) {
-  
-  BuildableTile* target_tile = map->get_tile(x_coordinate, y_coordinate);
 
-  target_tile->add_value(building);
+  BuildableTile* target_tile = dynamic_cast<BuildableTile*> (map[x_coordinate][y_coordinate]);
+
+  target_tile->add_building(building);
 
 }
 
@@ -101,4 +102,3 @@ bool Map::tile_empty(int x_coordinate, int y_coordinate){
 
   return map[x_coordinate][y_coordinate]->tile_empty();
 }
-
