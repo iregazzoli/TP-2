@@ -44,6 +44,10 @@ public:
   void add_building(Building* building, int x_coordinate, int y_coordinate);
 
   void remove_building(int x_coordinate, int y_coordinate);
+
+  int get_rows();
+
+  int get_columns();
 };
 
 

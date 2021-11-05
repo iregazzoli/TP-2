@@ -59,30 +59,30 @@ void Map::add_tile(char tile_type){
 
 }
 
-void Map::consult(int x_coordinate, int y_coordinate){
+void Map::consult(int x_coordinate, int y_coordinate) {
 
   map[x_coordinate][y_coordinate]->show();
 
 }
 
-string Map::get_building_type(int x_coordinate, int y_coordinate){
+string Map::get_building_type(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->get_value();
 }
 
-bool Map::tile_buildable(int x_coordinate, int y_coordinate){
+bool Map::tile_buildable(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->get_tile_class() == BUILDABLE;
 
 }
 
-bool Map::tile_passable(int x_coordinate, int y_coordinate){
+bool Map::tile_passable(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->get_tile_class() == PASSABLE;
 
 }
 
-Tile* Map::get_tile(int x_coordinate, int y_coordinate){
+Tile* Map::get_tile(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate];
 
@@ -104,7 +104,20 @@ void Map::remove_building(int x_coordinate, int y_coordinate) {
 
 }
 
-bool Map::tile_empty(int x_coordinate, int y_coordinate){
+bool Map::tile_empty(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->tile_empty();
+
+}
+
+int Map::get_rows() {
+
+  return total_of_rows;
+
+}
+
+int Map::get_columns() {
+
+  return total_of_columns;
+
 }

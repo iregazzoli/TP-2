@@ -72,6 +72,9 @@ void build(City* city) {
   string x_coordinate;
   string y_coordinate;
 
+  int max_rows = city->get_max_rows();
+  int max_columns = city->get_max_columns();
+
   std::cout << "Enter the type of building you wish to build: ";
   std::cin >> building_to_add;
 
@@ -85,9 +88,10 @@ void build(City* city) {
   std::cout << "Enter the X coordinate of building you wish to build: ";
   std::cin >> x_coordinate;
 
-  while(!is_numeric(x_coordinate)) {
+  while(!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows) {
 
-  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "X coordinate must be a number: ";
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "X coordinate must be a number"
+              " between 0 and " << max_rows << ": ";
   std::cin >> x_coordinate;
 
   }
@@ -95,9 +99,10 @@ void build(City* city) {
   std::cout << "Enter the Y coordinate of building you wish to build: ";
   std::cin >> y_coordinate;
 
-  while(!is_numeric(y_coordinate)) {
+  while(!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns) {
 
-  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Y coordinate must be a number: ";
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Y coordinate must be a number"
+                " between 0 and " << max_columns << ": ";
   std::cin >> y_coordinate;
 
   }

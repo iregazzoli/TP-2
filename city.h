@@ -60,6 +60,7 @@ public:
   //POS: Prints in console all the Buildings contained in the linked list.
   void show_buildings();
 
+  bool validate_building_type(string type_to_check);
 
 //-----------------------------Record Management--------------------------------
 
@@ -91,9 +92,9 @@ void add_tile(char tile_type);
 //POS: 0 <= x_coordinate < rows and 0 <= y_coordinate < columns
 void consult_tile(int x_coordinate, int y_coordinate);
 
+int get_max_rows();
 
-//--------------------------Names Management------------------------------------
-bool validate_building_type(string type_to_check);
+int get_max_columns();
 
 
 private:
@@ -109,6 +110,10 @@ private:
   // //POS: Returns the quantity of the material "material_name_to_obtain".
   int get_material_amount(string material_name_to_obtain);
 
-};
+//-----------------------------Building Management------------------------------
 
+
+//-------------------------------Map Management---------------------------------
+
+};
 #endif

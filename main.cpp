@@ -211,11 +211,11 @@ int main(){
     not_end_program = load_materials(&andypolis);
 
   if(not_end_program)
-    not_end_program = load_buildings(&andypolis);
+    not_end_program = load_tiles(&andypolis);
 
   if(not_end_program)
-    not_end_program = load_tiles(&andypolis);
-    
+    not_end_program = load_buildings(&andypolis);
+
   string user_option;
 
   while (not_end_program) {
