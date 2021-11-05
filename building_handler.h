@@ -23,7 +23,7 @@ public:
 
   int get_building_built_amount(string building_type_to_count);
 
-  Building* get_building(string building_type);
+  Building* get_building(string building_type, int x_coordinate, int y_coordinate);
 
 };
 

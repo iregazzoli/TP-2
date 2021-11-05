@@ -90,11 +90,19 @@ Tile* Map::get_tile(int x_coordinate, int y_coordinate){
 
 }
 
-void Map::add_building(int x_coordinate, int y_coordinate, Building* building) {
+void Map::add_building(Building* building, int x_coordinate, int y_coordinate) {
 
   BuildableTile* target_tile = dynamic_cast<BuildableTile*> (map[x_coordinate][y_coordinate]);
 
   target_tile->add_building(building);
+
+}
+
+void Map::remove_building(int x_coordinate, int y_coordinate) {
+
+  BuildableTile* target_tile = dynamic_cast<BuildableTile*> (map[x_coordinate][y_coordinate]);
+
+  target_tile->remove_building();
 
 }
 

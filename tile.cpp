@@ -2,7 +2,7 @@
 
 bool Tile::tile_empty(){
 
-  return false;
+  return true;
 
 }
 

@@ -85,13 +85,18 @@ void BuildingHandler::show_building(string building_type, int amount_built){
 
 }
 
-Building* BuildingHandler::get_building(string building_type) {
-  
+Building* BuildingHandler::get_building(string building_type, int x_coordinate, int y_coordinate) {
+
   while(buildings->get_current_value() != 0){
 
-    if(buildings->get_current_value()->get_type() == building_type)
+    if(buildings->get_current_value()->get_type() == building_type
+       && buildings->get_current_value()->get_x_coordinate() == x_coordinate
+       && buildings->get_current_value()->get_y_coordinate() == y_coordinate){
+
       return buildings->get_current_value();
-  
+      
+    }
+
   }
 
   return 0;

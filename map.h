@@ -41,8 +41,9 @@ public:
 
   bool tile_empty(int x_coordinate, int y_coordinate);
 
-  void add_building(int x_coordinate, int y_coordinate, Building* building);
+  void add_building(Building* building, int x_coordinate, int y_coordinate);
 
+  void remove_building(int x_coordinate, int y_coordinate);
 };
 
 

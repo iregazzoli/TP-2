@@ -115,6 +115,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
         buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
         record->modify_building_amount(lowercase_building_type, 1);
+        // Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+        // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
         std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                     << ", successfully built." << DEFAULT_COLOR << '\n';
@@ -156,6 +158,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     buildings->add_building(building_type, x_coordinate, y_coordinate);
     record->modify_building_amount(building_type, 1);
+    // Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+    // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
   }
 
@@ -164,14 +168,30 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
 void City::demolish_building(int x_coordinate, int y_coordinate) {
 
-  if()
+  bool valid_tile = city_map->tile_buildable(x_coordinate, y_coordinate);
 
-  bool building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
+  if(valid_tile)
+    valid_tile = city_map->tile_empty(x_coordinate, y_coordinate);
 
-  string building_type = city_map->get_building_type(x_coordinate, y_coordinate);
+  bool building_demolished;
 
-  string capitalized_building_type = capitalize_word(building_type);
-  string lowercase_building_type = lowercase_word(building_type);
+  string building_type;
+  string capitalized_building_type;
+  string lowercase_building_type;
+
+  if(valid_tile) {
+
+    building_type = city_map->get_building_type(x_coordinate, y_coordinate);
+
+    capitalized_building_type = capitalize_word(building_type);
+
+    lowercase_building_type = lowercase_word(building_type);
+
+    city_map->remove_building(x_coordinate, y_coordinate);
+
+    building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
+
+  }
 
   if (building_demolished) {
 

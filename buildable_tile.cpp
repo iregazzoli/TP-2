@@ -18,9 +18,15 @@ void BuildableTile::add_building(Building* building) {
 
 }
 
+void BuildableTile::remove_building() {
+
+    building_contained = 0;
+
+}
+
 bool BuildableTile::tile_empty(){
 
-  return building_contained != 0;
+  return building_contained == 0;
 
 }
 
