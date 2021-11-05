@@ -79,13 +79,9 @@ bool load_buildings_attributes(City* city) {
     getline(file, steel_cost, ' ');
     getline(file, max_building_quantity);
 
-    //Creates the bulding struct in the record of the City
-    if(building_type == "planta")
-      city->add_building("planta electrica", stoi(stone_cost), stoi(wood_cost),
-                          stoi(steel_cost), stoi(max_building_quantity));
-    else
-      city->add_building(building_type, stoi(stone_cost), stoi(wood_cost),
-                          stoi(steel_cost), stoi(max_building_quantity));
+
+    city->add_building(building_type, stoi(stone_cost), stoi(wood_cost),
+                        stoi(steel_cost), stoi(max_building_quantity));
 
   }
 

@@ -290,7 +290,16 @@ void City::show_buildings() {
 
   record->reset_current_node();
 
+  // while(record->get_current_building_type() != "0"){
+  //
+  //   std::cout << record->get_current_building_type() << '\n';
+  //   record->next_node();
+  //
+  // }
+
   while(record->get_current_building_type() != "0"){
+
+    // std::cout << record->get_current_building_type() << '\n';
 
     int amount_built = buildings->get_building_built_amount(record->get_current_building_type());
 

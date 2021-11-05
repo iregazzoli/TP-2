@@ -66,7 +66,12 @@ int BuildingHandler::get_building_built_amount(string building_type_to_count){
 
   int building_amount = 0;
 
+  // std::cout << "entered here" << '\n';
+  // std::cout << buildings->get_current_value() << '\n';
+
   while(buildings->get_current_value() != 0){
+
+    // std::cout << building_type_to_count << " vs " << buildings->get_current_value()->get_type() << '\n';
 
     if(buildings->get_current_value()->get_type() == building_type_to_count)
       building_amount++;
@@ -97,6 +102,9 @@ void BuildingHandler::show_building(string building_type, int amount_built){
     buildings->next_node();
 
   }
+
+  if(capitalized_building_type == "Planta")
+    capitalized_building_type = "Planta eléctrica";
 
   std::cout << left << setw(WIDTH) << "Amount of: " << BOLD_GREEN <<
              capitalized_building_type  << "s" << DEFAULT_COLOR <<

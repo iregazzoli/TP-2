@@ -77,6 +77,9 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
     valid_amount = validate_building_amount(aux_node->get_value()->building_type,
                                                   amount_of_buildings_built);
 
+    if(capitalized_building_type == "Planta")
+      capitalized_building_type = "Plantas eléctrica";
+
     if(enough_materials && valid_amount)
       std::cout << DEFAULT_COLOR << "Building:                " << BOLD_GREEN << capitalized_building_type << '\n';
 
