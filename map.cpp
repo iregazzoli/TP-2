@@ -6,8 +6,6 @@ Map::Map(int rows, int columns){
   total_of_rows = rows;
   total_of_columns = columns;
 
-  std::cout << "rows: " << total_of_rows << " columns: " << total_of_columns << '\n';
-
   map = new Tile**[rows];
 
   for(int i = 0; i < rows; i++)

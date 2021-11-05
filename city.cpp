@@ -53,6 +53,9 @@ int City::get_material_amount(string target_material) {
 void City::add_building(string building_type, int x_coordinate, int y_coordinate,
                          bool loading_from_txt){
 
+  //OKEY FUTURE ME FIGURE OUT HOW TO SOLVE THIS BUT YOUR CORE DUMP ERROR IS BC WHEN YOU ADD BUILDINGS FROM THE TXT OF BY user
+  // YOU ARE NEVER CHECKING IF THE COORDINATES ARE FROM A BUILDABLE TILE!!!                         
+
   string lowercase_building_type = lowercase_word(building_type);
   string capitalized_building_type = capitalize_word(lowercase_building_type);
 
@@ -115,7 +118,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
         buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
         record->modify_building_amount(lowercase_building_type, 1);
-        // Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+        Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
         // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
         std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
@@ -158,7 +161,9 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     buildings->add_building(building_type, x_coordinate, y_coordinate);
     record->modify_building_amount(building_type, 1);
-    // Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+    Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
+    if(new_building == 0)
+      std::cout << "test" << '\n';
     // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
   }

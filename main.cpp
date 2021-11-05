@@ -213,10 +213,9 @@ int main(){
   if(not_end_program)
     not_end_program = load_buildings(&andypolis);
 
-  // if(not_end_program)
-  //   not_end_program = load_tiles(&andypolis);
-
-
+  if(not_end_program)
+    not_end_program = load_tiles(&andypolis);
+    
   string user_option;
 
   while (not_end_program) {
