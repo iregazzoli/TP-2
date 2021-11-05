@@ -31,4 +31,15 @@ const string BUILDABLE = "buildable";
 const string INACCESIBLE = "inaccesible";
 const string PASSABLE = "passable";
 
-#endif
+const string MINE = "mina";
+const string SAWMILL = "aserradero";
+const string FACTORY = "fabrica";
+const string SCHOOL = "escuela";
+const string OBELISK = "obelisco";
+const string POWER_PLANT = "planta electrica";
+
+const int AMOUNT_MATERIAL_PROVIDE_MINE = 15;
+const int AMOUNT_MATERIAL_PROVIDE_SAWMILL = 25;
+const int AMOUNT_MATERIAL_PROVIDE_FACTORY = 45;
+
+#endif //CONSTANTS_H

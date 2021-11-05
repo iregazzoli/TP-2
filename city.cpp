@@ -53,9 +53,6 @@ int City::get_material_amount(string target_material) {
 void City::add_building(string building_type, int x_coordinate, int y_coordinate,
                          bool loading_from_txt){
 
-  //OKEY FUTURE ME FIGURE OUT HOW TO SOLVE THIS BUT YOUR CORE DUMP ERROR IS BC WHEN YOU ADD BUILDINGS FROM THE TXT OF BY user
-  // YOU ARE NEVER CHECKING IF THE COORDINATES ARE FROM A BUILDABLE TILE!!!                         
-
   string lowercase_building_type = lowercase_word(building_type);
   string capitalized_building_type = capitalize_word(lowercase_building_type);
 
@@ -118,8 +115,6 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
         buildings->add_building(lowercase_building_type, x_coordinate, y_coordinate);
         record->modify_building_amount(lowercase_building_type, 1);
-        Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
-        // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
         std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                     << ", successfully built." << DEFAULT_COLOR << '\n';
@@ -161,10 +156,6 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     buildings->add_building(building_type, x_coordinate, y_coordinate);
     record->modify_building_amount(building_type, 1);
-    Building* new_building = buildings->get_building(lowercase_building_type, x_coordinate, y_coordinate);
-    if(new_building == 0)
-      std::cout << "test" << '\n';
-    // city_map->add_building(new_building, x_coordinate, y_coordinate);
 
   }
 
@@ -175,28 +166,17 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
 
   bool valid_tile = city_map->tile_buildable(x_coordinate, y_coordinate);
 
-  if(valid_tile)
-    valid_tile = city_map->tile_empty(x_coordinate, y_coordinate);
+  if (valid_tile) {
 
-  bool building_demolished;
-
-  string building_type;
-  string capitalized_building_type;
-  string lowercase_building_type;
-
-  if(valid_tile) {
-
-    building_type = city_map->get_building_type(x_coordinate, y_coordinate);
-
-    capitalized_building_type = capitalize_word(building_type);
-
-    lowercase_building_type = lowercase_word(building_type);
-
-    city_map->remove_building(x_coordinate, y_coordinate);
-
-    building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
-
+    valid_tile = city_map->tile_
   }
+
+  string building_type = city_map->get_building_type(x_coordinate, y_coordinate);
+
+  bool building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
+  
+  string capitalized_building_type = capitalize_word(building_type);
+  string lowercase_building_type = lowercase_word(building_type);
 
   if (building_demolished) {
 

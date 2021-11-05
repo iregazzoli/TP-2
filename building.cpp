@@ -43,3 +43,9 @@ int Building::get_y_coordinate(){
   return y_coordinate;
 
 }
+
+int Building::quantity_provides_materials(){
+
+  return 0;
+
+}

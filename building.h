@@ -2,6 +2,7 @@
 #define BUILDING_H
 #include <iostream>
 #include <fstream>
+#include "constants.h"
 using namespace std;
 
 class Building{
@@ -39,6 +40,9 @@ public:
   //POS:
   int get_y_coordinate();
 
+  //PRE:-
+  //POS:
+  int quantity_provides_materials();
 
 };
 
