@@ -3,9 +3,9 @@
 
 #include "building.h"
 
-class ObeliskBulding : public Building {
+class ObeliskBuilding : public Building {
 private:
-    string name;
+    string building_type;
 
 public:
     

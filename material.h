@@ -17,12 +17,12 @@ public:
   //POS:Returns material_type.
   string get_material();
 
-  //PRE:-
-  //POS: 
+  //PRE: new_quantity >= 0.
+  //POS: Changes building_type to 'new_type'.
   void set_quantity(int new_quantity);
 
   //PRE:-
-  //POS:.
+  //POS: Returns quantity.
   int get_quantity();
 };
 
