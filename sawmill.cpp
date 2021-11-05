@@ -1,6 +1,9 @@
 #include "sawmill.h"
 
-int SawmillBuilding::quantity_provides_materials() {
+Sawmill::Sawmill(string building_type, int x_coordinate, int y_coordinate) :
+          Building(building_type, x_coordinate, y_coordinate) {}
 
-    return AMOUNT_MATERIAL_PROVIDE_SAWMILL;
+int Sawmill::quantity_provides_materials() {
+
+    return WOOD_PROVIDED_BY_SAWMILL;
 }

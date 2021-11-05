@@ -8,7 +8,27 @@ BuildingHandler::BuildingHandler() {
 
 void BuildingHandler::add_building(string building_type, int x_coordinate, int y_coordinate) {
 
-  Building* new_building = new Building(building_type, x_coordinate, y_coordinate);
+  Building* new_building = 0;
+
+  if(building_type == "fabrica")
+    new_building = new Factory(building_type, x_coordinate, y_coordinate);
+
+  if(building_type == "mina")
+    new_building = new Mine(building_type, x_coordinate, y_coordinate);
+
+  if(building_type == "obelisco")
+    new_building = new Obelisk(building_type, x_coordinate, y_coordinate);
+
+  if(building_type == "planta")
+    new_building = new PowerPlant(building_type, x_coordinate, y_coordinate);
+
+  if(building_type == "aserradero")
+    new_building = new Sawmill(building_type, x_coordinate, y_coordinate);
+
+  if(building_type == "escuela")
+    new_building = new School(building_type, x_coordinate, y_coordinate);
+
+
   buildings->add_node(new_building);
 
 }
@@ -94,7 +114,7 @@ Building* BuildingHandler::get_building(string building_type, int x_coordinate, 
        && buildings->get_current_value()->get_y_coordinate() == y_coordinate){
 
       return buildings->get_current_value();
-      
+
     }
 
   }

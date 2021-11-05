@@ -1,6 +1,10 @@
 #include "factory.h"
 
-int FactoryBuilding::quantity_provides_materials() {
+Factory::Factory(string building_type, int x_coordinate, int y_coordinate) :
+          Building(building_type, x_coordinate, y_coordinate) {}
 
-    return AMOUNT_MATERIAL_PROVIDE_FACTORY;
+int Factory::quantity_provides_materials() {
+
+    return STEELPROVIDED_BY_FACTORY;
+
 }

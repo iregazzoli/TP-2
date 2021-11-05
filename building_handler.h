@@ -2,6 +2,12 @@
 #define BUILDING_HANDLER_H
 #include "list.h"
 #include "building.h"
+#include "factory.h"
+#include "mine.h"
+#include "obelisk.h"
+#include "power_plant.h"
+#include "sawmill.h"
+#include "school.h"
 
 using namespace std;
 

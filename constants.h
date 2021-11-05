@@ -38,8 +38,8 @@ const string SCHOOL = "escuela";
 const string OBELISK = "obelisco";
 const string POWER_PLANT = "planta electrica";
 
-const int AMOUNT_MATERIAL_PROVIDE_MINE = 15;
-const int AMOUNT_MATERIAL_PROVIDE_SAWMILL = 25;
-const int AMOUNT_MATERIAL_PROVIDE_FACTORY = 45;
+const int STONE_PROVIDED_BY_MINE = 15;
+const int WOOD_PROVIDED_BY_SAWMILL = 25;
+const int STEELPROVIDED_BY_FACTORY = 45;
 
 #endif //CONSTANTS_H

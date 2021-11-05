@@ -3,13 +3,12 @@
 
 #include "building.h"
 
-class FactoryBuilding : public Building {
-private:
-    string building_type;
-    int amount_material_provide;
+class Factory : public Building {
 
 public:
-    
+
+    Factory(string, int, int);
+
     //PRE:
     //POS:
     int quantity_provides_materials();

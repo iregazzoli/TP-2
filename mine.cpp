@@ -1,6 +1,9 @@
 #include "mine.h"
 
-int MineBuilding::quantity_provides_materials() {
+Mine::Mine(string building_type, int x_coordinate, int y_coordinate) :
+          Building(building_type, x_coordinate, y_coordinate) {}
 
-    return AMOUNT_MATERIAL_PROVIDE_MINE;
+int Mine::quantity_provides_materials() {
+
+    return STONE_PROVIDED_BY_MINE;
 }

@@ -3,18 +3,16 @@
 
 #include "building.h"
 
-class SawmillBuilding : public Building {
-private:
-    string building_type;
-    int amount_material_provide;
+class Sawmill: public Building {
 
 public:
 
+    Sawmill(string, int, int);
 
     //PRE:
     //POS:
     int quantity_provides_materials();
-    
+
 };
 
 #endif // SAWMILL_H

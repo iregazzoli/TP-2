@@ -3,12 +3,12 @@
 
 #include "building.h"
 
-class SchoolBuilding : public Building {
-private:
-    string building_type;
+class School : public Building {
 
 public:
-    
+
+  School(string, int, int);
+
 };
 
 #endif // SCHOOL_H
