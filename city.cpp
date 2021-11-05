@@ -233,15 +233,17 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
   string capitalize_building_type;
   string lowercase_building_type;
 
-  bool building_demolished;
+  bool building_demolished = false;
 
-  if(valid_tile&& !empty_tile) {
+  if(valid_tile && !empty_tile) {
 
     building_type = city_map->get_building_type(x_coordinate, y_coordinate);
     capitalize_building_type = capitalize_word(building_type);
     lowercase_building_type = lowercase_word(building_type);
 
     building_demolished = buildings->demolish_building(x_coordinate, y_coordinate);
+
+    city_map->remove_building(x_coordinate, y_coordinate);
 
   }
 
@@ -268,10 +270,17 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
     std::cout << BOLD_GREEN << "Building: '" << capitalize_building_type <<
                             "' successfully demolish." << DEFAULT_COLOR << '\n';
 
-  else
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building: '"
-               <<capitalize_building_type << "' not found. "
-                << "Check option 3 to see all built buildings"<< '\n';
+  else if (valid_tile && empty_tile)
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "There isn't"
+               " a building in tile with coordinates: (" << BOLD_YELLOW <<
+                x_coordinate << ", " << y_coordinate << DEFAULT_COLOR << ")" << '\n';
+
+  else if (!valid_tile && empty_tile)
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "The tile with coordinates: ("
+               << BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
+               ") is not suited for building." << '\n';
+
+
 }
 
 
