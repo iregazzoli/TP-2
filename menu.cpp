@@ -78,6 +78,13 @@ void build(City* city) {
   std::cout << "Enter the type of building you wish to build: ";
   std::cin >> building_to_add;
 
+  if(building_to_add == "planta"){
+
+    string auxiliar;
+    std::cin >> auxiliar;
+
+  }
+
   while(!city->validate_building_type(lowercase_word(building_to_add))) {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Please Enter a valid type: ";
