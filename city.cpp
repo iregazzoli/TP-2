@@ -127,7 +127,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   int user_wood = materials->get_material_amount("madera");
   int user_steel = materials->get_material_amount("metal");
 
-  if (!loading_from_txt && valid_type && valid_amount && valid_tile) {
+  if (!loading_from_txt && valid_type && valid_amount && valid_tile && empty_tile) {
 
     enough_materials = record->validate_material_requirement(lowercase_building_type,
                                             user_stone, user_wood, user_steel);
@@ -189,12 +189,12 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
                     " check menu option - to see the map with all the buildable tiles." << '\n';
   }
 
+
   else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
                   "The tile where you are trying to build already has a building in it,"
                     " check menu option - to see the map with all the built buildings." << '\n';
   }
-
 
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
