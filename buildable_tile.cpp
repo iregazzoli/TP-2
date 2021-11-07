@@ -12,10 +12,10 @@ void BuildableTile::show() {
 
   else
     if(building_contained->get_type() == POWER_PLANT)
-      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << "Planta eléctrica" << '\n';
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << "Planta eléctrica" << DEFAULT_COLOR << '\n';
 
     else
-      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << building_contained->get_type() << '\n';
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << building_contained->get_type() << DEFAULT_COLOR << '\n';
 
 }
 

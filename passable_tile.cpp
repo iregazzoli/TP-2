@@ -6,14 +6,14 @@ PassableTile::PassableTile () {
 }
 
 void PassableTile::show() {
-  cout << "Consulted tile is " << BOLD_BLUE << PASSABLE << "and is ";
 
+  cout << "Consulted tile is " << BOLD_BLUE << PASSABLE << DEFAULT_COLOR << " and is ";
 
    if (tile_empty())
        cout << BOLD_GREEN << state_of_tile() << DEFAULT_COLOR << '\n';
    else
-       cout << state_of_tile()
-        << BOLD_RED << ", contains: " << BOLD_GREEN << material_contained << DEFAULT_COLOR << '\n';
+       cout << BOLD_RED << state_of_tile() << ", it contains: " <<
+                BOLD_GREEN << material_contained << DEFAULT_COLOR << '\n';
 
 }
 
