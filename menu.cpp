@@ -215,7 +215,9 @@ void Menu::build(City* city) {
 
   string building_to_add;
 
-  std::cout << "Enter the type of building you wish to build (type exit to go back to menu): ";
+  std::cout << "Enter the type of building you wish to build (type '" << BOLD_GREEN <<
+             "exit" << DEFAULT_COLOR << "' to go back to menu): ";
+
   std::cin >> building_to_add;
 
   if(building_to_add == "planta"){

@@ -1,4 +1,4 @@
-#include "auxiliary_functions.h"
+#include "utils.h"
 
 //PRE: -
 //POS: returns the word in lowercase.

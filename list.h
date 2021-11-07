@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "constants.h"
-#include "auxiliary_functions.h"
+#include "utils.h"
 #include "node.h"
 
 template <class T>

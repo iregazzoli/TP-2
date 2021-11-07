@@ -1,6 +1,6 @@
 #include "map.h"
 #include "constants.h"
-#include "auxiliary_functions.h"
+#include "utils.h"
 
 Map::Map(int rows, int columns){
 

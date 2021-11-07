@@ -1,5 +1,5 @@
-#ifndef AUXILIARY_FUNCTIONS_H
-#define AUXILIARY_FUNCTIONS_H
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <fstream>
 #include <iostream>
@@ -29,4 +29,4 @@ string lowercase_word(string word);
 bool is_numeric(string string_to_check);
 
 
-#endif //AUXILIARY_FUNCTIONS_H
+#endif //UTILS_H
