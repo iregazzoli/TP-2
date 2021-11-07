@@ -48,6 +48,15 @@ void save_data(City* city) {
 
 }
 
+void press_enter_to_continue() {
+
+  std::cout << '\n';
+  std::cin.ignore();
+  std::cout << "Press ENTER to go back to the menu: ";
+  std::cin.get();
+
+}
+
 bool interpretate_user_input(City* city, string user_option) {
 
   std::cout << '\n' << "Please enter the option you want: ";
@@ -56,39 +65,63 @@ bool interpretate_user_input(City* city, string user_option) {
   if (user_option == "1" or user_option == "materials") {
 
     system (CLR_SCREEN);
+
     city->show_materials();
+
     press_enter_to_continue();
 
     return true;
+
   }
 
   else if (user_option == "2" or user_option == "build") {
 
     build(city);
+
+    press_enter_to_continue();
+
     return true;
+
   }
 
   else if (user_option == "3" or user_option == "buildings") {
 
     city->show_buildings();
+
+    press_enter_to_continue();
+
     return true;
+
   }
 
   else if (user_option == "4" or user_option == "record") {
 
     city->show_record();
+
+    press_enter_to_continue();
+
     return true;
+
   }
 
   else if (user_option == "5" or user_option == "demolish") {
 
     demolish(city);
+
+    press_enter_to_continue();
+
     return true;
+
   }
 
   else if (user_option == "6" or user_option == "how_do_you_turn_this_on") {
+
     how_do_you_turn_this_on();
+
+    press_enter_to_continue();
+
     return true;
+
   }
 
   else if (user_option == "7" or user_option == "exit"){
@@ -108,6 +141,8 @@ bool interpretate_user_input(City* city, string user_option) {
 
     city->consult_tile(x_coordinate, y_coordinate);
 
+    press_enter_to_continue();
+
     return true;
 
   }
@@ -117,6 +152,8 @@ bool interpretate_user_input(City* city, string user_option) {
     system (CLR_SCREEN);
 
      city->show_map();
+
+     press_enter_to_continue();
 
      return true;
 
@@ -169,17 +206,6 @@ void how_do_you_turn_this_on() {
   std::cout << BOLD_BLACK << " ---                 ---" << DEFAULT_COLOR << '\n';
 
 }
-
-void press_enter_to_continue() {
-
-  int user_input;
-
-  std::cout << '\n';
-  std::cout << "Press ENTER to go back to the menu: ";
-
-  do user_input = getchar(); while ((user_input != '\n') && (user_input != EOF));
-}
-
 
 void build(City* city) {
 
