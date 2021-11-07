@@ -45,7 +45,7 @@ bool load_buildings_attributes(City* city) {
   file.open(BUILDING_FILE_ROUTE);
 
   if (!file) {
-    
+
     cout << BOLD_RED << "ERROR!: " << DEFAULT_COLOR << "Could not find file: "
                                       "'edificios.txt', ending program" << endl;
 
@@ -194,11 +194,13 @@ int main(){
 
   string user_option;
 
+  Menu menu;
+
   while (not_end_program) {
 
-    show_menu();
+    menu.show_menu();
 
-    not_end_program = interpretate_user_input(&andypolis, user_option);
+    not_end_program = menu.interpretate_user_input(&andypolis, user_option);
 
   }
 

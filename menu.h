@@ -7,32 +7,40 @@
 
 using namespace std;
 
-//PRE:-
-//POS:
-void show_menu();
+class Menu {
 
-//PRE:-
-//POS:
-void how_do_you_turn_this_on();
+public:
 
-//PRE:-
-//POS:
-void press_enter_to_continue();
+  //PRE:-
+  //POS:
+  void show_menu();
 
-//PRE:-
-//POS:
-void build(City* city);
+  //PRE:-
+  //POS:
+  void how_do_you_turn_this_on();
 
-//PRE:-
-//POS:
-void demolish(City* city);
+  //PRE:-
+  //POS:
+  void press_enter_to_continue();
 
-void save_data(City* city);
+  //PRE:-
+  //POS:
+  void build(City* city);
 
-bool interpretate_user_input(City* city, string user_option);
+  //PRE:-
+  //POS:
+  void demolish(City* city);
 
-int ask_user_x_coordinate(City* city);
+  void save_data(City* city);
 
-int ask_user_y_coordinate(City* city);
+  bool interpretate_user_input(City* city, string user_option);
+
+  int ask_user_x_coordinate(City* city);
+
+  int ask_user_y_coordinate(City* city);
+
+
+};
+
 
 #endif //MENU_H

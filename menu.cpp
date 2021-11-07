@@ -2,7 +2,7 @@
 
 using namespace  std;
 
-void show_menu() {
+void Menu::show_menu() {
 
   system (CLR_SCREEN);
 
@@ -24,7 +24,7 @@ void show_menu() {
 
 }
 
-void save_data(City* city) {
+void Menu::save_data(City* city) {
 
   fstream material_file;
   material_file.open(MATERIAL_FILE_ROUTE, ios::out);
@@ -50,7 +50,7 @@ void save_data(City* city) {
 
 }
 
-void press_enter_to_continue() {
+void Menu::press_enter_to_continue() {
 
   std::cout << '\n';
   std::cin.ignore();
@@ -59,7 +59,7 @@ void press_enter_to_continue() {
 
 }
 
-bool interpretate_user_input(City* city, string user_option) {
+bool Menu::interpretate_user_input(City* city, string user_option) {
 
   std::cout << '\n' << "Please enter the option you want: ";
   std::cin >> user_option;
@@ -175,7 +175,7 @@ bool interpretate_user_input(City* city, string user_option) {
 
 }
 
-void how_do_you_turn_this_on() {
+void Menu::how_do_you_turn_this_on() {
 
   system (CLR_SCREEN);
   string problematic_line_1_part_1 = R"(/`-')";
@@ -209,7 +209,7 @@ void how_do_you_turn_this_on() {
 
 }
 
-void build(City* city) {
+void Menu::build(City* city) {
 
   system (CLR_SCREEN);
 
@@ -225,7 +225,7 @@ void build(City* city) {
 
   }
 
-  while (!city->validate_building_type(lowercase_word(building_to_add)) || building_to_add == "exit") {
+  while (!city->validate_building_type(lowercase_word(building_to_add)) && building_to_add != "exit") {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Please Enter a valid type: ";
     std::cin >> building_to_add; //we could instead do that if the user enters an invalid name it goes back to menu instaead of continuing the function
@@ -245,7 +245,7 @@ void build(City* city) {
 
 }
 
-void demolish(City* city) {
+void Menu::demolish(City* city) {
 
   system (CLR_SCREEN);
 
@@ -256,7 +256,7 @@ void demolish(City* city) {
 
 }
 
-int ask_user_x_coordinate(City* city) {
+int Menu::ask_user_x_coordinate(City* city) {
 
   int max_rows = city->get_max_rows();
 
@@ -279,7 +279,7 @@ int ask_user_x_coordinate(City* city) {
 
 }
 
-int ask_user_y_coordinate(City* city) {
+int Menu::ask_user_y_coordinate(City* city) {
 
   int max_columns = city->get_max_columns();
 
@@ -301,6 +301,3 @@ int ask_user_y_coordinate(City* city) {
   return stoi(y_coordinate);
 
 }
-
-
-// Later check how to link menu.h to menu.cpp to main.cpp

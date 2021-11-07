@@ -176,7 +176,7 @@ void Map::show_map() {
             building_icon = MINE_ICON + " ";
 
           else if (map[i][j]->get_value() == SAWMILL)
-            building_icon = SAWMILL_ICON;
+            building_icon = SAWMILL_ICON + " ";
 
           else if (map[i][j]->get_value() == FACTORY)
             building_icon = FACTORY_ICON;
