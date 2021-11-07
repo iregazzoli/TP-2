@@ -3,7 +3,7 @@
 InaccesibleTile::InaccesibleTile(){}
 
 void InaccesibleTile::show() {
-    cout << "Cansillero consultado es inaccesible" << endl;
+    cout << "Consulted tile is " << BOLD_BLUE << INACCESIBLE << DEFAULT_COLOR;
 }
 
 string InaccesibleTile::get_tile_class() {

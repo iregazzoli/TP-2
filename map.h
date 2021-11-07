@@ -7,7 +7,6 @@
 #include "inaccesible_tile.h"
 
 
-
 class Map {
 
 private:
@@ -52,6 +51,8 @@ public:
   int get_columns();
 
   void show_map();
+
+  void show_map_legend();
 };
 
 

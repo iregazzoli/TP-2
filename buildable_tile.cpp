@@ -5,17 +5,17 @@ BuildableTile::BuildableTile() {
 }
 
 void BuildableTile::show() {
-  cout << "Consulted tile is " << BUILDABLE << " and is ";
+  cout << "Consulted tile is " << BOLD_BLUE << BUILDABLE << DEFAULT_COLOR << " and is ";
 
   if (tile_empty())
    cout << BOLD_GREEN << state_of_tile() << DEFAULT_COLOR << '\n';
 
   else
     if(building_contained->get_type() == POWER_PLANT)
-      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_BLUE << "Planta eléctrica" << endl;
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << "Planta eléctrica" << '\n';
 
     else
-      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_BLUE << building_contained->get_type() << endl;
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_GREEN << building_contained->get_type() << '\n';
 
 }
 

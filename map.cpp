@@ -1,5 +1,6 @@
 #include "map.h"
 #include "constants.h"
+#include "auxiliary_functions.h"
 
 Map::Map(int rows, int columns){
 
@@ -124,8 +125,36 @@ int Map::get_columns() {
 
 void Map::show_map() {
 
+  std::cout << BOLD_YELLOW << '\n';
+
+  std::cout << "    ";
+
+  for (int k = 0; k < total_of_columns; k++) {
+
+    if(k == total_of_columns - 1)
+      std::cout << "  " << k << " " << "\n";
+
+    else
+      std::cout << "  " << k << " ";
+  }
+
+  std::cout << "    ";
+
+  for (int l = 0; l < total_of_columns; l++) {
+
+    if(l == total_of_columns - 1)
+      std::cout << "════" << "\n";
+
+    else
+      std::cout << "════";
+  }
+
+
   for (int i = 0; i < total_of_rows; i++) {
     for (int j = 0; j < total_of_columns; j++) {
+
+      if (j == 0)
+        std::cout << BOLD_YELLOW << i << " ║ ";
 
       if (map[i][j]->get_tile_class() == BUILDABLE) {
         bool tile_empty = map[i][j]->tile_empty();
@@ -184,7 +213,34 @@ void Map::show_map() {
       }
     }
   }
+  show_map_legend();
 }
+
+void Map::show_map_legend() {
+
+  std::cout << '\n' << BOLD_BLUE  << "════";
+
+  for (int i = 0; i < total_of_columns; i++) {
+
+    if (i == total_of_columns - 1)
+      std::cout << "════" << "\n";
+
+    else
+      std::cout << "════";
+
+  }
+
+  std::cout << right << setw(27) << "MAP LEGEND" << DEFAULT_COLOR << '\n' << '\n';
+
+  std::cout << left << setw(5) << MINE_ICON << ":" << capitalize_word(MINE) << '\n';
+  std::cout << left << setw(6) << SAWMILL_ICON << ":" << capitalize_word(SAWMILL) << '\n';
+  std::cout << left << setw(5) << FACTORY_ICON << ":" << capitalize_word(FACTORY) << '\n';
+  std::cout << left << setw(5) << SCHOOL_ICON << ":" << capitalize_word(SCHOOL) << '\n';
+  std::cout << left << setw(5) << OBELISK_ICON << ":" << capitalize_word(OBELISK) << '\n';
+  std::cout << left << setw(4) << POWER_PLANT_ICON << ":" << capitalize_word(POWER_PLANT) << '\n';
+}
+
+
 
 Map::~Map() {
 

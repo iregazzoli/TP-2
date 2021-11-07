@@ -4,6 +4,8 @@ using namespace  std;
 
 void show_menu() {
 
+  system (CLR_SCREEN);
+
   std::cout << '\n';
   std::cout << "Welcome to " << BOLD_GREEN << "Andypolis Construction Menu"
                                   << DEFAULT_COLOR << ", options are: " << '\n';
@@ -213,7 +215,7 @@ void build(City* city) {
 
   string building_to_add;
 
-  std::cout << "Enter the type of building you wish to build: ";
+  std::cout << "Enter the type of building you wish to build (type exit to go back to menu): ";
   std::cin >> building_to_add;
 
   if(building_to_add == "planta"){
@@ -223,19 +225,23 @@ void build(City* city) {
 
   }
 
-  while(!city->validate_building_type(lowercase_word(building_to_add))) {
+  while (!city->validate_building_type(lowercase_word(building_to_add)) || building_to_add == "exit") {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Please Enter a valid type: ";
     std::cin >> building_to_add; //we could instead do that if the user enters an invalid name it goes back to menu instaead of continuing the function
 
   }
 
-  std::cout << '\n';
+  if (building_to_add != "exit") {
 
-  int x_coordinate = ask_user_x_coordinate(city);
-  int y_coordinate = ask_user_y_coordinate(city);
+    std::cout << '\n';
 
-  city->add_building(building_to_add, x_coordinate, y_coordinate, false);
+    int x_coordinate = ask_user_x_coordinate(city);
+    int y_coordinate = ask_user_y_coordinate(city);
+
+    city->add_building(building_to_add, x_coordinate, y_coordinate, false);
+
+  }
 
 }
 
