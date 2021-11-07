@@ -7,7 +7,7 @@ class PowerPlant: public Building {
 
 public:
 
-  PowerPlant(string, int, int);
+  PowerPlant(string, string, int, int);
 
 };
 

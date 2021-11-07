@@ -7,11 +7,11 @@ class Mine : public Building {
 
 public:
 
-    Mine(string, int, int);
+    Mine(string, string, int, int);
 
     //PRE:
     //POS:
-    int quantity_provides_materials();
+    int produce_material();
 };
 
 #endif // MINE_H

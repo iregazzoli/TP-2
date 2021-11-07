@@ -6,27 +6,27 @@ BuildingHandler::BuildingHandler() {
 
 }
 
-void BuildingHandler::add_building(string building_type, int x_coordinate, int y_coordinate) {
+void BuildingHandler::add_building(string building_type, string material_that_produce, int x_coordinate, int y_coordinate) {
 
   Building* new_building = 0;
 
   if(building_type == "fabrica")
-    new_building = new Factory(building_type, x_coordinate, y_coordinate);
+    new_building = new Factory(building_type, material_that_produce, x_coordinate, y_coordinate);
 
   if(building_type == "mina")
-    new_building = new Mine(building_type, x_coordinate, y_coordinate);
+    new_building = new Mine(building_type, material_that_produce, x_coordinate, y_coordinate);
 
   if(building_type == "obelisco")
-    new_building = new Obelisk(building_type, x_coordinate, y_coordinate);
+    new_building = new Obelisk(building_type, material_that_produce, x_coordinate, y_coordinate);
 
   if(building_type == "planta")
-    new_building = new PowerPlant(building_type, x_coordinate, y_coordinate);
+    new_building = new PowerPlant(building_type, material_that_produce, x_coordinate, y_coordinate);
 
   if(building_type == "aserradero")
-    new_building = new Sawmill(building_type, x_coordinate, y_coordinate);
+    new_building = new Sawmill(building_type, material_that_produce, x_coordinate, y_coordinate);
 
   if(building_type == "escuela")
-    new_building = new School(building_type, x_coordinate, y_coordinate);
+    new_building = new School(building_type, material_that_produce, x_coordinate, y_coordinate);
 
 
   buildings->add_node(new_building);
@@ -128,6 +128,41 @@ Building* BuildingHandler::get_building(string building_type, int x_coordinate, 
   }
 
   return 0;
+}
+
+int BuildingHandler::get_resources_amount(string building_type) {
+
+
+  int total_amount = 0;
+
+  buildings->reset_current_node();
+
+  while (buildings->get_current_value() != 0) {
+
+    if(buildings->get_current_value()->get_type() == building_type)
+      total_amount += buildings->get_current_value()->produce_material();
+
+    buildings->next_node();
+
+  }
+
+  return total_amount;
+}
+
+string BuildingHandler::get_resources_type(string building_type) {
+  
+  buildings->reset_current_node();
+
+  while (buildings->get_current_value() != 0) {
+
+    if(buildings->get_current_value()->get_type() == building_type)
+      return buildings->get_current_value()->get_material_that_building_produces();
+
+    buildings->next_node();
+
+  }
+
+  return "";
 }
 
 string BuildingHandler::building_data_to_string() {

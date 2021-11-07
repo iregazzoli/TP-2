@@ -19,6 +19,7 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << " Save and exit. ('7' or 'exit')" << '\n';
   std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << " Consult coordinate. ('8' or 'coordinate')" << '\n';
   std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << " Show map ('9')" << '\n';
+  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Collect resources ('10')" << '\n';
 
   return;
 
@@ -161,6 +162,18 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
 
    }
 
+  else if (user_option == "10") {
+    system (CLR_SCREEN);
+
+    cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
+
+    city->collect_resources();
+
+    press_enter_to_continue();
+
+    return true;
+
+  }
 
   else {
 

@@ -7,7 +7,7 @@ class School : public Building {
 
 public:
 
-  School(string, int, int);
+  School(string, string, int, int);
 
 };
 

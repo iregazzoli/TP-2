@@ -8,13 +8,16 @@ using namespace std;
 class Building{
 private:
   string building_type;
+  string material_that_produces;
   int x_coordinate;
   int y_coordinate;
 
 public:
   //PRE: -
   //POS: Creates Building object with building_type = 'type'. [modify]
-  Building(string building_type, int x_coordinate, int y_coordinate);
+  Building(string building_type, string material_that_produces, int x_coordinate, int y_coordinate);
+
+  virtual ~Building() {};
 
   //PRE: new_type is a valid building.
   //POS: Changes building_type to 'new_type'.
@@ -42,7 +45,9 @@ public:
 
   //PRE:-
   //POS: Returns the amount of material a building provides.
-  int quantity_provides_materials();
+  virtual int produce_material();
+
+  string get_material_that_building_produces();
 
 };
 

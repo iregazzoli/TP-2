@@ -7,11 +7,11 @@ class Sawmill: public Building {
 
 public:
 
-    Sawmill(string, int, int);
+    Sawmill(string, string, int, int);
 
     //PRE:
     //POS:
-    int quantity_provides_materials();
+    int produce_material();
 
 };
 

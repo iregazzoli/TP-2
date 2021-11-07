@@ -42,6 +42,8 @@ public:
   //POS: returns every material and it's quantity.
   string materials_data_to_string();
 
+  void collect_resources();
+
 //-----------------------------Building Management------------------------------
 
   //PRE: the amount of built buildings from file edificios.txt must be a-
@@ -118,7 +120,7 @@ private:
 
 //----------------------------Building Management-------------------------------
 
-void add_building(string building_type, int x_coordinate, int y_coordinate);
+void add_building(string building_type, string material_that_produces, int x_coordinate, int y_coordinate);
 
 //-----------------------------User Input Management----------------------------
 

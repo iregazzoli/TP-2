@@ -7,11 +7,11 @@ class Factory : public Building {
 
 public:
 
-    Factory(string, int, int);
+    Factory(string, string, int, int);
 
     //PRE:
     //POS:
-    int quantity_provides_materials();
+    int produce_material();
 };
 
 #endif // FACTORY_H

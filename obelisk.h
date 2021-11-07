@@ -7,7 +7,7 @@ class Obelisk : public Building {
 
 public:
 
-  Obelisk(string, int, int);
+  Obelisk(string, string, int, int);
 
 };
 

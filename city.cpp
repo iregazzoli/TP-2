@@ -33,6 +33,39 @@ string City::materials_data_to_string() {
 
 }
 
+void City::collect_resources() {
+
+  string current_building_type;
+  string material_produced;
+  int user_material_amount;
+  int produce_material_amount;
+
+  record->reset_current_node();
+
+  while(record->get_current_building_type() != "0") {
+
+    current_building_type = record->get_current_building_type();
+
+    material_produced = buildings->get_resources_type(current_building_type);
+
+    produce_material_amount = buildings->get_resources_amount(current_building_type);
+
+    user_material_amount = materials->get_material_amount(material_produced);
+
+    materials->set_material_amount(material_produced, user_material_amount + produce_material_amount);
+
+    if (produce_material_amount > 0) {
+      std::cout << left << setw(WIDTH) << "Material: " << BOLD_GREEN << setw(WIDTH) << material_produced <<
+                   DEFAULT_COLOR << setw(WIDTH) << "Amount: " << BOLD_BLUE << setw(WIDTH) <<
+                    produce_material_amount << DEFAULT_COLOR << '\n'; 
+    }
+
+    record->next_node();
+
+  }
+
+}
+
 
 //--------------------------Private Material Methods----------------------------
 
@@ -146,9 +179,23 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     if (ask_user_confirmation(capitalized_building_type)) {
 
+      string material_that_produces;
+
+      if (lowercase_building_type == MINE)
+        material_that_produces = STONE;
+
+      else if (lowercase_building_type == SAWMILL)
+        material_that_produces = WOOD;
+
+      else if (lowercase_building_type == FACTORY)
+        material_that_produces = STEEL;
+      
+      else 
+        material_that_produces = "";
+
       deduct_building_cost(user_stone, user_wood, user_steel, lowercase_building_type);
 
-      add_building(lowercase_building_type, x_coordinate, y_coordinate);
+      add_building(lowercase_building_type, material_that_produces, x_coordinate, y_coordinate);
 
       std::cout << BOLD_GREEN<< "Building: " << capitalized_building_type
                   << ", successfully built." << DEFAULT_COLOR << '\n';
@@ -198,8 +245,22 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
+ 
+    string material_that_produces;
 
-    add_building(lowercase_building_type, x_coordinate, y_coordinate);
+    if (lowercase_building_type == MINE)
+      material_that_produces = STONE;
+
+    else if (lowercase_building_type == SAWMILL)
+      material_that_produces = WOOD;
+
+    else if (lowercase_building_type == FACTORY)
+      material_that_produces = STEEL;
+    
+    else 
+      material_that_produces = "";
+
+    add_building(lowercase_building_type, material_that_produces, x_coordinate, y_coordinate);
 
   }
 
@@ -290,16 +351,7 @@ void City::show_buildings() {
 
   record->reset_current_node();
 
-  // while(record->get_current_building_type() != "0"){
-  //
-  //   std::cout << record->get_current_building_type() << '\n';
-  //   record->next_node();
-  //
-  // }
-
   while(record->get_current_building_type() != "0"){
-
-    // std::cout << record->get_current_building_type() << '\n';
 
     int amount_built = buildings->get_building_built_amount(record->get_current_building_type());
 
@@ -325,9 +377,9 @@ bool City::validate_building_type(string type_to_check){
 
 //--------------------------Private Building Management-------------------------
 
-void City::add_building(string building_type, int x_coordinate, int y_coordinate) {
+void City::add_building(string building_type, string material_that_produce, int x_coordinate, int y_coordinate) {
 
-  buildings->add_building(building_type, x_coordinate, y_coordinate);
+  buildings->add_building(building_type, material_that_produce, x_coordinate, y_coordinate);
   record->modify_building_amount(building_type, 1);
   Building* new_building = buildings->get_building(building_type, x_coordinate, y_coordinate);
   city_map->add_building(new_building, x_coordinate, y_coordinate);
