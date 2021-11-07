@@ -204,6 +204,8 @@ void build(City* city) {
 
   }
 
+  std::cout << '\n';
+
   int x_coordinate = ask_user_x_coordinate(city);
   int y_coordinate = ask_user_y_coordinate(city);
 

@@ -79,13 +79,14 @@ int BuildingHandler::get_building_built_amount(string building_type_to_count){
 
 }
 
-void BuildingHandler::show_building(string building_type, int amount_built){
+void BuildingHandler::show_buildings(string building_type, int amount_built){
 
   buildings->reset_current_node();
   string coordinates = "";
   string capitalized_building_type = capitalize_word(building_type);
+  int building_type_spacing = 17;
 
-  while(buildings->get_current_value() != 0){
+  while (buildings->get_current_value() != 0) {
 
     if(buildings->get_current_value()->get_type() == building_type){
       coordinates = coordinates + "(" + to_string(buildings->get_current_value()->get_x_coordinate())
@@ -98,21 +99,25 @@ void BuildingHandler::show_building(string building_type, int amount_built){
 
   }
 
-  if(capitalized_building_type == "Planta")
-    capitalized_building_type = "Planta eléctrica";
+  if (capitalized_building_type == "Planta") {
 
-  std::cout << left << setw(WIDTH) << "Amount of: " << BOLD_GREEN <<
-             capitalized_building_type  << "s" << DEFAULT_COLOR <<
-              setw(WIDTH) << " is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR <<
-               " in coordinates: " << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
+    capitalized_building_type = "Planta eléctrica";
+    building_type_spacing = 18;
+
+  }
+
+  std::cout << left << setw(15) << "Amount of building: " << BOLD_GREEN <<
+             setw(building_type_spacing) << capitalized_building_type  << DEFAULT_COLOR <<
+              setw(4) << "is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR << setw(4) <<
+              " in coordinates: " << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
 
 }
 
 Building* BuildingHandler::get_building(string building_type, int x_coordinate, int y_coordinate) {
 
-  while(buildings->get_current_value() != 0){
+  while (buildings->get_current_value() != 0) {
 
-    if(buildings->get_current_value()->get_type() == building_type
+    if (buildings->get_current_value()->get_type() == building_type
        && buildings->get_current_value()->get_x_coordinate() == x_coordinate
        && buildings->get_current_value()->get_y_coordinate() == y_coordinate){
 

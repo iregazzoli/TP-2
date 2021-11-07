@@ -173,27 +173,27 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   else if (valid_type && !valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
   std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building type: " <<
                 capitalized_building_type << " surpasses max quantity allow,"
-                " check menu option '3' to see amount built." << '\n';
+                " check menu option '3' to see amount built and max quantity allow ." << '\n';
   }
 
   else if (valid_type && valid_amount && !enough_materials && valid_tile && empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
                   "You don't have enough materials to build building: " <<
-                    capitalized_building_type << ", check menu option '1' and '4' to see "
+                    capitalized_building_type << ", check menu option '7' and '3' to see "
                      "materials amount and building costs." << '\n';
   }
 
   else if (valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
                   "The tile where you are trying to build on is not meant for building,"
-                    " check menu option - to see the map with all the buildable tiles." << '\n';
+                    " check menu option '5' to see the map with all the buildable tiles." << '\n';
   }
 
 
   else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && !loading_from_txt) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
                   "The tile where you are trying to build already has a building in it,"
-                    " check menu option - to see the map with all the built buildings." << '\n';
+                    " check menu option '5' to see the map with all the built buildings." << '\n';
   }
 
   //Section related with building by txt file
@@ -305,7 +305,7 @@ void City::show_buildings() {
 
     if(amount_built > 0){
 
-      buildings->show_building(record->get_current_building_type(), amount_built);
+      buildings->show_buildings(record->get_current_building_type(), amount_built);
 
     }
 

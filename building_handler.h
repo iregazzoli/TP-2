@@ -25,7 +25,7 @@ public:
 
   bool demolish_building(int x_coordinate, int y_coordinate);
 
-  void show_building(string building_type, int amount_built);
+  void show_buildings(string building_type, int amount_built);
 
   int get_building_built_amount(string building_type_to_count);
 
