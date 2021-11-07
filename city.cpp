@@ -349,9 +349,9 @@ void City::show_record() {
 
   system (CLR_SCREEN);
 
-  int user_stone = materials->get_material_amount("piedra");
-  int user_wood = materials->get_material_amount("madera");
-  int user_steel = materials->get_material_amount("metal");
+  int user_stone = materials->get_material_amount(STONE);
+  int user_wood = materials->get_material_amount(WOOD);
+  int user_steel = materials->get_material_amount(STEEL);
 
   record->show_record(user_stone, user_wood, user_steel);
 
@@ -363,7 +363,7 @@ void City::show_record() {
 
 string City::building_data_to_string() {
 
-  return record->building_data_to_string();
+  return buildings->building_data_to_string();
 
 }
 
@@ -396,6 +396,12 @@ int City::get_max_rows() {
 int City::get_max_columns() {
 
   return city_map->get_columns();
+
+}
+
+void City::show_map() {
+
+  city_map->show_map();
 
 }
 

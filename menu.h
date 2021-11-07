@@ -27,4 +27,12 @@ void build(City* city);
 //POS:
 void demolish(City* city);
 
-#endif
+void save_data(City* city);
+
+bool interpretate_user_input(City* city, string user_option);
+
+int ask_user_x_coordinate(City* city);
+
+int ask_user_y_coordinate(City* city);
+
+#endif //MENU_H

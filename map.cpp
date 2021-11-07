@@ -121,3 +121,80 @@ int Map::get_columns() {
   return total_of_columns;
 
 }
+
+void Map::show_map() {
+
+  for (int i = 0; i < total_of_rows; i++) {
+    for (int j = 0; j < total_of_columns; j++) {
+
+      if (map[i][j]->get_tile_class() == BUILDABLE) {
+        bool tile_empty = map[i][j]->tile_empty();
+
+        if (tile_empty) {
+
+          if (j == total_of_columns - 1)
+            cout << BOLD_GREEN << "|" << TERRAIN_ICON << "|" << DEFAULT_COLOR << '\n';
+          else
+            cout << BOLD_GREEN << "|" << TERRAIN_ICON << "|" << DEFAULT_COLOR;
+
+        }
+
+        else {
+
+          string building_icon;
+
+          if (map[i][j]->get_value() == MINE)
+            building_icon = MINE_ICON + " ";
+
+          else if (map[i][j]->get_value() == SAWMILL)
+            building_icon = SAWMILL_ICON;
+
+          else if (map[i][j]->get_value() == FACTORY)
+            building_icon = FACTORY_ICON;
+
+          else if (map[i][j]->get_value() == SCHOOL)
+            building_icon = SCHOOL_ICON;
+
+          else if (map[i][j]->get_value() == OBELISK)
+            building_icon = OBELISK_ICON + " ";
+
+          else if(map[i][j]->get_value() == POWER_PLANT)
+            building_icon = POWER_PLANT_ICON;
+
+          if (j == total_of_columns - 1)
+            cout << BOLD_GREEN << "|" << DEFAULT_COLOR << building_icon << BOLD_GREEN << "|" << DEFAULT_COLOR << '\n';
+          else
+            cout << BOLD_GREEN << "|" << DEFAULT_COLOR << building_icon << BOLD_GREEN << "|" << DEFAULT_COLOR;
+        }
+      }
+
+      else if (map[i][j]->get_tile_class() == PASSABLE) {
+
+        if(j == total_of_columns - 1)
+          cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR << '\n';
+        else
+          cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR;
+      }
+
+      else {
+        if(j == total_of_columns - 1)
+          cout << BOLD_BLUE << "|" << LAKE_ICON << "|" << DEFAULT_COLOR << '\n';
+        else
+          cout << BOLD_BLUE << "|" << LAKE_ICON << "|" << DEFAULT_COLOR;
+      }
+    }
+  }
+}
+
+Map::~Map() {
+
+  for(int i = 0; i < total_of_rows; i++) {
+    for(int j = 0; j < total_of_columns; j++) {
+      delete map[i][j];
+    }
+
+    delete[] map[i];
+  }
+
+  delete[] map;
+}

@@ -23,6 +23,8 @@ private:
 public:
   Map(int rows, int columns);
 
+  ~Map();
+
   void initialize();
 
   //PRE: (maybe clarify that the amount on letters on the, nah don't bother)
@@ -48,6 +50,8 @@ public:
   int get_rows();
 
   int get_columns();
+
+  void show_map();
 };
 
 

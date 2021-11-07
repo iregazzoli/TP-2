@@ -49,10 +49,6 @@ public:
   void show_record(int user_stone, int user_wood, int user_steel);
 
   //PRE:-
-  //POS: Returns all the building related information.
-  string building_data_to_string();
-
-  //PRE:-
   //POS: Returns building_type.
   string get_current_building_type();
 

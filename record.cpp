@@ -78,7 +78,7 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
                                                   amount_of_buildings_built);
 
     if(capitalized_building_type == "Planta")
-      capitalized_building_type = "Plantas eléctrica";
+      capitalized_building_type = "Planta eléctrica";
 
     if(enough_materials && valid_amount)
       std::cout << DEFAULT_COLOR << "Building:                " << BOLD_GREEN << capitalized_building_type << '\n';
@@ -99,29 +99,6 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
 
 }
 
-string Record::building_data_to_string() {
-
-  record->reset_current_node();
-
-  string building_data;
-
-  while (record->get_current_value() != 0) {
-
-    building_data = building_data + record->get_current_value()->building_type + " ";
-    building_data = building_data + to_string(record->get_current_value()->stone_cost) + " ";
-    building_data = building_data + to_string(record->get_current_value()->wood_cost) + " ";
-    building_data = building_data + to_string(record->get_current_value()->steel_cost) + " ";
-    building_data = building_data + to_string(record->get_current_value()->max_quantity) + "\n";
-
-    record->next_node();
-
-  }
-
-  record->reset_current_node();
-
-  return building_data;
-
-}
 
 string Record::get_current_building_type() {
 

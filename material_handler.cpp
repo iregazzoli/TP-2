@@ -21,7 +21,7 @@ void MaterialHandler::show_materials(){
 
     string capitalized_material = capitalize_word(materials->get_current_value()->get_material());
 
-    if (materials->get_current_value()->get_material() == "piedra") {
+    if (materials->get_current_value()->get_material() == STONE) {
 
       std::cout << left << setw(WIDTH) << "Material: " << BOLD_BLACK <<
        setw(WIDTH) << capitalized_material << DEFAULT_COLOR
@@ -29,7 +29,7 @@ void MaterialHandler::show_materials(){
           materials->get_current_value()->get_quantity() << DEFAULT_COLOR << '\n';
     }
 
-    else if (materials->get_current_value()->get_material() == "madera") {
+    else if (materials->get_current_value()->get_material() == WOOD) {
 
       std::cout << left << setw(WIDTH) << "Material: " << BOLD_GREEN <<
        setw(WIDTH) << capitalized_material << DEFAULT_COLOR
@@ -38,7 +38,7 @@ void MaterialHandler::show_materials(){
 
     }
 
-    else if (materials->get_current_value()->get_material() == "metal") {
+    else if (materials->get_current_value()->get_material() == STEEL) {
 
       std::cout << left << setw(WIDTH) << "Material: " << BOLD_CYAN <<
        setw(WIDTH) << capitalized_material << DEFAULT_COLOR

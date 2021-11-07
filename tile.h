@@ -11,6 +11,8 @@ public:
 
     Tile(){};
 
+    virtual ~Tile() {};
+
     //PRE:
     //POST:
     virtual void show() = 0;

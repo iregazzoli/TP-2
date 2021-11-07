@@ -1,3 +1,6 @@
+#ifndef AUXILIARY_FUNCTIONS_H
+#define AUXILIARY_FUNCTIONS_H
+
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -24,3 +27,6 @@ string capitalize_word(string word);
 string lowercase_word(string word);
 
 bool is_numeric(string string_to_check);
+
+
+#endif //AUXILIARY_FUNCTIONS_H

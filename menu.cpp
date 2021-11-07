@@ -15,7 +15,124 @@ void show_menu() {
   std::cout << BOLD_YELLOW << "[5]" << DEFAULT_COLOR << " Demolish a building by name. ('5' or 'demolish')" << '\n';
   std::cout << BOLD_YELLOW << "[6]" << DEFAULT_COLOR << " How do you turn this on. ('6' or 'how_do_you_turn_this_on')" << '\n';
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << " Save and exit. ('7' or 'exit')" << '\n';
+  std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << " Consult coordinate. ('8' or 'coordinate')" << '\n';
+  std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << " Show map ('9')" << '\n';
+
   return;
+
+}
+
+void save_data(City* city) {
+
+  fstream material_file;
+  material_file.open(MATERIAL_FILE_ROUTE, ios::out);
+
+  if (material_file.is_open()) {
+
+    material_file << city->materials_data_to_string();
+
+    material_file.close();
+
+  }
+
+  fstream building_file;
+  building_file.open(MAP_LOCATIONS_ROUTE, ios::out);
+
+  if (building_file.is_open()) {
+
+    building_file << city->building_data_to_string();
+
+    building_file.close();
+
+  }
+
+}
+
+bool interpretate_user_input(City* city, string user_option) {
+
+  std::cout << '\n' << "Please enter the option you want: ";
+  std::cin >> user_option;
+
+  if (user_option == "1" or user_option == "materials") {
+
+    system (CLR_SCREEN);
+    city->show_materials();
+    press_enter_to_continue();
+
+    return true;
+  }
+
+  else if (user_option == "2" or user_option == "build") {
+
+    build(city);
+    return true;
+  }
+
+  else if (user_option == "3" or user_option == "buildings") {
+
+    city->show_buildings();
+    return true;
+  }
+
+  else if (user_option == "4" or user_option == "record") {
+
+    city->show_record();
+    return true;
+  }
+
+  else if (user_option == "5" or user_option == "demolish") {
+
+    demolish(city);
+    return true;
+  }
+
+  else if (user_option == "6" or user_option == "how_do_you_turn_this_on") {
+    how_do_you_turn_this_on();
+    return true;
+  }
+
+  else if (user_option == "7" or user_option == "exit"){
+
+    save_data(city);
+    std::cout << "Hope you enjoyed the program!" << '\n';
+    return false;
+
+  }
+
+  else if (user_option == "8") {
+
+    system (CLR_SCREEN);
+
+    int x_coordinate = ask_user_x_coordinate(city);
+    int y_coordinate = ask_user_y_coordinate(city);
+
+    city->consult_tile(x_coordinate, y_coordinate);
+
+    return true;
+
+  }
+
+  else if (user_option == "9") {
+
+    system (CLR_SCREEN);
+
+     city->show_map();
+
+     return true;
+
+   }
+
+
+  else {
+
+    system (CLR_SCREEN);
+
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
+          << "Invalid option, please enter a valid input" << '\n';
+
+    return true;
+
+  }
 
 }
 
@@ -69,11 +186,6 @@ void build(City* city) {
   system (CLR_SCREEN);
 
   string building_to_add;
-  string x_coordinate;
-  string y_coordinate;
-
-  int max_rows = city->get_max_rows();
-  int max_columns = city->get_max_columns();
 
   std::cout << "Enter the type of building you wish to build: ";
   std::cin >> building_to_add;
@@ -92,29 +204,10 @@ void build(City* city) {
 
   }
 
-  std::cout << "Enter the X coordinate of building you wish to build: ";
-  std::cin >> x_coordinate;
+  int x_coordinate = ask_user_x_coordinate(city);
+  int y_coordinate = ask_user_y_coordinate(city);
 
-  while(!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows) {
-
-  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "X coordinate must be a number"
-              " between 0 and " << max_rows << ": ";
-  std::cin >> x_coordinate;
-
-  }
-
-  std::cout << "Enter the Y coordinate of building you wish to build: ";
-  std::cin >> y_coordinate;
-
-  while(!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns) {
-
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Y coordinate must be a number"
-                " between 0 and " << max_columns << ": ";
-  std::cin >> y_coordinate;
-
-  }
-
-  city->add_building(building_to_add, stoi(x_coordinate), stoi(y_coordinate), false);
+  city->add_building(building_to_add, x_coordinate, y_coordinate, false);
 
 }
 
@@ -122,35 +215,56 @@ void demolish(City* city) {
 
   system (CLR_SCREEN);
 
-  string x_coordinate;
-  string y_coordinate;
+  int x_coordinate = ask_user_x_coordinate(city);
+  int y_coordinate = ask_user_y_coordinate(city);
+
+  city->demolish_building(x_coordinate, y_coordinate);
+
+}
+
+int ask_user_x_coordinate(City* city) {
 
   int max_rows = city->get_max_rows();
+
+  string x_coordinate;
+
+  std::cout << "Enter the " << BOLD_YELLOW << "X" << DEFAULT_COLOR << " coordinate of building you wish to build: ";
+  std::cin >> x_coordinate;
+
+  while(!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows - 1) {
+
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << BOLD_YELLOW << "X" << DEFAULT_COLOR <<
+              " coordinate must be a number between" << BOLD_YELLOW << " 0 and " << max_rows - 1 << DEFAULT_COLOR << ": ";
+  std::cin >> x_coordinate;
+
+  }
+
+  std::cout << '\n';
+
+  return stoi(x_coordinate);
+
+}
+
+int ask_user_y_coordinate(City* city) {
+
   int max_columns = city->get_max_columns();
 
-  std::cout << "Enter the X coordinate of building you wish to build: ";
-  std::cin >> x_coordinate;
+  string y_coordinate;
 
-  while(!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows) {
-
-  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "X coordinate must be a number"
-              " between 0 and " << max_rows << ": ";
-  std::cin >> x_coordinate;
-
-  }
-
-  std::cout << "Enter the Y coordinate of building you wish to build: ";
+  std::cout << "Enter the " << BOLD_YELLOW << "Y" << DEFAULT_COLOR << " coordinate of building you wish to build: ";
   std::cin >> y_coordinate;
 
-  while(!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns) {
+  while(!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns - 1) {
 
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Y coordinate must be a number"
-                " between 0 and " << max_columns << ": ";
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << BOLD_YELLOW << "Y" << DEFAULT_COLOR <<
+              " coordinate must be a number between" << BOLD_YELLOW << " 0 and " << max_columns - 1 << DEFAULT_COLOR << ": ";
   std::cin >> y_coordinate;
 
   }
 
-  city->demolish_building(stoi(x_coordinate), stoi(y_coordinate));
+  std::cout << '\n';
+
+  return stoi(y_coordinate);
 
 }
 

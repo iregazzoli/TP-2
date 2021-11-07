@@ -5,11 +5,18 @@ BuildableTile::BuildableTile() {
 }
 
 void BuildableTile::show() {
-    if (tile_empty())
-        cout << "Cansillero consultado es construible y se encuentra " << state_of_tile() << endl;
+  cout << "Consulted tile is " << BUILDABLE << " and is ";
+
+  if (tile_empty())
+   cout << BOLD_GREEN << state_of_tile() << DEFAULT_COLOR << '\n';
+
+  else
+    if(building_contained->get_type() == POWER_PLANT)
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_BLUE << "Planta eléctrica" << endl;
+
     else
-        cout << "Cansillero consultado es construible y se encuentra " << state_of_tile()
-             << ", contiene el edificio: " << building_contained->get_type() << endl;
+      cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", contains building: " << BOLD_BLUE << building_contained->get_type() << endl;
+
 }
 
 void BuildableTile::add_building(Building* building) {
@@ -20,7 +27,7 @@ void BuildableTile::add_building(Building* building) {
 
 void BuildableTile::remove_building() {
 
-    building_contained = 0;
+  building_contained = 0;
 
 }
 
@@ -33,9 +40,9 @@ bool BuildableTile::tile_empty(){
 string BuildableTile::state_of_tile(){
 
   if(tile_empty())
-    return "vacio";
+    return EMPTY;
 
-  return "ocupado";
+  return OCCUPIED;
 
 }
 

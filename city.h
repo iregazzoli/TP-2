@@ -96,6 +96,8 @@ int get_max_rows();
 
 int get_max_columns();
 
+void show_map();
+
 
 private:
 
@@ -123,4 +125,5 @@ void add_building(string building_type, int x_coordinate, int y_coordinate);
 bool ask_user_confirmation(string building_type);
 
 };
-#endif
+
+#endif//CITY_H

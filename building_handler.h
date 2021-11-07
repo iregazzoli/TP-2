@@ -31,6 +31,10 @@ public:
 
   Building* get_building(string building_type, int x_coordinate, int y_coordinate);
 
+  //PRE:-
+  //POS: Returns all the building related information.
+  string building_data_to_string();
+
 };
 
 #endif

@@ -66,12 +66,7 @@ int BuildingHandler::get_building_built_amount(string building_type_to_count){
 
   int building_amount = 0;
 
-  // std::cout << "entered here" << '\n';
-  // std::cout << buildings->get_current_value() << '\n';
-
   while(buildings->get_current_value() != 0){
-
-    // std::cout << building_type_to_count << " vs " << buildings->get_current_value()->get_type() << '\n';
 
     if(buildings->get_current_value()->get_type() == building_type_to_count)
       building_amount++;
@@ -130,6 +125,32 @@ Building* BuildingHandler::get_building(string building_type, int x_coordinate, 
   return 0;
 }
 
+string BuildingHandler::building_data_to_string() {
+
+  buildings->reset_current_node();
+
+  string building_data;
+
+  while (buildings->get_current_value() != 0) {
+
+    building_data = building_data + buildings->get_current_value()->get_type() + " ";
+
+    if(buildings->get_current_value()->get_type() == POWER_PLANT)
+      building_data = building_data + "electrica ";
+
+    building_data = building_data + "(";
+    building_data = building_data + to_string(buildings->get_current_value()->get_x_coordinate()) + ", ";
+    building_data = building_data + to_string(buildings->get_current_value()->get_y_coordinate()) + ") " + '\n';
+
+    buildings->next_node();
+
+  }
+
+  buildings->reset_current_node();
+
+  return building_data;
+
+}
 
 BuildingHandler::~BuildingHandler(){
 
