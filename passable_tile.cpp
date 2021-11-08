@@ -17,7 +17,7 @@ void PassableTile::show() {
    if (tile_empty())
        cout << BOLD_GREEN << state_of_tile() << DEFAULT_COLOR << '\n';
    else
-       cout << BOLD_RED << state_of_tile() << ", it contains a: " <<
+       cout << BOLD_RED << state_of_tile() << DEFAULT_COLOR << ", it contains a: " <<
                 BOLD_GREEN << material_contained->get_material() << DEFAULT_COLOR << '\n';
 
 }

@@ -33,7 +33,7 @@ public:
 
   void save_data(City* city);
 
-  bool interpretate_user_input(City* city, string user_option);
+  bool interpretate_user_input(City* city);
 
   int ask_user_x_coordinate(City* city);
 

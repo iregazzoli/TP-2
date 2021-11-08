@@ -22,15 +22,13 @@ int main(){
   if(not_end_program)
     not_end_program = load_buildings(&andypolis);
 
-  string user_option;
-
   Menu menu;
 
   while (not_end_program) {
 
     menu.show_menu();
 
-    not_end_program = menu.interpretate_user_input(&andypolis, user_option);
+    not_end_program = menu.interpretate_user_input(&andypolis);
 
   }
 

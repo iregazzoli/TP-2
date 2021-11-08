@@ -21,17 +21,6 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << "  Rain of materials." << '\n';
   std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Save and exit." << '\n';
 
-  // std::cout << BOLD_YELLOW << "[1]" << DEFAULT_COLOR << " List construction materials. ('1' or 'materials')" << '\n';
-  // std::cout << BOLD_YELLOW << "[2]" << DEFAULT_COLOR << " Build building by name. ('2' or 'build')" << '\n';
-  // std::cout << BOLD_YELLOW << "[3]" << DEFAULT_COLOR << " List the buildings built. ('3' or 'buildings')" << '\n';
-  // std::cout << BOLD_YELLOW << "[4]" << DEFAULT_COLOR << " List all buildings. ('4' or 'record')" << '\n';
-  // std::cout << BOLD_YELLOW << "[5]" << DEFAULT_COLOR << " Demolish a building by name. ('5' or 'demolish')" << '\n';
-  // std::cout << BOLD_YELLOW << "[6]" << DEFAULT_COLOR << " How do you turn this on. ('6' or 'how_do_you_turn_this_on')" << '\n';
-  // std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << " Save and exit. ('7' or 'exit')" << '\n';
-  // std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << " Consult coordinate. ('8' or 'coordinate')" << '\n';
-  // std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << " Show map ('9')" << '\n';
-  // std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Collect resources ('10')" << '\n';
-
   return;
 
 }
@@ -71,20 +60,34 @@ void Menu::press_enter_to_continue() {
 
 }
 
-bool Menu::interpretate_user_input(City* city, string user_option) {
+bool Menu::interpretate_user_input(City* city) {
+
+  std::string user_option;
 
   std::cout << '\n' << "Please enter the option you want: ";
+
   std::cin >> user_option;
+
+  while (!is_numeric(user_option) || stoi(user_option) < 0 || stoi(user_option) > 10) {
+
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
+          << "Invalid option, please enter " << BOLD_CYAN <<
+            "a number between 1 and 10: " << DEFAULT_COLOR;
+
+    std::cin >> user_option;
+
+  }
+
+  int numeric_user_option = stoi(user_option);
 
   bool not_end_program = true;
 
-  if (is_numeric(user_option)) {
+  switch (numeric_user_option) {
 
-    switch (stoi(user_option)) {
     case BUILD:
 
       build(city);
-      
+
       press_enter_to_continue();
 
       break;
@@ -134,9 +137,9 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
 
       press_enter_to_continue();
 
-      }
-
       break;
+
+    }
 
     case INVENTORY:
 
@@ -151,8 +154,6 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
     case COLLECT_RESOURCES:
 
       system (CLR_SCREEN);
-
-      std::cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
 
       city->collect_resources();
 
@@ -181,142 +182,9 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
 
       break;
 
-    default:
-       std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
-          << "Invalid option, please enter a valid input" << '\n';
-
-    }
-
-  } else {
-    system (CLR_SCREEN);
-
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
-          << "Invalid option, please enter a valid input" << '\n';
   }
 
-
   return not_end_program;
-
-  // if (user_option == "1" or user_option == "materials") {
-
-  //   system (CLR_SCREEN);
-
-  //   city->show_materials();
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "2" or user_option == "build") {
-
-  //   build(city);
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "3" or user_option == "buildings") {
-
-  //   city->show_buildings();
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "4" or user_option == "record") {
-
-  //   city->show_record();
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "5" or user_option == "demolish") {
-
-  //   demolish(city);
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "6" or user_option == "how_do_you_turn_this_on") {
-
-  //   how_do_you_turn_this_on();
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "7" or user_option == "exit"){
-
-  //   save_data(city);
-  //   std::cout << "Hope you enjoyed the program!" << '\n';
-  //   return false;
-
-  // }
-
-  // else if (user_option == "8") {
-
-  //   system (CLR_SCREEN);
-
-  //   int x_coordinate = ask_user_x_coordinate(city);
-  //   int y_coordinate = ask_user_y_coordinate(city);
-
-  //   city->consult_tile(x_coordinate, y_coordinate);
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else if (user_option == "9") {
-
-  //   system (CLR_SCREEN);
-
-  //    city->show_map();
-
-  //    press_enter_to_continue();
-
-  //    return true;
-
-  //  }
-
-  // else if (user_option == "10") {
-  //   system (CLR_SCREEN);
-
-  //   cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
-
-  //   city->collect_resources();
-
-  //   press_enter_to_continue();
-
-  //   return true;
-
-  // }
-
-  // else {
-
-  //   system (CLR_SCREEN);
-
-  //   std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
-  //         << "Invalid option, please enter a valid input" << '\n';
-
-  //   return true;
-
-  // }
 
 }
 

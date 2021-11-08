@@ -44,6 +44,8 @@ void City::collect_resources() {
 
   record->reset_current_node();
 
+  std::cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
+
   while(record->get_current_building_type() != "0") {
 
     current_building_type = record->get_current_building_type();

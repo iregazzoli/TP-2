@@ -1,3 +1,4 @@
+escuela (0, 7) 
 aserradero (1, 2) 
 planta electrica (0, 4) 
 mina (1, 8) 
