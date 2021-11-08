@@ -13,6 +13,7 @@ private:
   BuildingHandler* buildings;
   MaterialHandler* materials;
   Record* record;
+  
 
   Map* city_map;
 
@@ -43,6 +44,12 @@ public:
   string materials_data_to_string();
 
   void collect_resources();
+
+  void material_rain();
+
+ //
+
+
 
 //-----------------------------Building Management------------------------------
 
@@ -122,9 +129,10 @@ private:
 
 void add_building(string building_type, string material_that_produces, int x_coordinate, int y_coordinate);
 
-//-----------------------------User Input Management----------------------------
 
-bool ask_user_confirmation(string building_type);
+
+//-------------------------------Map Management---------------------------------
+
 
 };
 

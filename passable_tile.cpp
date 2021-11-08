@@ -1,8 +1,13 @@
 #include "passable_tile.h"
 
 PassableTile::PassableTile () {
-    material_contained = "";
-    material_amount = 0;
+    material_contained = 0;
+}
+
+void PassableTile::add_material(Material* material) {
+
+    material_contained = material;
+
 }
 
 void PassableTile::show() {
@@ -12,21 +17,21 @@ void PassableTile::show() {
    if (tile_empty())
        cout << BOLD_GREEN << state_of_tile() << DEFAULT_COLOR << '\n';
    else
-       cout << BOLD_RED << state_of_tile() << ", it contains: " <<
-                BOLD_GREEN << material_contained << DEFAULT_COLOR << '\n';
+       cout << BOLD_RED << state_of_tile() << ", it contains a: " <<
+                BOLD_GREEN << material_contained->get_material() << DEFAULT_COLOR << '\n';
 
 }
 
 void PassableTile::remove_material() {
 
-  material_contained = "";
-  material_amount = 0;
+  delete material_contained;
+  material_contained = 0;
 
 }
 
 bool PassableTile::tile_empty(){
 
-  if(material_contained == "")
+  if(material_contained == 0)
     return true;
 
   return false;
@@ -46,4 +51,9 @@ string PassableTile::get_tile_class() {
 
   return PASSABLE;
 
+}
+
+PassableTile::~PassableTile() {
+  if (material_contained != 0)
+    delete material_contained;
 }

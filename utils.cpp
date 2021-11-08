@@ -32,3 +32,19 @@ bool is_numeric(string string_to_check) {
   return true;
 
 }
+
+bool ask_user_confirmation(string building_type) {
+
+  string user_confirmation;
+
+  std::cout << "Are you sure you want to add a building: " << BOLD_GREEN
+              << building_type << DEFAULT_COLOR << " (y/n): ";
+
+  std::cin >> user_confirmation;
+
+  if(user_confirmation == "y" || user_confirmation == "yes")
+    return true;
+
+  return false;
+
+}

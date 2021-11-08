@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <cctype>
 #include <cstring>
+#include "constants.h"
 
 #ifdef __linux__
 #define CLR_SCREEN "clear"
@@ -28,5 +29,6 @@ string lowercase_word(string word);
 
 bool is_numeric(string string_to_check);
 
+bool ask_user_confirmation(string building_type);
 
 #endif //UTILS_H

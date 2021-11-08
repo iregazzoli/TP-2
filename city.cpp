@@ -66,6 +66,10 @@ void City::collect_resources() {
 
 }
 
+void City::material_rain() {
+
+}
+
 
 //--------------------------Private Material Methods----------------------------
 
@@ -458,27 +462,9 @@ void City::show_map() {
 }
 
 
+
 //------------------------Private Map Management--------------------------------
 
-
-
-//-----------------------------User Input Management----------------------------
-
-bool City::ask_user_confirmation(string building_type) {
-
-  string user_confirmation;
-
-  std::cout << "Are you sure you want to add a building: " << BOLD_GREEN
-              << building_type << DEFAULT_COLOR << " (y/n): ";
-
-  std::cin >> user_confirmation;
-
-  if(user_confirmation == "y" || user_confirmation == "yes")
-    return true;
-
-  return false;
-
-}
 //------------------------------------------------------------------------------
 
 City::~City() {
@@ -486,6 +472,6 @@ City::~City() {
   delete buildings;
   delete materials;
   delete record;
-  delete city_map; // we still need to write this one.
+  delete city_map; 
 
 }
