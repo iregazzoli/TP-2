@@ -18,6 +18,17 @@ const string DIVISORY_LINE = "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u
 
 const int WIDTH = 10;
 
+const int BUILD = 1;
+const int BUILDINGS = 2;
+const int RECORD = 3;
+const int DEMOLISH = 4;
+const int MAP = 5;
+const int COORDINATE = 6;
+const int INVENTORY = 7;
+const int COLLECT_RESOURCES = 8;
+const int MATERIAL_RAIN = 9;
+const int EXIT = 10;
+
 const string MATERIAL_FILE_ROUTE = "materiales.txt";
 const string BUILDING_FILE_ROUTE = "edificios.txt";
 const string MAP_LOCATIONS_ROUTE = "ubicaciones.txt";
