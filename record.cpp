@@ -2,14 +2,14 @@
 
 Record::Record() {
 
-  record = new List<Building_record>;
+  record = new List<BuildingRecord>;
 
 }
 
 void Record::add_building(string building_type, int stone_cost, int wood_cost,
                            int steel_cost, int max_building_quantity) {
 
-    Building_record* new_building = new Building_record{building_type,stone_cost,
+    BuildingRecord* new_building = new BuildingRecord{building_type, stone_cost,
                                   wood_cost, steel_cost, 0, max_building_quantity};
 
     record->add_node(new_building);
@@ -63,7 +63,7 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
   bool enough_materials = false;
   bool valid_amount = false;
 
-  Node<Building_record>* aux_node = record->get_first_node();
+  Node<BuildingRecord>* aux_node = record->get_first_node();
 
   while(aux_node != 0){
 

@@ -4,6 +4,7 @@
 #include "record.h"
 #include "building_handler.h"
 #include "material_handler.h"
+#include "empty_passable_tiles.h"
 using namespace std;
 
 
@@ -13,9 +14,8 @@ private:
   BuildingHandler* buildings;
   MaterialHandler* materials;
   Record* record;
-  
-
   Map* city_map;
+  EmptyPassableTiles* passable_tiles;
 
 public:
   // PRE: -

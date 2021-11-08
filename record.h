@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct Building_record{
+struct BuildingRecord{
   string building_type;
   int stone_cost = 0;
   int wood_cost = 0;
@@ -16,7 +16,7 @@ struct Building_record{
 class Record{
 
 private:
-  List<Building_record>* record;
+  List<BuildingRecord>* record;
 
 public:
 

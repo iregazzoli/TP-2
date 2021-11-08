@@ -111,7 +111,7 @@ template <class T>
 void List<T>::delete_current_node() {
 
   //node to delete is the first on of the list.
-  if(current_node == first_node){
+  if(current_node == first_node) {
 
     first_node = first_node->get_next_node();
 
@@ -119,15 +119,15 @@ void List<T>::delete_current_node() {
 
   }
 
-  else{
+  else {
 
     previous_node->set_next_node(current_node->get_next_node());
 
     delete current_node;
 
-    reset_current_node();
-
   }
+
+  reset_current_node();
 
 }
 

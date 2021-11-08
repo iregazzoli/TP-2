@@ -8,6 +8,8 @@ City::City(){
   record = new Record;
   city_map = 0;
 
+  passable_tiles = new EmptyPassableTiles;
+
 }
 
 
@@ -57,7 +59,7 @@ void City::collect_resources() {
     if (produce_material_amount > 0) {
       std::cout << left << setw(WIDTH) << "Material: " << BOLD_GREEN << setw(WIDTH) << material_produced <<
                    DEFAULT_COLOR << setw(WIDTH) << "Amount: " << BOLD_BLUE << setw(WIDTH) <<
-                    produce_material_amount << DEFAULT_COLOR << '\n'; 
+                    produce_material_amount << DEFAULT_COLOR << '\n';
     }
 
     record->next_node();
@@ -193,8 +195,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
       else if (lowercase_building_type == FACTORY)
         material_that_produces = STEEL;
-      
-      else 
+
+      else
         material_that_produces = "";
 
       deduct_building_cost(user_stone, user_wood, user_steel, lowercase_building_type);
@@ -249,7 +251,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
- 
+
     string material_that_produces;
 
     if (lowercase_building_type == MINE)
@@ -260,8 +262,8 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     else if (lowercase_building_type == FACTORY)
       material_that_produces = STEEL;
-    
-    else 
+
+    else
       material_that_produces = "";
 
     add_building(lowercase_building_type, material_that_produces, x_coordinate, y_coordinate);
@@ -472,6 +474,6 @@ City::~City() {
   delete buildings;
   delete materials;
   delete record;
-  delete city_map; 
+  delete city_map;
 
 }
