@@ -524,5 +524,6 @@ City::~City() {
   delete materials;
   delete record;
   delete city_map;
+  delete passable_tiles;
 
 }
