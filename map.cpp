@@ -105,6 +105,14 @@ void Map::remove_building(int x_coordinate, int y_coordinate) {
 
 }
 
+void Map::add_material(Material* material, int x_coordinate, int y_coordinate) {
+
+  PassableTile* target_tile = dynamic_cast<PassableTile*> (map[x_coordinate][y_coordinate]);
+
+  target_tile->add_material(material);
+
+}
+
 bool Map::tile_empty(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->tile_empty();
@@ -126,6 +134,8 @@ int Map::get_columns() {
 void Map::show_map() {
 
   std::cout << BOLD_YELLOW << '\n';
+
+  // rows gridlines
 
   std::cout << "    ";
 
@@ -153,10 +163,12 @@ void Map::show_map() {
   for (int i = 0; i < total_of_rows; i++) {
     for (int j = 0; j < total_of_columns; j++) {
 
+      // colums gridlines
       if (j == 0)
         std::cout << BOLD_YELLOW << i << " ║ ";
 
       if (map[i][j]->get_tile_class() == BUILDABLE) {
+
         bool tile_empty = map[i][j]->tile_empty();
 
         if (tile_empty) {
@@ -173,10 +185,10 @@ void Map::show_map() {
           string building_icon;
 
           if (map[i][j]->get_value() == MINE)
-            building_icon = MINE_ICON + " ";
+            building_icon = MINE_ICON;
 
           else if (map[i][j]->get_value() == SAWMILL)
-            building_icon = SAWMILL_ICON + " ";
+            building_icon = SAWMILL_ICON;
 
           else if (map[i][j]->get_value() == FACTORY)
             building_icon = FACTORY_ICON;
@@ -185,31 +197,67 @@ void Map::show_map() {
             building_icon = SCHOOL_ICON;
 
           else if (map[i][j]->get_value() == OBELISK)
-            building_icon = OBELISK_ICON + " ";
+            building_icon = OBELISK_ICON;
 
           else if(map[i][j]->get_value() == POWER_PLANT)
             building_icon = POWER_PLANT_ICON;
 
           if (j == total_of_columns - 1)
             cout << BOLD_GREEN << "|" << DEFAULT_COLOR << building_icon << BOLD_GREEN << "|" << DEFAULT_COLOR << '\n';
+
           else
             cout << BOLD_GREEN << "|" << DEFAULT_COLOR << building_icon << BOLD_GREEN << "|" << DEFAULT_COLOR;
+
         }
+
       }
 
       else if (map[i][j]->get_tile_class() == PASSABLE) {
 
-        if(j == total_of_columns - 1)
-          cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR << '\n';
-        else
-          cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR;
+        bool tile_empty = map[i][j]->tile_empty();
+
+        if (tile_empty) {
+
+          if(j == total_of_columns - 1)
+            cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR << '\n';
+
+          else
+            cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR;
+
+        }
+
+        else {
+
+            string material_icon;
+
+          if (map[i][j]->get_value() == STONE)
+            material_icon = STONE_ICON;
+
+          else if (map[i][j]->get_value() == WOOD)
+            material_icon = WOOD_ICON;
+
+          else if (map[i][j]->get_value() == STEEL)
+            material_icon = STEEL_ICON;
+
+          if (j == total_of_columns - 1)
+            cout << DEFAULT_COLOR << "|" << material_icon << "|"  << '\n';
+
+          else
+            cout << DEFAULT_COLOR << "|"  << material_icon << "|";
+
+
+        }
+
       }
 
       else {
+
         if(j == total_of_columns - 1)
           cout << BOLD_BLUE << "|" << LAKE_ICON << "|" << DEFAULT_COLOR << '\n';
+
         else
           cout << BOLD_BLUE << "|" << LAKE_ICON << "|" << DEFAULT_COLOR;
+
       }
     }
   }
@@ -237,7 +285,11 @@ void Map::show_map_legend() {
   std::cout << left << setw(5) << FACTORY_ICON << ":" << capitalize_word(FACTORY) << '\n';
   std::cout << left << setw(5) << SCHOOL_ICON << ":" << capitalize_word(SCHOOL) << '\n';
   std::cout << left << setw(5) << OBELISK_ICON << ":" << capitalize_word(OBELISK) << '\n';
-  std::cout << left << setw(4) << POWER_PLANT_ICON << ":" << capitalize_word(POWER_PLANT) << '\n';
+  std::cout << left << setw(4) << POWER_PLANT_ICON << ":" << capitalize_word(POWER_PLANT) << '\n' << '\n';
+
+  std::cout << left << setw(6) << STONE_ICON << ":" << capitalize_word(STONE) << '\n';
+  std::cout << left << setw(6) << WOOD_ICON << ":" << capitalize_word(WOOD) << '\n';
+  std::cout << left << setw(5) << STEEL_ICON << ":" << capitalize_word(STEEL) << '\n';
 }
 
 

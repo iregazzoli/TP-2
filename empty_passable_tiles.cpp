@@ -18,19 +18,33 @@ void EmptyPassableTiles::add_empty_tile(int x_coordinate, int y_coordinate) {
 
 }
 
-void EmptyPassableTiles::get_random_tile() {
+bool EmptyPassableTiles::not_empty_tiles() {
 
-  srand ((unsigned int)time(NULL));
+  return total_of_tiles == 0;
 
-  int random_tile = rand() % total_of_tiles;
+}
 
-  passable_tiles->reset_current_node();
+bool EmptyPassableTiles::select_random_tile() {
 
-  for (int i = 0; i < random_tile; i++) {
+  if (total_of_tiles > 0) {
 
-    passable_tiles->next_node();
+    srand ((unsigned int)time(NULL));
+
+    int random_tile = rand() % total_of_tiles;
+
+    passable_tiles->reset_current_node();
+
+    for (int i = 0; i < random_tile; i++) {
+
+      passable_tiles->next_node();
+
+    }
+
+    return true;
 
   }
+
+  return false;
 
 }
 
@@ -50,10 +64,12 @@ void EmptyPassableTiles::delete_target_tile() {
 
   passable_tiles->delete_current_node();
 
+  total_of_tiles--;
+
 }
 
 EmptyPassableTiles::~EmptyPassableTiles() {
 
   delete passable_tiles;
-  
+
 }

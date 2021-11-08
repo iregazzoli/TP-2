@@ -70,6 +70,50 @@ void City::collect_resources() {
 
 void City::material_rain() {
 
+  if (!passable_tiles->not_empty_tiles()) {
+
+    string material_type = materials->generate_random_material_type();
+
+    int random_material_amount;
+
+    srand ((unsigned int)time(NULL));
+
+    if (material_type == STONE)
+      random_material_amount = rand() % 2 + 1;
+
+    else if (material_type == WOOD)
+      random_material_amount = rand() % 2;
+
+    else if (material_type == STEEL)
+      random_material_amount = rand() % 3 + 2;
+
+
+    for(int i = 0; i < random_material_amount; i++) {
+
+      if (passable_tiles->select_random_tile()) {
+
+        int x_coordinate_target_tile = passable_tiles->get_target_tile_x_coordinate();
+        int y_coordinate_target_tile = passable_tiles->get_target_tile_y_coordinate();
+
+        passable_tiles->delete_target_tile();
+
+
+        city_map->add_material(materials->generate_material(material_type), x_coordinate_target_tile, y_coordinate_target_tile);
+
+      }
+
+    }
+
+    std::cout << "Rain of materials " << BOLD_GREEN << "successfully" << DEFAULT_COLOR << " casted." << '\n';
+
+    std::cout << BOLD_BLUE << random_material_amount << DEFAULT_COLOR << " of material: " <<
+               BOLD_GREEN << material_type << DEFAULT_COLOR << " was generated." << '\n';
+
+  }
+
+  else
+    std::cout << BOLD_RED<< "ERROR: " << DEFAULT_COLOR << "all roads currently have a material on them."<< '\n';
+
 }
 
 
@@ -433,7 +477,10 @@ void City::generate_map(int rows, int columns) {
 
 }
 
-void City::add_tile(char tile_type) {
+void City::add_tile(char tile_type, int x_coordinate, int y_coordinate) {
+
+  if (tile_type == ROAD)
+    passable_tiles->add_empty_tile(x_coordinate, y_coordinate);
 
   city_map->add_tile(tile_type);
 

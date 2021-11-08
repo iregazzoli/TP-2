@@ -19,7 +19,7 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << "  Show inventory." << '\n';
   std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << "  Collect resources." << '\n';
   std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << "  Rain of materials." << '\n';
-  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Save and exit." << '\n'; 
+  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Save and exit." << '\n';
 
   // std::cout << BOLD_YELLOW << "[1]" << DEFAULT_COLOR << " List construction materials. ('1' or 'materials')" << '\n';
   // std::cout << BOLD_YELLOW << "[2]" << DEFAULT_COLOR << " Build building by name. ('2' or 'build')" << '\n';
@@ -79,11 +79,12 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
   bool not_end_program = true;
 
   if (is_numeric(user_option)) {
-    
+
     switch (stoi(user_option)) {
     case BUILD:
-      
+
       build(city);
+      
       press_enter_to_continue();
 
       break;
@@ -91,75 +92,91 @@ bool Menu::interpretate_user_input(City* city, string user_option) {
     case BUILDINGS:
 
       city->show_buildings();
+
       press_enter_to_continue();
 
       break;
 
-    case RECORD: 
+    case RECORD:
 
       city->show_record();
+
       press_enter_to_continue();
 
       break;
-    
+
     case DEMOLISH:
-      
+
       demolish(city);
+
       press_enter_to_continue();
 
       break;
 
     case MAP:
-    
+
       system (CLR_SCREEN);
 
       city->show_map();
+
       press_enter_to_continue();
 
       break;
-      
-    case COORDINATE: 
-    {  
+
+    case COORDINATE:
+    {
       system (CLR_SCREEN);
-      
+
       int x_coordinate = ask_user_x_coordinate(city);
       int y_coordinate = ask_user_y_coordinate(city);
 
       city->consult_tile(x_coordinate, y_coordinate);
+
       press_enter_to_continue();
-      
+
       }
 
       break;
 
     case INVENTORY:
-    
+
       system (CLR_SCREEN);
 
       city->show_materials();
+
       press_enter_to_continue();
 
       break;
 
     case COLLECT_RESOURCES:
-      
+
       system (CLR_SCREEN);
 
       std::cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
 
       city->collect_resources();
+
       press_enter_to_continue();
 
       break;
 
-    case MATERIAL_RAIN: 
+    case MATERIAL_RAIN:
+
+    system (CLR_SCREEN);
+
+    city->material_rain();
+
+    press_enter_to_continue();
+
+    break;
+
 
     case EXIT:
-      
+
       save_data(city);
-      
+
       std::cout << "Hope you enjoyed the program!" << '\n';
-      
+
       not_end_program = false;
 
       break;

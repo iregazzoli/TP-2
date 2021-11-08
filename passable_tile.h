@@ -16,11 +16,11 @@ public:
 
     void add_material(Material* material);
 
+    void remove_material();
+
     void show();
 
-    void add_value();
-
-    void remove_material();
+    string get_value();
 
     bool tile_empty();
 

@@ -46,6 +46,8 @@ public:
 
   void remove_building(int x_coordinate, int y_coordinate);
 
+  void add_material(Material* material, int x_coordinate, int y_coordinate);
+
   int get_rows();
 
   int get_columns();

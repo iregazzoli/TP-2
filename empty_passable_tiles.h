@@ -21,12 +21,14 @@ private:
 public:
 
   EmptyPassableTiles();
-  
+
   ~EmptyPassableTiles();
 
   void add_empty_tile(int x_coordinate, int y_coordinate);
 
-  void get_random_tile();
+  bool not_empty_tiles();
+
+  bool select_random_tile();
 
   int get_target_tile_x_coordinate();
   int get_target_tile_y_coordinate();

@@ -95,8 +95,6 @@ bool load_buildings(City* city) {
 
   }
 
-  //both are string because function getline takes a - string& str as second argument.
-
   string building_type;
   string x_coordinate;
   string y_coordinate;
@@ -146,7 +144,12 @@ bool load_tiles(City* city) {
   string line;
   char tile_type;
 
+  int current_row = 0;
+  int current_column;
+
   while ((file.peek() != EOF)) {
+
+    current_column = 0;
 
     getline(file, line);
 
@@ -154,9 +157,13 @@ bool load_tiles(City* city) {
 
     while (ss >> tile_type) {
 
-      city->add_tile(tile_type);
+      city->add_tile(tile_type, current_row, current_column);
+
+      current_column++;
 
     }
+
+    current_row++;
 
   }
 

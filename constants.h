@@ -38,6 +38,10 @@ const string STONE = "piedra";
 const string WOOD = "madera";
 const string STEEL = "metal";
 
+const int STONE_ID = 1;
+const int WOOD_ID = 2;
+const int STEEL_ID = 3;
+
 const char LAKE = 'L';
 const char TERRAIN = 'T';
 const char ROAD = 'C';
@@ -64,11 +68,15 @@ const string LAKE_ICON = "\U0001f7e6";
 const string TERRAIN_ICON = "\U0001f7e9";
 const string ROAD_ICON = "\u2B1C";
 
-const string MINE_ICON = "\u26CF";
-const string SAWMILL_ICON = "\U0001fa9a";
+const string MINE_ICON = "\u26CF ";
+const string SAWMILL_ICON = "\U0001fa9a ";
 const string FACTORY_ICON = "\U0001f3ed";
 const string SCHOOL_ICON = "\U0001f3eb";
-const string OBELISK_ICON = "\u265F";
+const string OBELISK_ICON = "\u265F ";
 const string POWER_PLANT_ICON = "\u26A1";
+
+const string STONE_ICON = "\U0001faa8 ";
+const string WOOD_ICON = "\U0001fab5 ";
+const string STEEL_ICON = "\u2699 ";
 
 #endif //CONSTANTS_H

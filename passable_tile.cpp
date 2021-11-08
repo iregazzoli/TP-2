@@ -29,6 +29,12 @@ void PassableTile::remove_material() {
 
 }
 
+string PassableTile::get_value(){
+
+  return material_contained->get_material();
+
+}
+
 bool PassableTile::tile_empty(){
 
   if(material_contained == 0)

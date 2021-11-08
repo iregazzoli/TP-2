@@ -1,4 +1,6 @@
 #include "material_handler.h"
+#include <stdlib.h>
+#include <time.h>
 
 MaterialHandler::MaterialHandler(){
 
@@ -91,6 +93,45 @@ int MaterialHandler::get_material_amount(string target_material){
   }
 
   return -1;
+}
+
+string MaterialHandler::generate_random_material_type() {
+
+
+  srand ((unsigned int)time(NULL));
+
+  int random_material_id = rand() % 3 + 1;
+
+  string material_type;
+
+  if (random_material_id == STONE_ID) {
+
+    material_type = STONE;
+
+  }
+
+  else if (random_material_id == WOOD_ID) {
+
+    material_type = WOOD;
+
+  }
+
+  else if (random_material_id == STEEL_ID) {
+
+    material_type = STEEL;
+
+  }
+
+  return material_type;
+
+}
+
+Material* MaterialHandler::generate_material(string material_type) {
+
+  Material* new_material = new Material(material_type, 1);
+
+  return new_material;
+
 }
 
 string MaterialHandler::materials_data_to_string() {

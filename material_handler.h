@@ -5,11 +5,6 @@
 
 using namespace std;
 
-// struct Material{
-//   string material_name;
-//   int quantity = 0;
-// };
-
 class MaterialHandler{
 
 private:
@@ -27,6 +22,10 @@ public:
   void set_material_amount(string material_to_modify, int new_quantity);
 
   int get_material_amount(string target_material);
+
+  string generate_random_material_type();
+
+  Material* generate_material(string material_type);
 
   string materials_data_to_string();
 

@@ -95,7 +95,7 @@ void generate_map(int rows, int columns);
 
 //PRE: -
 //POS: .
-void add_tile(char tile_type);
+void add_tile(char tile_type, int x_coordinate, int y_coordinate);
 
 //PRE: -
 //POS: 0 <= x_coordinate < rows and 0 <= y_coordinate < columns
