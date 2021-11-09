@@ -6,10 +6,20 @@
 class InaccesibleTile : public Tile {
 
 public:
+
+
+    //PRE:-
+    //POS: Created a InaccesibleTile object.
     InaccesibleTile();
+
+    //PRE:-
+    //POS: Informs on screen what type of tile it is.
     void show();
+
+    //PRE:-
+    //POS: Returns what is a 'INACCESIBLE' tile.
     string get_tile_class();
-    void add_value();
+
 };
 
 #endif // INACCESIBLE_TILE_H
