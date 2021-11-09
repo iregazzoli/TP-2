@@ -4,8 +4,6 @@ using namespace  std;
 
 void Menu::show_menu() {
 
-  system (CLR_SCREEN);
-
   std::cout << '\n';
   std::cout << "Welcome to " << BOLD_GREEN << "Andypolis Construction Menu"
                                   << DEFAULT_COLOR << ", options are: " << '\n';
@@ -90,6 +88,8 @@ bool Menu::interpretate_user_input(City* city) {
 
       press_enter_to_continue();
 
+      system (CLR_SCREEN);
+
       break;
 
     case BUILDINGS:
@@ -97,6 +97,8 @@ bool Menu::interpretate_user_input(City* city) {
       city->show_buildings();
 
       press_enter_to_continue();
+
+      system (CLR_SCREEN);
 
       break;
 
@@ -106,6 +108,8 @@ bool Menu::interpretate_user_input(City* city) {
 
       press_enter_to_continue();
 
+      system (CLR_SCREEN);
+
       break;
 
     case DEMOLISH:
@@ -113,6 +117,8 @@ bool Menu::interpretate_user_input(City* city) {
       demolish(city);
 
       press_enter_to_continue();
+
+      system (CLR_SCREEN);
 
       break;
 
@@ -123,6 +129,8 @@ bool Menu::interpretate_user_input(City* city) {
       city->show_map();
 
       press_enter_to_continue();
+
+      system (CLR_SCREEN);
 
       break;
 
@@ -137,6 +145,8 @@ bool Menu::interpretate_user_input(City* city) {
 
       press_enter_to_continue();
 
+      system (CLR_SCREEN);
+
       break;
 
     }
@@ -149,6 +159,8 @@ bool Menu::interpretate_user_input(City* city) {
 
       press_enter_to_continue();
 
+      system (CLR_SCREEN);
+
       break;
 
     case COLLECT_RESOURCES:
@@ -159,6 +171,8 @@ bool Menu::interpretate_user_input(City* city) {
 
       press_enter_to_continue();
 
+      system (CLR_SCREEN);
+
       break;
 
     case MATERIAL_RAIN:
@@ -168,6 +182,8 @@ bool Menu::interpretate_user_input(City* city) {
     city->material_rain();
 
     press_enter_to_continue();
+
+    system (CLR_SCREEN);
 
     break;
 
