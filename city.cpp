@@ -212,22 +212,16 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   int user_wood = materials->get_material_amount("madera");
   int user_steel = materials->get_material_amount("metal");
 
-  if (!loading_from_txt && valid_type && valid_amount && valid_tile && empty_tile) {
-
+  if (!loading_from_txt && valid_type && valid_amount && valid_tile && empty_tile)
     enough_materials = record->validate_material_requirement(lowercase_building_type,
                                             user_stone, user_wood, user_steel);
-  }
 
-  else {
-
+  else
     enough_materials = true;
 
-  }
 
   //Section related with building by user command
   if (valid_type && valid_tile && empty_tile && valid_amount && enough_materials && !loading_from_txt) {
-
-
 
     if (ask_user_confirmation(capitalized_building_type)) {
 
@@ -263,37 +257,21 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   }
 
 
-  else if (!valid_type && valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
-                 "Invalid building type: " << capitalized_building_type <<
-                  ", check menu option '4' to see all valid types." << '\n';
-  }
+  else if (!valid_type && valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt)
+    print_error_message(valid_type, valid_amount, enough_materials, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-  else if (valid_type && !valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
-  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building type: " <<
-                capitalized_building_type << " surpasses max quantity allow,"
-                " check menu option '3' to see amount built and max quantity allow ." << '\n';
-  }
+  else if (valid_type && !valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt)
+    print_error_message(valid_type, valid_amount, enough_materials, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-  else if (valid_type && valid_amount && !enough_materials && valid_tile && empty_tile && !loading_from_txt) {
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
-                  "You don't have enough materials to build building: " <<
-                    capitalized_building_type << ", check menu option '7' and '3' to see "
-                     "materials amount and building costs." << '\n';
-  }
+  else if (valid_type && valid_amount && !enough_materials && valid_tile && empty_tile && !loading_from_txt)
+    print_error_message(valid_type, valid_amount, enough_materials, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-  else if (valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && !loading_from_txt) {
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
-                  "The tile where you are trying to build on is not meant for building,"
-                    " check menu option '5' to see the map with all the buildable tiles." << '\n';
-  }
+  else if (valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && !loading_from_txt)
+    print_error_message(valid_type, valid_amount, enough_materials, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
+  else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && !loading_from_txt)
+    print_error_message(valid_type, valid_amount, enough_materials, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-  else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && !loading_from_txt) {
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
-                  "The tile where you are trying to build already has a building in it,"
-                    " check menu option '5' to see the map with all the built buildings." << '\n';
-  }
 
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
@@ -316,27 +294,11 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   }
 
-  else if(valid_type && !valid_tile && empty_tile && loading_from_txt) {
+  else if(valid_type && !valid_tile && empty_tile && loading_from_txt)
+    print_error_message(valid_type, true, true, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Invalid tile for building: " <<
-               BOLD_GREEN << capitalized_building_type << DEFAULT_COLOR << ", coordinates: (" <<
-                BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
-                 ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR << '\n';
-
-    std::cout << BOLD_RED << "Building: " << capitalized_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
-
-  }
-
-  else if(valid_type && valid_tile && !empty_tile && loading_from_txt) {
-
-    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Tile: (" <<
-               BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
-                ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR <<
-                 " already has a building in it" <<'\n';
-
-    std::cout << BOLD_RED << "Building: " << capitalized_building_type << " wasn't built" << DEFAULT_COLOR << '\n';
-
-  }
+  else if(valid_type && valid_tile && !empty_tile && loading_from_txt)
+    print_error_message(valid_type, true, true, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
 }
 
@@ -435,6 +397,67 @@ void City::add_building(string building_type, string material_that_produce, int 
   record->modify_building_amount(building_type, 1);
   Building* new_building = buildings->get_building(building_type, x_coordinate, y_coordinate);
   city_map->add_building(new_building, x_coordinate, y_coordinate);
+
+}
+
+void City::print_error_message(bool valid_type, bool valid_amount, bool enough_materials,
+                          bool valid_tile, bool empty_tile, bool loading_from_txt,
+                           string building_type, int x_coordinate, int y_coordinate) {
+
+  if (!valid_type && valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
+                 "Invalid building type: " << building_type <<
+                  ", check menu option '4' to see all valid types." << '\n';
+  }
+
+  else if (valid_type && !valid_amount && enough_materials && valid_tile && empty_tile && !loading_from_txt) {
+  std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Building type: " <<
+                building_type << " surpasses max quantity allow,"
+                " check menu option '3' to see amount built and max quantity allow ." << '\n';
+  }
+
+  else if (valid_type && valid_amount && !enough_materials && valid_tile && empty_tile && !loading_from_txt) {
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
+                  "You don't have enough materials to build building: " <<
+                    building_type << ", check menu option '7' and '3' to see "
+                     "materials amount and building costs." << '\n';
+  }
+
+  else if (valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && !loading_from_txt) {
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
+                  "The tile where you are trying to build on is not meant for building,"
+                    " check menu option '5' to see the map with all the buildable tiles." << '\n';
+  }
+
+
+  else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && !loading_from_txt) {
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR <<
+                  "The tile where you are trying to build already has a building in it,"
+                    " check menu option '5' to see the map with all the built buildings." << '\n';
+  }
+
+  else if(valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && loading_from_txt) {
+
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Invalid tile for building: " <<
+               BOLD_GREEN << building_type << DEFAULT_COLOR << ", coordinates: (" <<
+                BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
+                 ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR << '\n';
+
+    std::cout << BOLD_RED << "Building: " << building_type << " wasn't built" << DEFAULT_COLOR << '\n';
+
+  }
+
+  else if(valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && loading_from_txt) {
+
+    std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Tile: (" <<
+               BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
+                ") in file: " << BOLD_BLUE << MAP_LOCATIONS_ROUTE << DEFAULT_COLOR <<
+                 " already has a building in it" <<'\n';
+
+    std::cout << BOLD_RED << "Building: " << building_type << " wasn't built" << DEFAULT_COLOR << '\n';
+
+  }
+
 
 }
 

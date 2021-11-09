@@ -125,9 +125,14 @@ private:
 
   void refund_building_cost(string building_type);
 
+
 //----------------------------Building Management-------------------------------
 
 void add_building(string building_type, string material_that_produces, int x_coordinate, int y_coordinate);
+
+void print_error_message(bool valid_type, bool valid_amount, bool enough_materials,
+                          bool valid_tile, bool empty_tile, bool loading_from_txt,
+                           string building_type, int x_coordinate, int y_coordinate);
 
 
 
