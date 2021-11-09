@@ -62,7 +62,7 @@ const string POWER_PLANT = "planta";
 
 const int STONE_PROVIDED_BY_MINE = 15;
 const int WOOD_PROVIDED_BY_SAWMILL = 25;
-const int STEEL_PROVIDED_BY_FACTORY = 45;
+const int STEEL_PROVIDED_BY_FACTORY = 40;
 
 const string LAKE_ICON = "\U0001f7e6";
 const string TERRAIN_ICON = "\U0001f7e9";

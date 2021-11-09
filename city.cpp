@@ -225,19 +225,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
     if (ask_user_confirmation(capitalized_building_type)) {
 
-      string material_that_produces;
-
-      if (lowercase_building_type == MINE)
-        material_that_produces = STONE;
-
-      else if (lowercase_building_type == SAWMILL)
-        material_that_produces = WOOD;
-
-      else if (lowercase_building_type == FACTORY)
-        material_that_produces = STEEL;
-
-      else
-        material_that_produces = "";
+      string material_that_produces = get_resource_that_building_produces(lowercase_building_type);
 
       deduct_building_cost(user_stone, user_wood, user_steel, lowercase_building_type);
 
@@ -276,19 +264,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   //Section related with building by txt file
   if(valid_type && valid_tile && empty_tile && loading_from_txt) {
 
-    string material_that_produces;
-
-    if (lowercase_building_type == MINE)
-      material_that_produces = STONE;
-
-    else if (lowercase_building_type == SAWMILL)
-      material_that_produces = WOOD;
-
-    else if (lowercase_building_type == FACTORY)
-      material_that_produces = STEEL;
-
-    else
-      material_that_produces = "";
+    string material_that_produces = get_resource_that_building_produces(lowercase_building_type);
 
     add_building(lowercase_building_type, material_that_produces, x_coordinate, y_coordinate);
 
@@ -458,6 +434,22 @@ void City::print_error_message(bool valid_type, bool valid_amount, bool enough_m
 
   }
 
+
+}
+
+string City::get_resource_that_building_produces(string building_type) {
+
+  if (building_type == MINE)
+    return STONE;
+
+  else if (building_type == SAWMILL)
+    return WOOD;
+
+  else if (building_type == FACTORY)
+    return STEEL;
+
+  else
+    return "";
 
 }
 

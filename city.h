@@ -134,7 +134,7 @@ void print_error_message(bool valid_type, bool valid_amount, bool enough_materia
                           bool valid_tile, bool empty_tile, bool loading_from_txt,
                            string building_type, int x_coordinate, int y_coordinate);
 
-
+string get_resource_that_building_produces(string building_type);
 
 //-------------------------------Map Management---------------------------------
 
