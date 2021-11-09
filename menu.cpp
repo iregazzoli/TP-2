@@ -17,35 +17,44 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << "  Show inventory." << '\n';
   std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << "  Collect resources." << '\n';
   std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << "  Rain of materials." << '\n';
-  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Save and exit." << '\n';
+  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " How do you turn this on." << '\n';
+  std::cout << BOLD_YELLOW << "[11]" << DEFAULT_COLOR << " Save and exit." << '\n';
 
   return;
 
 }
 
-void Menu::save_data(City* city) {
+void Menu::how_do_you_turn_this_on() {
 
-  fstream material_file;
-  material_file.open(MATERIAL_FILE_ROUTE, ios::out);
+  system (CLR_SCREEN);
+  string problematic_line_1_part_1 = R"(/`-')";
+  string problematic_line_1_part_2 = R"(( )         ( ))";
+  string problematic_line_1_part_3 = R"( /`-'\)";
 
-  if (material_file.is_open()) {
+  string problematic_line_2_part_1 = R"(|   |)";
+  string problematic_line_2_part_2 = R"(---\_Cobra_/---)";
+  string problematic_line_2_part_3 = R"(|   |)";
 
-    material_file << city->materials_data_to_string();
-
-    material_file.close();
-
-  }
-
-  fstream building_file;
-  building_file.open(MAP_LOCATIONS_ROUTE, ios::out);
-
-  if (building_file.is_open()) {
-
-    building_file << city->building_data_to_string();
-
-    building_file.close();
-
-  }
+  std::cout << '\n';
+  std::cout << "                  BRRRRRRRRRRRRRRRRRRRRRR" << '\n';
+  std::cout << "        _________" << '\n';
+  std::cout << "       |         |" << '\n';
+  std::cout << BOLD_BLUE << " _o_  _";
+  std::cout << DEFAULT_COLOR << "| " << BOLD_BLUE << "___=___" << DEFAULT_COLOR <<" |";
+  std::cout << BOLD_BLUE << "_  _o_" << '\n';
+  std::cout << problematic_line_1_part_1;
+  std::cout << DEFAULT_COLOR << problematic_line_1_part_2;
+  std::cout << BOLD_BLUE << problematic_line_1_part_3 << '\n';
+  std::cout << BOLD_BLACK << "|   |-"<< BOLD_BLUE << "| ";
+  std::cout << DEFAULT_COLOR << " ___*___ ";
+  std::cout << BOLD_BLUE << " |" << BOLD_BLACK << "-|   |" << '\n';
+  std::cout << "|   |" << BOLD_BLUE << " | ";
+  std::cout << BOLD_BLACK << "(-+-+-+-)";
+  std::cout << BOLD_BLUE << " |" << BOLD_BLACK <<" |   |" << '\n';
+  std::cout << problematic_line_2_part_1;
+  std::cout << DEFAULT_COLOR << problematic_line_2_part_2;
+  std::cout << BOLD_BLACK << problematic_line_2_part_3 << '\n';
+  std::cout << BOLD_BLACK << " ---                 ---" << DEFAULT_COLOR << '\n';
 
 }
 
@@ -187,6 +196,13 @@ bool Menu::interpretate_user_input(City* city) {
 
     break;
 
+    case HOW_DO_YOU_TURN_THIS_ON:
+
+      how_do_you_turn_this_on();
+
+      press_enter_to_continue();
+
+      system (CLR_SCREEN);
 
     case EXIT:
 
@@ -204,40 +220,6 @@ bool Menu::interpretate_user_input(City* city) {
 
 }
 
-void Menu::how_do_you_turn_this_on() {
-
-  system (CLR_SCREEN);
-  string problematic_line_1_part_1 = R"(/`-')";
-  string problematic_line_1_part_2 = R"(( )         ( ))";
-  string problematic_line_1_part_3 = R"( /`-'\)";
-
-  string problematic_line_2_part_1 = R"(|   |)";
-  string problematic_line_2_part_2 = R"(---\_Cobra_/---)";
-  string problematic_line_2_part_3 = R"(|   |)";
-
-  std::cout << '\n';
-  std::cout << "                  BRRRRRRRRRRRRRRRRRRRRRR" << '\n';
-  std::cout << "        _________" << '\n';
-  std::cout << "       |         |" << '\n';
-  std::cout << BOLD_BLUE << " _o_  _";
-  std::cout << DEFAULT_COLOR << "| " << BOLD_BLUE << "___=___" << DEFAULT_COLOR <<" |";
-  std::cout << BOLD_BLUE << "_  _o_" << '\n';
-  std::cout << problematic_line_1_part_1;
-  std::cout << DEFAULT_COLOR << problematic_line_1_part_2;
-  std::cout << BOLD_BLUE << problematic_line_1_part_3 << '\n';
-  std::cout << BOLD_BLACK << "|   |-"<< BOLD_BLUE << "| ";
-  std::cout << DEFAULT_COLOR << " ___*___ ";
-  std::cout << BOLD_BLUE << " |" << BOLD_BLACK << "-|   |" << '\n';
-  std::cout << "|   |" << BOLD_BLUE << " | ";
-  std::cout << BOLD_BLACK << "(-+-+-+-)";
-  std::cout << BOLD_BLUE << " |" << BOLD_BLACK <<" |   |" << '\n';
-  std::cout << problematic_line_2_part_1;
-  std::cout << DEFAULT_COLOR << problematic_line_2_part_2;
-  std::cout << BOLD_BLACK << problematic_line_2_part_3 << '\n';
-  std::cout << BOLD_BLACK << " ---                 ---" << DEFAULT_COLOR << '\n';
-
-}
-
 void Menu::build(City* city) {
 
   system (CLR_SCREEN);
@@ -249,7 +231,7 @@ void Menu::build(City* city) {
 
   std::cin >> building_to_add;
 
-  if(building_to_add == "planta"){
+  if (building_to_add == POWER_PLANT) {
 
     string auxiliar;
     std::cin >> auxiliar;
@@ -284,6 +266,32 @@ void Menu::demolish(City* city) {
   int y_coordinate = ask_user_y_coordinate(city);
 
   city->demolish_building(x_coordinate, y_coordinate);
+
+}
+
+void Menu::save_data(City* city) {
+
+  fstream material_file;
+  material_file.open(MATERIAL_FILE_ROUTE, ios::out);
+
+  if (material_file.is_open()) {
+
+    material_file << city->materials_data_to_string();
+
+    material_file.close();
+
+  }
+
+  fstream building_file;
+  building_file.open(MAP_LOCATIONS_ROUTE, ios::out);
+
+  if (building_file.is_open()) {
+
+    building_file << city->building_data_to_string();
+
+    building_file.close();
+
+  }
 
 }
 

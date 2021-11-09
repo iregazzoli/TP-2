@@ -6,7 +6,9 @@
 class PowerPlant: public Building {
 
 public:
-
+  
+  //PRE:-
+  //POS: Created a PowerPlant object.
   PowerPlant(string, string, int, int);
 
 };

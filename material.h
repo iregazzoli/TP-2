@@ -6,11 +6,14 @@ using namespace std;
 
 class Material{
 private:
-    string material;
-    int quantity;
+
+  string material;
+  int quantity;
 
 public:
 
+  //PRE:-
+  //POS: Created Material object whit 'material' = material and 'quantity' = quantity.
   Material(string material, int quantity);
 
   //PRE:-

@@ -10,7 +10,7 @@ class Tile {
 public:
 
     //PRE:-
-    //POS: Created a Tile object
+    //POS: Created a Tile object.
     Tile(){};
 
     //PRE:-
