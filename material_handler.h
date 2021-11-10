@@ -23,7 +23,7 @@ public:
   ~MaterialHandler();
 
   //PRE: 'material' must be a material valid and quantity >= 0.
-  //POS: Creates a new object according to material.
+  //POS: Creates a new object according to 'material'.
   void add_material(string material, int quantity);
 
   //PRE: 'material' must be a material valid and quantity >= 0.

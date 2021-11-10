@@ -79,7 +79,7 @@ public:
   int get_columns();
 
   //PRE:-
-  //POS: Shows on screen the map with icons representing buildings, materials and  tiles types. 
+  //POS: Shows on screen the map with icons representing buildings, materials and tiles types. 
   void show_map();
 
 

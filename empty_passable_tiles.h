@@ -38,21 +38,21 @@ public:
   bool not_empty_tiles();
 
   //PRE:-
-  //POS:
+  //POS: Picks randomly a tile.
   bool select_random_tile();
 
   //PRE:-
-  //POS:
+  //POS: Returns x coordinate of tile
   int get_target_tile_x_coordinate();
 
   //PRE:-
-  //POS:  
+  //POS: Returns y coordinate of tile
   int get_target_tile_y_coordinate();
 
   //PRE:-
-  //POS:
+  //POS: Removes tile from the list and decrement 'total_of_tiles'.
   void delete_target_tile();
 
 };
 
-#endif
+#endif //EMPTY_PASSABLE_TILES_H

@@ -45,7 +45,7 @@ public:
   int get_building_amount(string building_type);
 
   //PRE: user_stone, user_wood and user_steel all must be > 0.
-  //POS: Shows the attributes of record object.
+  //POS: Shows on screen all building information.
   void show_record(int user_stone, int user_wood, int user_steel);
 
   //PRE:-

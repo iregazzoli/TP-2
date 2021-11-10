@@ -55,4 +55,4 @@ public:
 
 };
 
-#endif
+#endif //BUILDING_H

@@ -252,6 +252,8 @@ void Map::show_map() {
   show_map_legend();
 }
 
+//--------------------------Private Map Methods----------------------------
+
 void Map::initialize() {
 
   for (int i = 0; i < total_of_rows; i++) {
@@ -293,6 +295,8 @@ void Map::show_map_legend() {
   std::cout << left << setw(6) << WOOD_ICON << ":" << capitalize_word(WOOD) << '\n';
   std::cout << left << setw(5) << STEEL_ICON << ":" << capitalize_word(STEEL) << '\n';
 }
+
+//------------------------------------------------------------------------------
 
 Map::~Map() {
 

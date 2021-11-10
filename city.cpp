@@ -1,7 +1,7 @@
 #include "city.h"
 
 
-City::City(){
+City::City() {
 
   buildings = new BuildingHandler;
   materials = new MaterialHandler;
@@ -29,12 +29,6 @@ void City::show_materials() {
 
 }
 
-string City::materials_data_to_string() {
-
-  return materials->materials_data_to_string();
-
-}
-
 void City::collect_resources() {
 
   string current_building_type;
@@ -46,7 +40,7 @@ void City::collect_resources() {
 
   std::cout << BOLD_GREEN << "You collected the following resources:" << DEFAULT_COLOR << '\n' << '\n';
 
-  while(record->get_current_building_type() != "0") {
+  while (record->get_current_building_type() != "0") {
 
     current_building_type = record->get_current_building_type();
 
@@ -90,7 +84,7 @@ void City::material_rain() {
       random_material_amount = rand() % 3 + 2;
 
 
-    for(int i = 0; i < random_material_amount; i++) {
+    for (int i = 0; i < random_material_amount; i++) {
 
       if (passable_tiles->select_random_tile()) {
 
@@ -118,6 +112,11 @@ void City::material_rain() {
 
 }
 
+string City::materials_data_to_string() {
+
+  return materials->materials_data_to_string();
+
+}
 
 //--------------------------Private Material Methods----------------------------
 
@@ -133,32 +132,31 @@ int City::get_material_amount(string target_material) {
 
 }
 
-
 void City::deduct_building_cost(int user_stone, int user_wood, int user_steel, string building_type) {
 
   int stone_cost = record->get_stone_cost(building_type);
   int wood_cost = record->get_wood_cost(building_type);
   int steel_cost = record->get_steel_cost(building_type);
 
-  materials->set_material_amount("piedra", user_stone - stone_cost);
-  materials->set_material_amount("madera", user_wood - wood_cost);
-  materials->set_material_amount("metal", user_steel - steel_cost);
+  materials->set_material_amount(STONE, user_stone - stone_cost);
+  materials->set_material_amount(WOOD, user_wood - wood_cost);
+  materials->set_material_amount(STEEL, user_steel - steel_cost);
 
 }
 
 void City::refund_building_cost(string building_type) {
 
-  int user_stone = materials->get_material_amount("piedra");
-  int user_wood = materials->get_material_amount("madera");
-  int user_steel = materials->get_material_amount("metal");
+  int user_stone = materials->get_material_amount(STONE);
+  int user_wood = materials->get_material_amount(WOOD);
+  int user_steel = materials->get_material_amount(STEEL);
 
   int stone_cost = record->get_stone_cost(building_type);
   int wood_cost = record->get_wood_cost(building_type);
   int steel_cost = record->get_steel_cost(building_type);
 
-  materials->set_material_amount("piedra", user_stone + stone_cost / 2);
-  materials->set_material_amount("madera", user_wood + wood_cost / 2);
-  materials->set_material_amount("metal", user_steel + steel_cost / 2);
+  materials->set_material_amount(STONE, user_stone + stone_cost / 2);
+  materials->set_material_amount(WOOD, user_wood + wood_cost / 2);
+  materials->set_material_amount(STEEL, user_steel + steel_cost / 2);
 
 }
 
@@ -208,9 +206,9 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   bool enough_materials = false;
 
-  int user_stone = materials->get_material_amount("piedra");
-  int user_wood = materials->get_material_amount("madera");
-  int user_steel = materials->get_material_amount("metal");
+  int user_stone = materials->get_material_amount(STONE);
+  int user_wood = materials->get_material_amount(WOOD);
+  int user_steel = materials->get_material_amount(STEEL);
 
   if (!loading_from_txt && valid_type && valid_amount && valid_tile && empty_tile)
     enough_materials = record->validate_material_requirement(lowercase_building_type,
@@ -297,7 +295,7 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
 
   bool building_demolished = false;
 
-  if(valid_tile && !empty_tile) {
+  if (valid_tile && !empty_tile) {
 
     building_type = city_map->get_building_type(x_coordinate, y_coordinate);
     capitalized_building_type = capitalize_word(building_type);
