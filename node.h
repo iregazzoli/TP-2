@@ -10,14 +10,14 @@ private:
   Node* next_node;
 
 public:
-  //PRE: 'value' has to be a valid pointer to a Building object or Material struct.
+  //PRE: -
   //POS: Creates a node with it's value pointing to 'value'.
   Node(T* value){
     this->value = value;
   }
 
   //PRE: -
-  //POS: Destroys a T object.
+  //POS: Destroys the node and the object it points to.
   ~Node() {
 
     delete value;
@@ -25,8 +25,8 @@ public:
   }
 
 
-  //PRE: Pointer needs to be a valid pointer to a node object
-  //POS: Changes the pointer "next_node" to point to 'pointer'.
+  //PRE: 'pointer' must be a valid node pointer.
+  //POS: Makes the node point to passed pointer.
   void set_next_node(Node* pointer);
 
   //PRE: -
@@ -34,15 +34,15 @@ public:
   Node* get_next_node();
 
   //PRE: -
-  //POS: Returns value.
+  //POS: Returns the value the node its pointing to.
   T* get_value();
 
   //PRE: -
-  //POS: Changes value to 'new_value'.
+  //POS: Changes the value of the node.
   void set_value(T new_value);
 
   // PRE: -
-  // POS: Returns next_node != 0.
+  // POS: Returns 'next_node' != 0.
   bool next_node_not_null();
 
 };

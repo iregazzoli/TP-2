@@ -22,31 +22,32 @@ public:
 private:
 
   //PRE:-
-  //POS: Shows on screen 
+  //POS: Shows on screen a Cobra car. (reference to Age of Empires II)
   void how_do_you_turn_this_on();
 
   //PRE:-
   //POS: Asks the user to press enter to return to the menu.
   void press_enter_to_continue();
 
-  //PRE: City must be a non-null pointer.
-  //POS: Asks user for type of building and coordinates where he wants to build it and builds it.
+  //PRE: 'city' must be a valid City class pointer.
+  //POS: Asks the user for type of building and coordinates where he wants to build it and then calls 
+  //     city method add building.
   void build(City* city);
 
-  //PRE: City must be a non-null pointer.
-  //POS: Asks user for coordinates of the building he wants to demolish and destroys it.
+  //PRE: 'city' must be a valid City class pointer.
+  //POS: Asks the user for coordinates of the building and then calls city method to demolish it.
   void demolish(City* city);
 
-  //PRE: City must be a non-null pointer.
-  //POS: Updates the files with the new information.
+  //PRE: 'city' must be a valid City class pointer.
+  //POS: Updates the files with the new information from the program.
   void save_data(City* city);
 
-  //PRE: City must be a non-null pointer.
-  //POS: Asks user for the x coordinate and returns it.
+  //PRE: 'city' must be a valid City class pointer.
+  //POS: Asks user for a valid x coordinate and returns it.
   int ask_user_x_coordinate(City* city);
 
-  //PRE: City must be a non-null pointer.
-  //POS: Asks user for the y coordinate and returns it.
+  //PRE: 'city' must be a valid City class pointer.
+  //POS: Asks user for a valid y coordinate and returns it.
   int ask_user_y_coordinate(City* city);
 
 

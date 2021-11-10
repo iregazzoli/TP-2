@@ -13,7 +13,6 @@ bool load_materials(City* city) {
 
   }
 
-
   string current_material;
 
   string quantity_of_material;
@@ -47,7 +46,6 @@ bool load_buildings_attributes(City* city) {
 
   }
 
-
   string building_type;
   string stone_cost;
   string wood_cost;
@@ -66,7 +64,6 @@ bool load_buildings_attributes(City* city) {
     getline(file, wood_cost, ' ');
     getline(file, steel_cost, ' ');
     getline(file, max_building_quantity);
-
 
     city->add_building(building_type, stoi(stone_cost), stoi(wood_cost),
                         stoi(steel_cost), stoi(max_building_quantity));
@@ -127,7 +124,6 @@ bool load_tiles(City* city) {
     return false;
 
   }
-
 
   string total_of_rows;
   string total_of_columns;

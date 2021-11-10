@@ -10,22 +10,22 @@ void BuildingHandler::add_building(string building_type, string material_that_pr
 
   Building* new_building = 0;
 
-  if(building_type == FACTORY)
+  if (building_type == FACTORY)
     new_building = new Factory(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  else if(building_type == MINE)
+  else if (building_type == MINE)
     new_building = new Mine(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  else if(building_type == OBELISK)
+  else if (building_type == OBELISK)
     new_building = new Obelisk(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  else if(building_type == POWER_PLANT)
+  else if (building_type == POWER_PLANT)
     new_building = new PowerPlant(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  else if(building_type == SAWMILL)
+  else if (building_type == SAWMILL)
     new_building = new Sawmill(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  else if(building_type == SCHOOL)
+  else if (building_type == SCHOOL)
     new_building = new School(building_type, material_that_produce, x_coordinate, y_coordinate);
 
 
@@ -94,7 +94,6 @@ void BuildingHandler::show_buildings(string building_type, int amount_built) {
 
 }
 
-
 int BuildingHandler::get_building_built_amount(string building_type_to_count) {
 
   buildings->reset_current_node();
@@ -120,7 +119,7 @@ Building* BuildingHandler::get_building(string building_type, int x_coordinate, 
 
     if (buildings->get_current_value()->get_type() == building_type
        && buildings->get_current_value()->get_x_coordinate() == x_coordinate
-       && buildings->get_current_value()->get_y_coordinate() == y_coordinate){
+       && buildings->get_current_value()->get_y_coordinate() == y_coordinate) {
 
       return buildings->get_current_value();
 
@@ -132,7 +131,6 @@ Building* BuildingHandler::get_building(string building_type, int x_coordinate, 
 }
 
 int BuildingHandler::get_resources_amount(string building_type) {
-
 
   int total_amount = 0;
 
@@ -148,6 +146,7 @@ int BuildingHandler::get_resources_amount(string building_type) {
   }
 
   return total_amount;
+
 }
 
 string BuildingHandler::get_resources_type(string building_type) {
@@ -164,6 +163,7 @@ string BuildingHandler::get_resources_type(string building_type) {
   }
 
   return "";
+  
 }
 
 string BuildingHandler::building_data_to_string() {

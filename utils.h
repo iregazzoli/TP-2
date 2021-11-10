@@ -32,11 +32,11 @@ string capitalize_word(string word);
 string lowercase_word(string word);
 
 //PRE:-
-//POS: Returns true if 'string_to_check' is numeric, false otherwise.
+//POS: Returns true if 'string_to_check' is numeric, otherwise it returns false.
 bool is_numeric(string string_to_check);
 
 //PRE:-
-//POS: Asks the user if is sure to the action, if he enters 'y' or 'yes' it returns true, false otherwise.
+//POS: Asks the user if is sure to the action, if he enters 'y' or 'yes' it returns true, otherwise it returns false.
 bool ask_user_confirmation(string building_type);
 
 #endif //UTILS_H

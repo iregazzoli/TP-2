@@ -105,7 +105,6 @@ void Map::add_material(Material* material, int x_coordinate, int y_coordinate) {
 
 }
 
-
 int Map::get_rows() {
 
   return total_of_rows;
@@ -139,7 +138,7 @@ void Map::show_map() {
 
   for (int l = 0; l < total_of_columns; l++) {
 
-    if(l == total_of_columns - 1)
+    if (l == total_of_columns - 1)
       std::cout << "════" << "\n";
 
     else
@@ -186,7 +185,7 @@ void Map::show_map() {
           else if (map[i][j]->get_value() == OBELISK)
             building_icon = OBELISK_ICON;
 
-          else if(map[i][j]->get_value() == POWER_PLANT)
+          else if (map[i][j]->get_value() == POWER_PLANT)
             building_icon = POWER_PLANT_ICON;
 
           if (j == total_of_columns - 1)
@@ -205,7 +204,7 @@ void Map::show_map() {
 
         if (tile_empty) {
 
-          if(j == total_of_columns - 1)
+          if (j == total_of_columns - 1)
             cout << DEFAULT_COLOR << "|" << ROAD_ICON << "|" << DEFAULT_COLOR << '\n';
 
           else
@@ -232,14 +231,13 @@ void Map::show_map() {
           else
             cout << DEFAULT_COLOR << "|"  << material_icon << "|";
 
-
         }
 
       }
 
       else {
 
-        if(j == total_of_columns - 1)
+        if (j == total_of_columns - 1)
           cout << BOLD_BLUE << "|" << LAKE_ICON << "|" << DEFAULT_COLOR << '\n';
 
         else
@@ -302,11 +300,14 @@ Map::~Map() {
 
   for (int i = 0; i < total_of_rows; i++) {
     for (int j = 0; j < total_of_columns; j++) {
+      
       delete map[i][j];
+    
     }
 
     delete[] map[i];
   }
 
   delete[] map;
+
 }

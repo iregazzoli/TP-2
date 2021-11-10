@@ -12,7 +12,7 @@ public:
     Mine(string, string, int, int);
 
     //PRE:-
-    //POS: Returns amount of material mine produces.
+    //POS: Returns STONE_PROVIDED_BY_MINE.
     int produce_material();
 };
 

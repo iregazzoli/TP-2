@@ -17,7 +17,7 @@ void MaterialHandler::show_materials() {
 
   materials->reset_current_node();
 
-  while(materials->get_current_value() != 0){
+  while (materials->get_current_value() != 0) {
 
     string capitalized_material = capitalize_word(materials->get_current_value()->get_material());
 
@@ -94,7 +94,6 @@ int MaterialHandler::get_material_amount(string target_material){
 }
 
 string MaterialHandler::generate_random_material_type() {
-
 
   srand ((unsigned int)time(NULL));
 

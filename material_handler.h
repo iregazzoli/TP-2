@@ -15,39 +15,39 @@ private:
 public:
   
   //PRE:-
-  //POS: Creates a MaterialHandler object, with it's liked list pointers pointing to null.
+  //POS: Creates a MaterialHandler object, with an empty list.
   MaterialHandler();
 
   //PRE:-
-  //POS: Destroys MaterialHandler object and frees memory from linked list.
+  //POS: Destroys MaterialHandler object and calls the destructor of the list.
   ~MaterialHandler();
 
-  //PRE: 'material' must be a material valid and quantity >= 0.
-  //POS: Creates a new object according to 'material'.
+  //PRE: -
+  //POS: Creates a new Material object with its corresponding attributes.
   void add_material(string material, int quantity);
 
-  //PRE: 'material' must be a material valid and quantity >= 0.
-  //POS: Shows on screen type of material and available quantity of it.
+  //PRE: -
+  //POS: Shows on screen the materials and their quantity.
   void show_materials();
 
-  //PRE: 'material' must be a material valid and quantity >= 0.
-  //POS: Modifies the amount of material.
+  //PRE: 'material' must be a valid material name.
+  //POS: Replaces the quantity of target material to 'new_quantity'. 
   void set_material_amount(string material_to_modify, int new_quantity);
 
   //PRE: 'target_material' must be a material valid.
-  //POS: Returns the amount of 'target_material'.
+  //POS: Returns the quantity of target material.
   int get_material_amount(string target_material);
 
   //PRE:-
   //POS: Returns a random material between STONE, WOOD and STEEL.
   string generate_random_material_type();
 
-  //PRE: 'material_type' must be a material valid.
-  //POS: Creates a new material object and returns its pointer.
+  //PRE: 'material_type' must be a valid type.
+  //POS: Creates a new Material object and returns a pointer to it.
   Material* generate_material(string material_type);
 
   //PRE:-
-  //POS: Returns all materials and available quantity of each.
+  //POS: Returns all the materials in the format of 'materiales.txt'.
   string materials_data_to_string();
 
 };

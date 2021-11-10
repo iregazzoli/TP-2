@@ -25,4 +25,3 @@ int Material::get_quantity() {
   return quantity;
 
 }
-
