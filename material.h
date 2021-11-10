@@ -29,4 +29,4 @@ public:
   int get_quantity();
 };
 
-#endif
+#endif //MATERIALS_H

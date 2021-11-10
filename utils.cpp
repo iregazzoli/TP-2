@@ -8,7 +8,7 @@ string capitalize_word(string word) {
 
 }
 
-string lowercase_word(string word){
+string lowercase_word(string word) {
 
   for (unsigned int i = 0; i < word.length(); i++) {
 

@@ -13,7 +13,7 @@ struct BuildingRecord{
   int max_quantity = 0;
 };
 
-class Record{
+class Record {
 
 private:
   List<BuildingRecord>* record;

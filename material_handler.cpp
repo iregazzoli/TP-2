@@ -1,8 +1,6 @@
 #include "material_handler.h"
-#include <stdlib.h>
-#include <time.h>
 
-MaterialHandler::MaterialHandler(){
+MaterialHandler::MaterialHandler() {
 
   materials = new List<Material>;
 
@@ -15,7 +13,7 @@ void MaterialHandler::add_material(string material, int quantity){
 
 }
 
-void MaterialHandler::show_materials(){
+void MaterialHandler::show_materials() {
 
   materials->reset_current_node();
 
@@ -152,7 +150,7 @@ string MaterialHandler::materials_data_to_string() {
 
 }
 
-MaterialHandler::~MaterialHandler(){
+MaterialHandler::~MaterialHandler() {
 
   delete materials;
 
