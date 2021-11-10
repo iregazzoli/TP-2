@@ -15,6 +15,12 @@ public:
   //POS: Shows on screen options menu. 
   void show_menu();
 
+  //PRE: City must be a non-null pointer.
+  //POS: Returns false if the user decides to exit and save, and true if they continue playing.
+  bool interpretate_user_input(City* city);
+
+private:
+
   //PRE:-
   //POS: Shows on screen 
   void how_do_you_turn_this_on();
@@ -22,10 +28,6 @@ public:
   //PRE:-
   //POS: Asks the user to press enter to return to the menu.
   void press_enter_to_continue();
-
-  //PRE: City must be a non-null pointer.
-  //POS: Returns false if the user decides to exit and save, and true if they continue playing.
-  bool interpretate_user_input(City* city);
 
   //PRE: City must be a non-null pointer.
   //POS: Asks user for type of building and coordinates where he wants to build it and builds it.
@@ -46,6 +48,7 @@ public:
   //PRE: City must be a non-null pointer.
   //POS: Asks user for the y coordinate and returns it.
   int ask_user_y_coordinate(City* city);
+
 
 };
 

@@ -77,7 +77,6 @@ public:
   bool validate_material_requirement(string building_type, int stone_amount,
                                       int wood_amount, int steel_amount);
 
-
   //PRE:-
   //POS: Resets current node.
   void reset_current_node();

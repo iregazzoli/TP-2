@@ -24,49 +24,6 @@ void Menu::show_menu() {
 
 }
 
-void Menu::how_do_you_turn_this_on() {
-
-  system (CLR_SCREEN);
-  string problematic_line_1_part_1 = R"(/`-')";
-  string problematic_line_1_part_2 = R"(( )         ( ))";
-  string problematic_line_1_part_3 = R"( /`-'\)";
-
-  string problematic_line_2_part_1 = R"(|   |)";
-  string problematic_line_2_part_2 = R"(---\_Cobra_/---)";
-  string problematic_line_2_part_3 = R"(|   |)";
-
-  std::cout << '\n';
-  std::cout << "                  BRRRRRRRRRRRRRRRRRRRRRR" << '\n';
-  std::cout << "        _________" << '\n';
-  std::cout << "       |         |" << '\n';
-  std::cout << BOLD_BLUE << " _o_  _";
-  std::cout << DEFAULT_COLOR << "| " << BOLD_BLUE << "___=___" << DEFAULT_COLOR <<" |";
-  std::cout << BOLD_BLUE << "_  _o_" << '\n';
-  std::cout << problematic_line_1_part_1;
-  std::cout << DEFAULT_COLOR << problematic_line_1_part_2;
-  std::cout << BOLD_BLUE << problematic_line_1_part_3 << '\n';
-  std::cout << BOLD_BLACK << "|   |-"<< BOLD_BLUE << "| ";
-  std::cout << DEFAULT_COLOR << " ___*___ ";
-  std::cout << BOLD_BLUE << " |" << BOLD_BLACK << "-|   |" << '\n';
-  std::cout << "|   |" << BOLD_BLUE << " | ";
-  std::cout << BOLD_BLACK << "(-+-+-+-)";
-  std::cout << BOLD_BLUE << " |" << BOLD_BLACK <<" |   |" << '\n';
-  std::cout << problematic_line_2_part_1;
-  std::cout << DEFAULT_COLOR << problematic_line_2_part_2;
-  std::cout << BOLD_BLACK << problematic_line_2_part_3 << '\n';
-  std::cout << BOLD_BLACK << " ---                 ---" << DEFAULT_COLOR << '\n';
-
-}
-
-void Menu::press_enter_to_continue() {
-
-  std::cout << '\n';
-  std::cin.ignore();
-  std::cout << "Press ENTER to go back to the menu: ";
-  std::cin.get();
-
-}
-
 bool Menu::interpretate_user_input(City* city) {
 
   std::string user_option;
@@ -217,6 +174,49 @@ bool Menu::interpretate_user_input(City* city) {
   }
 
   return not_end_program;
+
+}
+
+void Menu::how_do_you_turn_this_on() {
+
+  system (CLR_SCREEN);
+  string problematic_line_1_part_1 = R"(/`-')";
+  string problematic_line_1_part_2 = R"(( )         ( ))";
+  string problematic_line_1_part_3 = R"( /`-'\)";
+
+  string problematic_line_2_part_1 = R"(|   |)";
+  string problematic_line_2_part_2 = R"(---\_Cobra_/---)";
+  string problematic_line_2_part_3 = R"(|   |)";
+
+  std::cout << '\n';
+  std::cout << "                  BRRRRRRRRRRRRRRRRRRRRRR" << '\n';
+  std::cout << "        _________" << '\n';
+  std::cout << "       |         |" << '\n';
+  std::cout << BOLD_BLUE << " _o_  _";
+  std::cout << DEFAULT_COLOR << "| " << BOLD_BLUE << "___=___" << DEFAULT_COLOR <<" |";
+  std::cout << BOLD_BLUE << "_  _o_" << '\n';
+  std::cout << problematic_line_1_part_1;
+  std::cout << DEFAULT_COLOR << problematic_line_1_part_2;
+  std::cout << BOLD_BLUE << problematic_line_1_part_3 << '\n';
+  std::cout << BOLD_BLACK << "|   |-"<< BOLD_BLUE << "| ";
+  std::cout << DEFAULT_COLOR << " ___*___ ";
+  std::cout << BOLD_BLUE << " |" << BOLD_BLACK << "-|   |" << '\n';
+  std::cout << "|   |" << BOLD_BLUE << " | ";
+  std::cout << BOLD_BLACK << "(-+-+-+-)";
+  std::cout << BOLD_BLUE << " |" << BOLD_BLACK <<" |   |" << '\n';
+  std::cout << problematic_line_2_part_1;
+  std::cout << DEFAULT_COLOR << problematic_line_2_part_2;
+  std::cout << BOLD_BLACK << problematic_line_2_part_3 << '\n';
+  std::cout << BOLD_BLACK << " ---                 ---" << DEFAULT_COLOR << '\n';
+
+}
+
+void Menu::press_enter_to_continue() {
+
+  std::cout << '\n';
+  std::cin.ignore();
+  std::cout << "Press ENTER to go back to the menu: ";
+  std::cin.get();
 
 }
 
