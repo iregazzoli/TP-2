@@ -20,11 +20,11 @@ private:
   int current_column;
 
 public:
-  
+
   //PRE: 'row' > 0 and 'columns' > 0.
-  //POS: Assigns total_of_rows = 'rows', total_of_columns = 'columns', current_row = 0, current_column = 0. 
-  //     Creates a dynamic array of dimension (total_of_rows x total_of_columns) and initializes all the 
-  //     pointer of tiles to 0. 
+  //POS: Assigns total_of_rows = 'rows', total_of_columns = 'columns', current_row = 0, current_column = 0.
+  //     Creates a dynamic array of dimension (total_of_rows x total_of_columns) and initializes all the
+  //     pointer of tiles to 0.
   Map(int rows, int columns);
 
   //PRE:-
@@ -80,8 +80,12 @@ public:
   int get_columns();
 
   //PRE:-
-  //POS: Shows on screen the map with icons representing buildings, materials and tiles types. 
+  //POS: Shows on screen the map with icons representing buildings, materials and tiles types.
   void show_map();
+
+  //PRE: -
+  //POS: Returns all the materials in the map in format of 'ubicaciones.txt'.
+  string materials_data_to_string(string saved_data);
 
 
 private:

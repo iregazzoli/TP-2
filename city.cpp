@@ -483,7 +483,9 @@ void City::show_record() {
 
 string City::building_data_to_string() {
 
-  return buildings->building_data_to_string();
+  string user_buildings = buildings->building_data_to_string();
+
+  return city_map->materials_data_to_string(user_buildings);
 
 }
 

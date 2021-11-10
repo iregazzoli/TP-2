@@ -248,6 +248,35 @@ void Map::show_map() {
   }
 
   show_map_legend();
+
+}
+
+string Map::materials_data_to_string(string saved_data) {
+
+  for (int i = 0; i < total_of_rows; i++) {
+    for (int j = 0; j < total_of_columns; j++) {
+
+      if (map[i][j]->get_tile_class() == PASSABLE) {
+
+        if (!map[i][j]->tile_empty()) {
+
+          saved_data = saved_data + map[i][j]->get_value();
+          saved_data = saved_data + " (";
+          saved_data = saved_data + to_string(i);
+          saved_data = saved_data + ", ";
+          saved_data = saved_data + to_string(j);
+          saved_data = saved_data + ")" + '\n';
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return saved_data;
+
 }
 
 //--------------------------Private Map Methods----------------------------
@@ -300,9 +329,9 @@ Map::~Map() {
 
   for (int i = 0; i < total_of_rows; i++) {
     for (int j = 0; j < total_of_columns; j++) {
-      
+
       delete map[i][j];
-    
+
     }
 
     delete[] map[i];
