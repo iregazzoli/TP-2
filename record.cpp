@@ -16,13 +16,13 @@ void Record::add_building(string building_type, int stone_cost, int wood_cost,
 
 }
 
-void Record::modify_building_amount(string building_type, int modifier){
+void Record::modify_building_amount(string building_type, int modifier) {
 
   record->reset_current_node();
 
-  while(record->get_current_value() != 0){
+  while (record->get_current_value() != 0) {
 
-    if(record->get_current_value()->building_type == building_type)
+    if (record->get_current_value()->building_type == building_type)
       record->get_current_value()->built_amount += modifier;
 
     record->next_node();
@@ -33,13 +33,13 @@ void Record::modify_building_amount(string building_type, int modifier){
 
 }
 
-int Record::get_building_amount(string building_type){
+int Record::get_building_amount(string building_type) {
 
   record->reset_current_node();
 
-  while(record->get_current_value() != 0){
+  while (record->get_current_value() != 0){
 
-    if(record->get_current_value()->building_type == building_type)
+    if (record->get_current_value()->building_type == building_type)
       return record->get_current_value()->built_amount;
 
     record->next_node();
@@ -65,7 +65,7 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
 
   Node<BuildingRecord>* aux_node = record->get_first_node();
 
-  while(aux_node != 0){
+  while (aux_node != 0) {
 
     string capitalized_building_type = capitalize_word(aux_node->get_value()->building_type);
 
@@ -77,10 +77,10 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
     valid_amount = validate_building_amount(aux_node->get_value()->building_type,
                                                   amount_of_buildings_built);
 
-    if(capitalized_building_type == "Planta")
+    if (capitalized_building_type == "Planta")
       capitalized_building_type = "Planta eléctrica";
 
-    if(enough_materials && valid_amount)
+    if (enough_materials && valid_amount)
       std::cout << DEFAULT_COLOR << "Building:                " << BOLD_GREEN << capitalized_building_type << '\n';
 
     else
@@ -99,10 +99,9 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
 
 }
 
-
 string Record::get_current_building_type() {
 
-  if(!record->current_node_null()){
+  if (!record->current_node_null()) {
 
     string building_type = record->get_current_value()->building_type;
 
@@ -114,13 +113,13 @@ string Record::get_current_building_type() {
 
 }
 
-int Record::get_stone_cost(string building_type){
+int Record::get_stone_cost(string building_type) {
 
   record->reset_current_node();
 
-  while(record->get_current_value() != 0){
+  while (record->get_current_value() != 0) {
 
-    if(record->get_current_value()->building_type == building_type)
+    if (record->get_current_value()->building_type == building_type)
       return record->get_current_value()->stone_cost;
 
     record->next_node();
@@ -133,13 +132,13 @@ int Record::get_stone_cost(string building_type){
 
 }
 
-int Record::get_wood_cost(string building_type){
+int Record::get_wood_cost(string building_type) {
 
   record->reset_current_node();
 
-  while(record->get_current_value() != 0){
+  while (record->get_current_value() != 0) {
 
-    if(record->get_current_value()->building_type == building_type)
+    if (record->get_current_value()->building_type == building_type)
       return record->get_current_value()->wood_cost;
 
     record->next_node();
@@ -152,13 +151,13 @@ int Record::get_wood_cost(string building_type){
 
 }
 
-int Record::get_steel_cost(string building_type){
+int Record::get_steel_cost(string building_type) {
 
   record->reset_current_node();
 
-  while(record->get_current_value() != 0){
+  while (record->get_current_value() != 0) {
 
-    if(record->get_current_value()->building_type == building_type)
+    if (record->get_current_value()->building_type == building_type)
       return record->get_current_value()->steel_cost;
 
     record->next_node();
@@ -171,7 +170,7 @@ int Record::get_steel_cost(string building_type){
 
 }
 
-bool Record::validate_building_type(string building_type){
+bool Record::validate_building_type(string building_type) {
 
   bool valid_type = false;
 
@@ -243,19 +242,19 @@ bool Record::validate_material_requirement(string building_type, int stone_amoun
 
 }
 
-void Record::reset_current_node(){
+void Record::reset_current_node() {
 
   record->reset_current_node();
 
 }
 
-void Record::next_node(){
+void Record::next_node() {
 
   record->next_node();
 
 }
 
-Record::~Record(){
+Record::~Record() {
 
   delete record;
 

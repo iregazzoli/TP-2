@@ -1,12 +1,21 @@
 #include "passable_tile.h"
 
 PassableTile::PassableTile () {
-    material_contained = 0;
+  
+  material_contained = 0;
+
 }
 
 void PassableTile::add_material(Material* material) {
 
-    material_contained = material;
+  material_contained = material;
+
+}
+
+void PassableTile::remove_material() {
+
+  delete material_contained;
+  material_contained = 0;
 
 }
 
@@ -22,31 +31,24 @@ void PassableTile::show() {
 
 }
 
-void PassableTile::remove_material() {
-
-  delete material_contained;
-  material_contained = 0;
-
-}
-
 string PassableTile::get_value(){
 
   return material_contained->get_material();
 
 }
 
-bool PassableTile::tile_empty(){
+bool PassableTile::tile_empty() {
 
-  if(material_contained == 0)
+  if (material_contained == 0)
     return true;
 
   return false;
 
 }
 
-string PassableTile::state_of_tile(){
+string PassableTile::state_of_tile() {
 
-  if(tile_empty())
+  if (tile_empty())
     return EMPTY;
 
   return OCCUPIED;
@@ -60,6 +62,8 @@ string PassableTile::get_tile_class() {
 }
 
 PassableTile::~PassableTile() {
+  
   if (material_contained != 0)
     delete material_contained;
+
 }

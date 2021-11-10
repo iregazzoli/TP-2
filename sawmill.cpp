@@ -5,5 +5,6 @@ Sawmill::Sawmill(string building_type, string material_that_produces, int x_coor
 
 int Sawmill::produce_material() {
 
-    return WOOD_PROVIDED_BY_SAWMILL;
+  return WOOD_PROVIDED_BY_SAWMILL;
+
 }

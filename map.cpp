@@ -2,14 +2,14 @@
 #include "constants.h"
 #include "utils.h"
 
-Map::Map(int rows, int columns){
+Map::Map(int rows, int columns) {
 
   total_of_rows = rows;
   total_of_columns = columns;
 
   map = new Tile**[rows];
 
-  for(int i = 0; i < rows; i++)
+  for (int i = 0; i < rows; i++)
     map[i] = new Tile*[columns];
 
   initialize();
@@ -20,33 +20,19 @@ Map::Map(int rows, int columns){
 
 }
 
-void Map::initialize(){
+void Map::add_tile(char tile_type) {
 
-  for(int i = 0; i < total_of_rows; i++){
-
-    for(int j = 0; j < total_of_columns; j++){
-
-      map[i][j] = 0;
-
-    }
-
-  }
-
-}
-
-void Map::add_tile(char tile_type){
-
-  if(tile_type == LAKE)
+  if (tile_type == LAKE)
     *current_tile = new InaccesibleTile;
 
-  else if(tile_type == TERRAIN)
+  else if (tile_type == TERRAIN)
     *current_tile = new BuildableTile;
 
-  else
+  else if (tile_type == ROAD)
     *current_tile = new PassableTile;
 
 
-  if(current_column == total_of_columns - 1) {
+  if (current_column == total_of_columns - 1) {
 
     current_column = 0;
     current_row++;
@@ -71,6 +57,12 @@ string Map::get_building_type(int x_coordinate, int y_coordinate) {
   return map[x_coordinate][y_coordinate]->get_value();
 }
 
+Tile* Map::get_tile(int x_coordinate, int y_coordinate) {
+
+  return map[x_coordinate][y_coordinate];
+
+}
+
 bool Map::tile_buildable(int x_coordinate, int y_coordinate) {
 
   return map[x_coordinate][y_coordinate]->get_tile_class() == BUILDABLE;
@@ -83,9 +75,9 @@ bool Map::tile_passable(int x_coordinate, int y_coordinate) {
 
 }
 
-Tile* Map::get_tile(int x_coordinate, int y_coordinate) {
+bool Map::tile_empty(int x_coordinate, int y_coordinate) {
 
-  return map[x_coordinate][y_coordinate];
+  return map[x_coordinate][y_coordinate]->tile_empty();
 
 }
 
@@ -113,11 +105,6 @@ void Map::add_material(Material* material, int x_coordinate, int y_coordinate) {
 
 }
 
-bool Map::tile_empty(int x_coordinate, int y_coordinate) {
-
-  return map[x_coordinate][y_coordinate]->tile_empty();
-
-}
 
 int Map::get_rows() {
 
@@ -141,7 +128,7 @@ void Map::show_map() {
 
   for (int k = 0; k < total_of_columns; k++) {
 
-    if(k == total_of_columns - 1)
+    if (k == total_of_columns - 1)
       std::cout << "  " << k << " " << "\n";
 
     else
@@ -228,7 +215,7 @@ void Map::show_map() {
 
         else {
 
-            string material_icon;
+          string material_icon;
 
           if (map[i][j]->get_value() == STONE)
             material_icon = STONE_ICON;
@@ -261,7 +248,24 @@ void Map::show_map() {
       }
     }
   }
+
   show_map_legend();
+}
+
+//--------------------------Private Map Methods----------------------------
+
+void Map::initialize() {
+
+  for (int i = 0; i < total_of_rows; i++) {
+
+    for (int j = 0; j < total_of_columns; j++) {
+
+      map[i][j] = 0;
+
+    }
+
+  }
+
 }
 
 void Map::show_map_legend() {
@@ -292,12 +296,12 @@ void Map::show_map_legend() {
   std::cout << left << setw(5) << STEEL_ICON << ":" << capitalize_word(STEEL) << '\n';
 }
 
-
+//------------------------------------------------------------------------------
 
 Map::~Map() {
 
-  for(int i = 0; i < total_of_rows; i++) {
-    for(int j = 0; j < total_of_columns; j++) {
+  for (int i = 0; i < total_of_rows; i++) {
+    for (int j = 0; j < total_of_columns; j++) {
       delete map[i][j];
     }
 

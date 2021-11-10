@@ -27,7 +27,8 @@ const int COORDINATE = 6;
 const int INVENTORY = 7;
 const int COLLECT_RESOURCES = 8;
 const int MATERIAL_RAIN = 9;
-const int EXIT = 10;
+const int HOW_DO_YOU_TURN_THIS_ON = 10;
+const int EXIT = 11;
 
 const string MATERIAL_FILE_ROUTE = "materiales.txt";
 const string BUILDING_FILE_ROUTE = "edificios.txt";

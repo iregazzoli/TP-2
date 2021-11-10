@@ -7,10 +7,12 @@ class Mine : public Building {
 
 public:
 
+    //PRE:-
+    //POS: Creates Mine object.
     Mine(string, string, int, int);
 
-    //PRE:
-    //POS:
+    //PRE:-
+    //POS: Returns amount of material mine produces.
     int produce_material();
 };
 

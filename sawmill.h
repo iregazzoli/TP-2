@@ -7,11 +7,13 @@ class Sawmill: public Building {
 
 public:
 
-    Sawmill(string, string, int, int);
+  //PRE:-
+  //POS: Creates a Sawmill object.
+  Sawmill(string, string, int, int);
 
-    //PRE:
-    //POS:
-    int produce_material();
+  //PRE:-
+  //POS: Returns amount of material sawmill produces.
+  int produce_material();
 
 };
 

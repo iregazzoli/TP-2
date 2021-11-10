@@ -5,6 +5,6 @@ Factory::Factory(string building_type, string material_that_produces, int x_coor
 
 int Factory::produce_material() {
 
-    return STEEL_PROVIDED_BY_FACTORY;
+  return STEEL_PROVIDED_BY_FACTORY;
 
 }

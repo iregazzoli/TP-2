@@ -5,5 +5,6 @@ Mine::Mine(string building_type, string material_that_produces, int x_coordinate
 
 int Mine::produce_material() {
 
-    return STONE_PROVIDED_BY_MINE;
+  return STONE_PROVIDED_BY_MINE;
+
 }

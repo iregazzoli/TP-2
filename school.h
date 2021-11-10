@@ -7,6 +7,8 @@ class School : public Building {
 
 public:
 
+  //PRE:-
+  //POS: Creates a School.
   School(string, string, int, int);
 
 };

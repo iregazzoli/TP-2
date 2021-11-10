@@ -6,7 +6,9 @@
 class Obelisk : public Building {
 
 public:
-
+ 
+  //PRE:-
+  //POS: Creates a Obelisk object.
   Obelisk(string, string, int, int);
 
 };

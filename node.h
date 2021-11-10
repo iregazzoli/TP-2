@@ -2,7 +2,8 @@
 #define NODE_H
 
 template <class T>
-class Node{
+class Node {
+
 private:
 
   T* value;
@@ -10,13 +11,13 @@ private:
 
 public:
   //PRE: 'value' has to be a valid pointer to a Building object or Material struct.
-  //POS: creates a node with it's value pointing to 'value'.
+  //POS: Creates a node with it's value pointing to 'value'.
   Node(T* value){
     this->value = value;
   }
 
-  //PRE:
-  //POS:
+  //PRE: -
+  //POS: Destroys a T object.
   ~Node() {
 
     delete value;
@@ -43,12 +44,13 @@ public:
   // PRE: -
   // POS: Returns next_node != 0.
   bool next_node_not_null();
+
 };
 
 
 
 template <class T>
-void Node<T>::set_next_node(Node* pointer){
+void Node<T>::set_next_node(Node* pointer) {
 
   next_node = pointer;
 
@@ -82,4 +84,4 @@ bool Node<T>::next_node_not_null() {
 
 }
 
-#endif
+#endif //NODE_H

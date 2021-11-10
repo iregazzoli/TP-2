@@ -6,12 +6,15 @@
 class Factory : public Building {
 
 public:
+  
+  //PRE:-
+  //POS: Creates Factory object.
+  Factory(string, string, int, int);
 
-    Factory(string, string, int, int);
+  //PRE:-
+  //POS: Returns amount of material factory produces.
+  int produce_material();
 
-    //PRE:
-    //POS:
-    int produce_material();
 };
 
 #endif // FACTORY_H

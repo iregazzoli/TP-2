@@ -16,8 +16,6 @@ bool load_materials(City* city) {
 
   string current_material;
 
-  //quantity_of_material is a string because function getline takes a -
-  //-string& str as second argument.
   string quantity_of_material;
 
   while ((file.peek() != EOF)) {
@@ -51,7 +49,6 @@ bool load_buildings_attributes(City* city) {
 
 
   string building_type;
-  //Again getline accepts only strings so thats why here everything is not an int
   string stone_cost;
   string wood_cost;
   string steel_cost;
@@ -62,7 +59,7 @@ bool load_buildings_attributes(City* city) {
 
     getline(file, building_type, ' ');
 
-    if(building_type == "planta")
+    if (building_type == POWER_PLANT)
       getline(file, auxiliar, ' ');
 
     getline(file, stone_cost, ' ');
@@ -131,7 +128,6 @@ bool load_tiles(City* city) {
 
   }
 
-  //both are string because function getline takes a - string& str as second argument.
 
   string total_of_rows;
   string total_of_columns;

@@ -10,22 +10,22 @@ void BuildingHandler::add_building(string building_type, string material_that_pr
 
   Building* new_building = 0;
 
-  if(building_type == "fabrica")
+  if(building_type == FACTORY)
     new_building = new Factory(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  if(building_type == "mina")
+  else if(building_type == MINE)
     new_building = new Mine(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  if(building_type == "obelisco")
+  else if(building_type == OBELISK)
     new_building = new Obelisk(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  if(building_type == "planta")
+  else if(building_type == POWER_PLANT)
     new_building = new PowerPlant(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  if(building_type == "aserradero")
+  else if(building_type == SAWMILL)
     new_building = new Sawmill(building_type, material_that_produce, x_coordinate, y_coordinate);
 
-  if(building_type == "escuela")
+  else if(building_type == SCHOOL)
     new_building = new School(building_type, material_that_produce, x_coordinate, y_coordinate);
 
 
@@ -60,26 +60,7 @@ bool BuildingHandler::demolish_building(int x_coordinate, int y_coordinate) {
 
 }
 
-int BuildingHandler::get_building_built_amount(string building_type_to_count){
-
-  buildings->reset_current_node();
-
-  int building_amount = 0;
-
-  while(buildings->get_current_value() != 0){
-
-    if(buildings->get_current_value()->get_type() == building_type_to_count)
-      building_amount++;
-
-    buildings->next_node();
-
-  }
-
-  return building_amount;
-
-}
-
-void BuildingHandler::show_buildings(string building_type, int amount_built){
+void BuildingHandler::show_buildings(string building_type, int amount_built) {
 
   buildings->reset_current_node();
   string coordinates = "";
@@ -88,7 +69,7 @@ void BuildingHandler::show_buildings(string building_type, int amount_built){
 
   while (buildings->get_current_value() != 0) {
 
-    if(buildings->get_current_value()->get_type() == building_type){
+    if (buildings->get_current_value()->get_type() == building_type) {
       coordinates = coordinates + "(" + to_string(buildings->get_current_value()->get_x_coordinate())
                     + ", " + to_string(buildings->get_current_value()->get_y_coordinate())
                     + ") ";
@@ -99,7 +80,7 @@ void BuildingHandler::show_buildings(string building_type, int amount_built){
 
   }
 
-  if (capitalized_building_type == "Planta") {
+  if (capitalized_building_type == POWER_PLANT) {
 
     capitalized_building_type = "Planta eléctrica";
     building_type_spacing = 18;
@@ -110,6 +91,26 @@ void BuildingHandler::show_buildings(string building_type, int amount_built){
              setw(building_type_spacing) << capitalized_building_type  << DEFAULT_COLOR <<
               setw(4) << "is: " << BOLD_BLUE << amount_built << DEFAULT_COLOR << setw(4) <<
               " in coordinates: " << BOLD_YELLOW << setw(WIDTH) << coordinates <<  DEFAULT_COLOR <<'\n';
+
+}
+
+
+int BuildingHandler::get_building_built_amount(string building_type_to_count) {
+
+  buildings->reset_current_node();
+
+  int building_amount = 0;
+
+  while (buildings->get_current_value() != 0) {
+
+    if (buildings->get_current_value()->get_type() == building_type_to_count)
+      building_amount++;
+
+    buildings->next_node();
+
+  }
+
+  return building_amount;
 
 }
 
@@ -139,7 +140,7 @@ int BuildingHandler::get_resources_amount(string building_type) {
 
   while (buildings->get_current_value() != 0) {
 
-    if(buildings->get_current_value()->get_type() == building_type)
+    if (buildings->get_current_value()->get_type() == building_type)
       total_amount += buildings->get_current_value()->produce_material();
 
     buildings->next_node();
@@ -155,7 +156,7 @@ string BuildingHandler::get_resources_type(string building_type) {
 
   while (buildings->get_current_value() != 0) {
 
-    if(buildings->get_current_value()->get_type() == building_type)
+    if (buildings->get_current_value()->get_type() == building_type)
       return buildings->get_current_value()->get_material_that_building_produces();
 
     buildings->next_node();
@@ -175,7 +176,7 @@ string BuildingHandler::building_data_to_string() {
 
     building_data = building_data + buildings->get_current_value()->get_type() + " ";
 
-    if(buildings->get_current_value()->get_type() == POWER_PLANT)
+    if (buildings->get_current_value()->get_type() == POWER_PLANT)
       building_data = building_data + "electrica ";
 
     building_data = building_data + "(";

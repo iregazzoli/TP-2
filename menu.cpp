@@ -17,44 +17,10 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << "  Show inventory." << '\n';
   std::cout << BOLD_YELLOW << "[8]" << DEFAULT_COLOR << "  Collect resources." << '\n';
   std::cout << BOLD_YELLOW << "[9]" << DEFAULT_COLOR << "  Rain of materials." << '\n';
-  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " Save and exit." << '\n';
+  std::cout << BOLD_YELLOW << "[10]" << DEFAULT_COLOR << " How do you turn this on." << '\n';
+  std::cout << BOLD_YELLOW << "[11]" << DEFAULT_COLOR << " Save and exit." << '\n';
 
   return;
-
-}
-
-void Menu::save_data(City* city) {
-
-  fstream material_file;
-  material_file.open(MATERIAL_FILE_ROUTE, ios::out);
-
-  if (material_file.is_open()) {
-
-    material_file << city->materials_data_to_string();
-
-    material_file.close();
-
-  }
-
-  fstream building_file;
-  building_file.open(MAP_LOCATIONS_ROUTE, ios::out);
-
-  if (building_file.is_open()) {
-
-    building_file << city->building_data_to_string();
-
-    building_file.close();
-
-  }
-
-}
-
-void Menu::press_enter_to_continue() {
-
-  std::cout << '\n';
-  std::cin.ignore();
-  std::cout << "Press ENTER to go back to the menu: ";
-  std::cin.get();
 
 }
 
@@ -187,6 +153,13 @@ bool Menu::interpretate_user_input(City* city) {
 
     break;
 
+    case HOW_DO_YOU_TURN_THIS_ON:
+
+      how_do_you_turn_this_on();
+
+      press_enter_to_continue();
+
+      system (CLR_SCREEN);
 
     case EXIT:
 
@@ -238,6 +211,15 @@ void Menu::how_do_you_turn_this_on() {
 
 }
 
+void Menu::press_enter_to_continue() {
+
+  std::cout << '\n';
+  std::cin.ignore();
+  std::cout << "Press ENTER to go back to the menu: ";
+  std::cin.get();
+
+}
+
 void Menu::build(City* city) {
 
   system (CLR_SCREEN);
@@ -249,7 +231,7 @@ void Menu::build(City* city) {
 
   std::cin >> building_to_add;
 
-  if(building_to_add == "planta"){
+  if (building_to_add == POWER_PLANT) {
 
     string auxiliar;
     std::cin >> auxiliar;
@@ -284,6 +266,32 @@ void Menu::demolish(City* city) {
   int y_coordinate = ask_user_y_coordinate(city);
 
   city->demolish_building(x_coordinate, y_coordinate);
+
+}
+
+void Menu::save_data(City* city) {
+
+  fstream material_file;
+  material_file.open(MATERIAL_FILE_ROUTE, ios::out);
+
+  if (material_file.is_open()) {
+
+    material_file << city->materials_data_to_string();
+
+    material_file.close();
+
+  }
+
+  fstream building_file;
+  building_file.open(MAP_LOCATIONS_ROUTE, ios::out);
+
+  if (building_file.is_open()) {
+
+    building_file << city->building_data_to_string();
+
+    building_file.close();
+
+  }
 
 }
 

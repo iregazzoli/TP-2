@@ -23,12 +23,20 @@
 
 using namespace std;
 
+//PRE:
+//POS: Returns the word capitalized.
 string capitalize_word(string word);
 
+//PRE: -
+//POS: Returns the word in lowercase.
 string lowercase_word(string word);
 
+//PRE:-
+//POS: Returns true if 'string_to_check' is numeric, false otherwise.
 bool is_numeric(string string_to_check);
 
+//PRE:-
+//POS: Asks the user if is sure to the action, if he enters 'y' or 'yes' it returns true, false otherwise.
 bool ask_user_confirmation(string building_type);
 
 #endif //UTILS_H
