@@ -89,25 +89,25 @@ bool load_buildings(City* city) {
 
   }
 
-  string building_type;
+  string element_type;
   string x_coordinate;
   string y_coordinate;
   string aux;
 
   while ((file.peek() != EOF)) {
 
-    getline(file, building_type, ' ');
+    getline(file, element_type, ' ');
     getline(file, aux, '(');
     getline(file, x_coordinate, ',');
     getline(file, aux, ' ');
     getline(file, y_coordinate, ')');
     getline(file, aux);
 
-    if (city->validate_building_type(building_type))
-      city->add_building(building_type, stoi(x_coordinate), stoi(y_coordinate), true);
+    if (city->validate_building_type(element_type))
+      city->add_building(element_type, stoi(x_coordinate), stoi(y_coordinate), true);
 
     else
-      city->add_material_to_tile(building_type, stoi(x_coordinate), stoi(y_coordinate));
+      city->add_material_to_tile(element_type, stoi(x_coordinate), stoi(y_coordinate));
 
   }
 
