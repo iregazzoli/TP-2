@@ -21,21 +21,10 @@ string Building::get_type() {
 
 }
 
-void Building::set_x_coordinate(int new_x_coordinate) {
-
-  x_coordinate = new_x_coordinate;
-
-}
 
 int Building::get_x_coordinate() {
 
   return x_coordinate;
-
-}
-
-void Building::set_y_coordinate(int new_y_coordinate) {
-
-  y_coordinate = new_y_coordinate;
 
 }
 

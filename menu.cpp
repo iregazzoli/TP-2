@@ -1,6 +1,6 @@
 #include "menu.h"
 
-using namespace  std;
+using namespace std;
 
 void Menu::show_menu() {
 
@@ -11,7 +11,7 @@ void Menu::show_menu() {
   std::cout << BOLD_YELLOW << "[1]" << DEFAULT_COLOR << "  Build building by name." << '\n';
   std::cout << BOLD_YELLOW << "[2]" << DEFAULT_COLOR << "  List the buildings built." << '\n';
   std::cout << BOLD_YELLOW << "[3]" << DEFAULT_COLOR << "  List all buildings." << '\n';
-  std::cout << BOLD_YELLOW << "[4]" << DEFAULT_COLOR << "  Demolish a building by coordinte." << '\n';
+  std::cout << BOLD_YELLOW << "[4]" << DEFAULT_COLOR << "  Demolish a building by coordinates." << '\n';
   std::cout << BOLD_YELLOW << "[5]" << DEFAULT_COLOR << "  Show map." << '\n';
   std::cout << BOLD_YELLOW << "[6]" << DEFAULT_COLOR << "  Consult coordinates." << '\n';
   std::cout << BOLD_YELLOW << "[7]" << DEFAULT_COLOR << "  Show inventory." << '\n';
@@ -143,15 +143,15 @@ bool Menu::interpretate_user_input(City* city) {
 
     case MATERIAL_RAIN:
 
-    system (CLR_SCREEN);
+      system (CLR_SCREEN);
 
-    city->material_rain();
+      city->material_rain();
 
-    press_enter_to_continue();
+      press_enter_to_continue();
 
-    system (CLR_SCREEN);
+      system (CLR_SCREEN);
 
-    break;
+      break;
 
     case HOW_DO_YOU_TURN_THIS_ON:
 
@@ -160,6 +160,8 @@ bool Menu::interpretate_user_input(City* city) {
       press_enter_to_continue();
 
       system (CLR_SCREEN);
+
+      break;
 
     case EXIT:
 
@@ -241,7 +243,7 @@ void Menu::build(City* city) {
   while (!city->validate_building_type(lowercase_word(building_to_add)) && building_to_add != "exit") {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Please Enter a valid type: ";
-    std::cin >> building_to_add; //we could instead do that if the user enters an invalid name it goes back to menu instaead of continuing the function
+    std::cin >> building_to_add;
 
   }
 
@@ -304,7 +306,7 @@ int Menu::ask_user_x_coordinate(City* city) {
   std::cout << "Enter the " << BOLD_YELLOW << "X" << DEFAULT_COLOR << " coordinate of building you wish to build: ";
   std::cin >> x_coordinate;
 
-  while(!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows - 1) {
+  while (!is_numeric(x_coordinate) || stoi(x_coordinate) < 0 || stoi(x_coordinate) > max_rows - 1) {
 
   std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << BOLD_YELLOW << "X" << DEFAULT_COLOR <<
               " coordinate must be a number between" << BOLD_YELLOW << " 0 and " << max_rows - 1 << DEFAULT_COLOR << ": ";
@@ -327,7 +329,7 @@ int Menu::ask_user_y_coordinate(City* city) {
   std::cout << "Enter the " << BOLD_YELLOW << "Y" << DEFAULT_COLOR << " coordinate of building you wish to build: ";
   std::cin >> y_coordinate;
 
-  while(!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns - 1) {
+  while (!is_numeric(y_coordinate) || stoi(y_coordinate) < 0 || stoi(y_coordinate) > max_columns - 1) {
 
   std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << BOLD_YELLOW << "Y" << DEFAULT_COLOR <<
               " coordinate must be a number between" << BOLD_YELLOW << " 0 and " << max_columns - 1 << DEFAULT_COLOR << ": ";

@@ -11,42 +11,42 @@ private:
 
 public:
 
-    //PRE:-
-    //POS: Creates a PassableTile object and points the pointer 'material_contained' to null   
-    PassableTile();
+  //PRE:-
+  //POS: Creates a PassableTile object and points the pointer 'material_contained' to null   
+  PassableTile();
 
-    //PRE:-
-    //POS: Destroys PassableTile object and free memory.    
-    ~PassableTile();
+  //PRE:-
+  //POS: Destroys PassableTile object and calls the destructor of the object contained.    
+  ~PassableTile();
 
-    //PRE:-
-    //POS: Assigns 'material' to 'material_contained'.
-    void add_material(Material* material);
+  //PRE:-
+  //POS: Assigns 'material' to 'material_contained'.
+  void add_material(Material* material);
 
-    //PRE:-
-    //POS: Removes Material object and points pointer 'material_contained' to null. 
-    void remove_material();
+  //PRE:-
+  //POS: Points pointer 'material_contained' to null. 
+  void remove_material();
 
-    //PRE:-
-    //POS: Informs on screen what type of tile it is and if it is empty, otherwise it shows material type 
-    //     it contains.
-    void show();
+  //PRE:-
+  //POS: Informs on screen what type of tile is the one being consulted and if it is empty, otherwise 
+  //     it shows building type that it contains.
+  void show();
 
-    //PRE:-
-    //POS: Returns true if 'material_contained' is empty, false otherwise.
-    bool tile_empty();
+  //PRE:-
+  //POS:  Returns 'material_contained' == 0.
+  bool tile_empty();
 
-    //PRE:-
-    //POS: Returns 'EMPTY' if 'material_contained' is empty and OCCUPIED if not.
-    string state_of_tile();
+  //PRE:-
+  //POS: Returns 'EMPTY' if 'building_contained' is empty or 'OCCUPIED' if not.
+  string state_of_tile();
 
-    //PRE:-
-    //POS: Returns what material type contains.
-    string get_value();
+  //PRE:-
+  //POS: Returns the building type contained in the tile.
+  string get_value();
 
-    //PRE:-
-    //POS: Returns what is a 'PASSABLE' tile.
-    string get_tile_class();
+  //PRE:-
+  //POS: Returns 'PASSABLE'.
+  string get_tile_class();
 
 };
 

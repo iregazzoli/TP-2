@@ -13,11 +13,11 @@ public:
     InaccesibleTile();
 
     //PRE:-
-    //POS: Informs on screen what type of tile it is.
+    //POS: Informs on screen that the tile is inaccesible.
     void show();
 
     //PRE:-
-    //POS: Returns what is a 'INACCESIBLE' tile.
+    //POS: Returns 'INACCESIBLE'.
     string get_tile_class();
 
 };

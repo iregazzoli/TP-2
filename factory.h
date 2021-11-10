@@ -12,7 +12,7 @@ public:
   Factory(string, string, int, int);
 
   //PRE:-
-  //POS: Returns amount of material factory produces.
+  //POS: Returns STEEL_PROVIDED_BY_FACTORY.
   int produce_material();
 
 };

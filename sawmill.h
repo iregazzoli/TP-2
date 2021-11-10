@@ -12,7 +12,7 @@ public:
   Sawmill(string, string, int, int);
 
   //PRE:-
-  //POS: Returns amount of material sawmill produces.
+  //POS: Returns WOOD_PROVIDED_BY_SAWMILL.
   int produce_material();
 
 };

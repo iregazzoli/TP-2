@@ -20,36 +20,34 @@ private:
 public:
 
   // PRE: -
-  // POS: Creates a City object. Creates a new BuildingHandler, new MaterialHandler, new Record, new EmptyPassableTiles
-  //      and 'city_map' is zero-initialized.
+  // POS: Creates a City object.
   City();
 
   // PRE: -
-  // POS: Destroys City object and frees memory from linked lists-
-  //        and dinamic matrix.
+  // POS: Destroys City object and calls the destructor of its attributes. 
   ~City();
 
 
 //--------------------------Material Management---------------------------------
 
-  //PRE: 'new_material' must be a valid material of materiales.txt. 'quantity' >= 0.
-  //POS: Creates a new Material object 'new_material' and a node whit it's pointer to said Material. 
+  //PRE: -
+  //POS: Creates a new Material object and adds it to the MaterialHandler. 
   void add_material(string new_material, int quantity);
 
   //PRE: -
-  //POS: Prints in console all the material names are their respective quantity.
+  //POS: Shows on screen the materials and their quantity.
   void show_materials();
 
   //PRE: -
-  //POS: Collects materials produced by the constructed buildings, increasing the amounts of them.
+  //POS: Collects materials produced by the constructed buildings, increasing the amount on the MaterialHandler.
   void collect_resources();
 
   //PRE: -
-  //POS: Randomly generates a material type and a random amount of it.
+  //POS: Randomly generates a material type and a random amount of it, and puts in on the map.
   void material_rain();
 
   //PRE: -
-  //POS: Returns every material and it's quantity.
+  //POS: Returns all the materials in the format of 'materiales.txt'.
   string materials_data_to_string();
 
 
@@ -57,21 +55,20 @@ public:
 
   //PRE: the amount of built buildings from file edificios.txt must be a-
   //      interger > 0 to assure the correct functioning of- the rest of the program.
-  //POS: Creates 'amount' of a Building object with it's building type =
-  //      "building_type" and a node with it's pointer pointing to said Building.
+  //POS: Validates that the building its allowed to be built, if it is calls the methods deduct_building_cost
+  //     and add_building, otherwise print an error message.
   void add_building(string building_type, int x_coordinate, int y_coordinate, bool loading_from_txt);
 
   //PRE: -
-  //POS: Destroy the node and the Building object at those coordinates and the user gets 
-  //     half of the building materials rounded down.
+  //POS: Demolishes the Building at given coordinates and refunds half of its costs.
   void demolish_building(int x_coordinate, int y_coordinate);
 
   //PRE: -
-  //POS: Prints in console all the Buildings contained in the linked list.
+  //POS: Shows on screen amount and coordinates of the buildings built.
   void show_buildings();
 
   //PRE: -
-  //POS: Return true if 'type_to_check' is a building from the buildings.txt file.
+  //POS: If 'building_type' is in "edificio.txt" returns true, otherwise returns false.
   bool validate_building_type(string type_to_check);
 
 //-----------------------------Record Management--------------------------------
@@ -79,16 +76,16 @@ public:
   // PRE: The amount of built buildings from file edificios.txt must be a-
   //      interger > 0 to assure the correct functioning of- the rest of the program and stone_cost,
   //      wood_cost, steel_cost, max_building_quantity all must be > 0.
-  // POS: Load the record list with the buildings read in edificios.txt.
+  // POS: Adds the Building caracteristics in the Record.
   void add_building(string building_type, int stone_cost, int wood_cost,
                     int steel_cost, int max_building_quantity);
 
   // PRE: -
-  // POS: Shows on screen all building information and all the material names are their respective quantity.
+  // POS: Shows on screen all buildings information and the materials.
   void show_record();
 
   //PRE: -
-  //POS: returns all the building related information.
+  //POS: Returns all the buildings built in the format of 'ubicaciones.txt'.
   string building_data_to_string();
 
 
@@ -116,7 +113,7 @@ public:
   int get_max_columns();
 
   //PRE: -
-  //POS: Shows on screen the map with icons representing buildings, materials and tiles types. 
+  //POS: Prints the map.
   void show_map();
 
 
@@ -125,39 +122,39 @@ private:
 //----------------------------Material Management-------------------------------
 
   //PRE: -
-  //POS: Changes the quantity of the object with "material_name" = "material_to_modify"
+  //POS: Changes the quantity of the Material with "material_name" = "material_to_modify"
   //      to "new_quantity".
   void set_material_amount(string material_to_modify, int new_quantity);
 
   // //PRE: -
-  // //POS: Returns the quantity of the material "material_name_to_obtain".
+  // //POS: Returns the quantity of the material that has its name = 'material_name_to_obtain'.
   int get_material_amount(string material_name_to_obtain);
 
   //PRE: 'building_type' must be a valid building.'user_stone', 'user_wood' and 'user_steel' all 
   //      must be greater than or equal to the cost of construction of the building.
-  //POS: Discounts cost of the building from total materials.
+  //POS: Deducts the cost of the building from the total of materials.
   void deduct_building_cost(int user_stone, int user_wood, int user_steel, string building_type);
 
-  //PRE: 'building_type' must be a valid building. 
-  //POS: Refunds building cost.
+  //PRE: 'building_type' must be a valid type. 
+  //POS: Refunds the building costs / 2.
   void refund_building_cost(string building_type);
 
 
 //----------------------------Building Management-------------------------------
 
-  //PRE: 'building_type' must be MINE, SAWMILL, FACTORY, SCHOOL, OBELISK or POWER_PLANT.
-  //POS: Adds a new building to the map at these coordinates and also add it to the list of buildings. 
-  //     Increase amount of buildings built.
+  //PRE: -
+  //POS: Adds a new Building and adds it to the BuildingHandler and then makes the tile, in the map with said
+  //     coordinates, to point to the new Building.
   void add_building(string building_type, string material_that_produces, int x_coordinate, int y_coordinate);
 
   //PRE: -
-  //POS: Prints a message on the screen according to the error found.
+  //POS: Prints a message on the screen according to the error when trying to build a new Building.
   void print_error_message(bool valid_type, bool valid_amount, bool enough_materials,
                             bool valid_tile, bool empty_tile, bool loading_from_txt,
                             string building_type, int x_coordinate, int y_coordinate);
 
   //PRE: -
-  //POS: Returns what type of material it produces 'building_type'.
+  //POS: Returns what type of material produces 'building_type'.
   string get_resource_that_building_produces(string building_type);
 
 };

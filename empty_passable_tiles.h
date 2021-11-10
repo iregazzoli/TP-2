@@ -21,36 +21,36 @@ private:
 public:
 
   //PRE:-
-  //POS: Creates a EmptyPassableTiles object, a list of EmptyTile with it's liked list pointers pointing to null 
-  //     and initializes total_of_tiles = 0.
+  //POS: Creates a EmptyPassableTiles object,  with a list of EmptyTile
+  //     and initializes 'total_of_tiles' = 0.
   EmptyPassableTiles();
 
   //PRE:-
-  //POS: Destroys EmptyPassableTiles object and frees memory from linked list.
+  //POS: Destroys EmptyPassableTiles object and calls the destructor of the list.
   ~EmptyPassableTiles();
 
   //PRE:-
-  //POS: Creates a new EmptyTile, adds it to the list and increase total_of_tiles.
+  //POS: Creates a new EmptyTile, adds it to the list and total_of_tiles++.
   void add_empty_tile(int x_coordinate, int y_coordinate);
 
   //PRE:-
-  //POS: Returns true if the list is empty.
+  //POS: Returns 'total_of_tiles' == 0.
   bool not_empty_tiles();
 
   //PRE:-
-  //POS: Picks randomly a tile.
+  //POS: Picks a random passable tile of the list, if the list is empty returns false.
   bool select_random_tile();
 
   //PRE:-
-  //POS: Returns x coordinate of tile
+  //POS: Returns x coordinate of passable tile.
   int get_target_tile_x_coordinate();
 
   //PRE:-
-  //POS: Returns y coordinate of tile
+  //POS: Returns y coordinate of passable tile.
   int get_target_tile_y_coordinate();
 
   //PRE:-
-  //POS: Removes tile from the list and decrement 'total_of_tiles'.
+  //POS: Removes tile from the list and total_of_tiles--.
   void delete_target_tile();
 
 };

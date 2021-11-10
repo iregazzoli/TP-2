@@ -13,15 +13,15 @@ private:
 public:
 
   //PRE:-
-  //POS: Creates Material object whit 'material' = material and 'quantity' = quantity.
+  //POS: Creates a new Material object with its corresponding attributes.
   Material(string material, int quantity);
 
   //PRE:-
-  //POS:Returns material_type.
+  //POS: Returns material.
   string get_material();
 
-  //PRE: new_quantity >= 0.
-  //POS: Changes building_type to 'new_type'.
+  //PRE: -
+  //POS: Replaces quantity to 'new_quantity'.
   void set_quantity(int new_quantity);
 
   //PRE:-

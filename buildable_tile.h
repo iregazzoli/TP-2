@@ -15,7 +15,7 @@ public:
   BuildableTile();
 
   //PRE:-
-  //POS: Assign 'building' to 'building_contained'.
+  //POS: Assigns 'building' to 'building_contained'.
   void add_building(Building* building);
 
   //PRE:-
@@ -23,24 +23,24 @@ public:
   void remove_building();
 
   //PRE:-
-  //POS: Informs on screen what type of tile it is and if it is empty, otherwise it shows building type 
-  //     it contains.
+  //POS: Informs on screen what type of tile is the one being consulted and if it is empty, otherwise 
+  //     it shows building type that it contains.
   void show();
 
   //PRE:-
-  //POS: Return true if 'building_contained' is empty, false otherwise.
+  //POS: Returns 'building_contained' == 0.
   bool tile_empty();
 
   //PRE:-
-  //POS: Returns 'EMPTY' if 'building_contained' is empty and OCCUPIED if not.
+  //POS: Returns 'EMPTY' if 'building_contained' is empty or 'OCCUPIED' if not.
   string state_of_tile();
 
   //PRE:-
-  //POS: Returns what building type contains.
+  //POS: Returns the building type contained in the tile.
   string get_value();
 
   //PRE:-
-  //POS: Returns what is a 'BULDABLE' tile.
+  //POS: Returns 'BULDABLE'.
   string get_tile_class();
 
 };

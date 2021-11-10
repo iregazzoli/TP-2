@@ -72,16 +72,16 @@ void City::material_rain() {
 
     int random_material_amount;
 
-    srand ((unsigned int)time(NULL));
+    srand ((unsigned)time(NULL));
 
     if (material_type == STONE)
       random_material_amount = rand() % 2 + 1;
 
-    else if (material_type == WOOD)
-      random_material_amount = rand() % 2;
-
     else if (material_type == STEEL)
       random_material_amount = rand() % 3 + 2;
+
+    else if (material_type == WOOD)
+      random_material_amount = rand() % 2;
 
 
     for (int i = 0; i < random_material_amount; i++) {
@@ -168,9 +168,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
   string lowercase_building_type = lowercase_word(building_type);
   string capitalized_building_type = capitalize_word(lowercase_building_type);
 
-
   bool valid_type = record->validate_building_type(lowercase_building_type);
-
 
   bool valid_tile = false;
 
@@ -200,9 +198,9 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   }
 
+ 
   else
     valid_amount = true;
-
 
   bool enough_materials = false;
 
@@ -260,7 +258,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
 
   //Section related with building by txt file
-  if(valid_type && valid_tile && empty_tile && loading_from_txt) {
+  if (valid_type && valid_tile && empty_tile && loading_from_txt) {
 
     string material_that_produces = get_resource_that_building_produces(lowercase_building_type);
 
@@ -268,10 +266,10 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   }
 
-  else if(valid_type && !valid_tile && empty_tile && loading_from_txt)
+  else if (valid_type && !valid_tile && empty_tile && loading_from_txt)
     print_error_message(valid_type, true, true, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
-  else if(valid_type && valid_tile && !empty_tile && loading_from_txt)
+  else if (valid_type && valid_tile && !empty_tile && loading_from_txt)
     print_error_message(valid_type, true, true, valid_tile, empty_tile, loading_from_txt, capitalized_building_type, x_coordinate, y_coordinate);
 
 }
@@ -328,7 +326,6 @@ void City::demolish_building(int x_coordinate, int y_coordinate) {
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "The tile with coordinates: ("
                << BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<
                ") is not suited for building." << '\n';
-
 
 }
 
@@ -410,7 +407,7 @@ void City::print_error_message(bool valid_type, bool valid_amount, bool enough_m
                     " check menu option '5' to see the map with all the built buildings." << '\n';
   }
 
-  else if(valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && loading_from_txt) {
+  else if (valid_type && valid_amount && enough_materials && !valid_tile && empty_tile && loading_from_txt) {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Invalid tile for building: " <<
                BOLD_GREEN << building_type << DEFAULT_COLOR << ", coordinates: (" <<
@@ -421,7 +418,7 @@ void City::print_error_message(bool valid_type, bool valid_amount, bool enough_m
 
   }
 
-  else if(valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && loading_from_txt) {
+  else if (valid_type && valid_amount && enough_materials && valid_tile && !empty_tile && loading_from_txt) {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR << "Tile: (" <<
                BOLD_YELLOW << x_coordinate << ", " << y_coordinate << DEFAULT_COLOR <<

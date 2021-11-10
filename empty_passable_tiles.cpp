@@ -7,7 +7,6 @@ EmptyPassableTiles::EmptyPassableTiles() {
 
 }
 
-
 void EmptyPassableTiles::add_empty_tile(int x_coordinate, int y_coordinate) {
 
   EmptyTile* new_tile = new EmptyTile{x_coordinate, y_coordinate};
@@ -47,7 +46,6 @@ bool EmptyPassableTiles::select_random_tile() {
   return false;
 
 }
-
 
 int EmptyPassableTiles::get_target_tile_x_coordinate() {
 

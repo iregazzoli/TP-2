@@ -37,7 +37,7 @@ int Record::get_building_amount(string building_type) {
 
   record->reset_current_node();
 
-  while (record->get_current_value() != 0){
+  while (record->get_current_value() != 0) {
 
     if (record->get_current_value()->building_type == building_type)
       return record->get_current_value()->built_amount;
@@ -77,7 +77,7 @@ void Record::show_record(int user_stone, int user_wood, int user_steel) {
     valid_amount = validate_building_amount(aux_node->get_value()->building_type,
                                                   amount_of_buildings_built);
 
-    if (capitalized_building_type == "Planta")
+    if (capitalized_building_type == POWER_PLANT)
       capitalized_building_type = "Planta eléctrica";
 
     if (enough_materials && valid_amount)
