@@ -31,7 +31,7 @@ public:
   void show_materials();
 
   //PRE: 'material' must be a material valid and quantity >= 0.
-  //POS: Modify the amount of material.
+  //POS: Modifies the amount of material.
   void set_material_amount(string material_to_modify, int new_quantity);
 
   //PRE: 'target_material' must be a material valid.

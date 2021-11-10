@@ -36,7 +36,7 @@ public:
   void demolish(City* city);
 
   //PRE: City must be a non-null pointer.
-  //POS: Update the files with the new information.
+  //POS: Updates the files with the new information.
   void save_data(City* city);
 
   //PRE: City must be a non-null pointer.

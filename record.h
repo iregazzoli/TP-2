@@ -21,7 +21,7 @@ private:
 public:
 
   //PRE:-
-  //POS: Create a record object.
+  //POS: Creates a record object.
   Record();
 
   //PRE:-
@@ -32,20 +32,20 @@ public:
   //PRE: The amount of built buildings from file edificios.txt must be a-
   //     interger > 0 to assure the correct functioning of- the rest of the program and stone_cost,
   //     wood_cost, steel_cost, max_building_quantity all must be > 0.
-  //POS: Create a new record object with the attributes received by parameter and add a new node to list.
+  //POS: Creates a new record object with the attributes received by parameter and add a new node to list.
   void add_building(string building_type, int stone_cost, int wood_cost,
                         int steel_cost, int max_building_quantity);
 
   //PRE: building_type must be a building valid building and modifier >= 0.
-  //POS: Change building amount for the building amount + modifier.
+  //POS: Changes building amount for the building amount + modifier.
   void modify_building_amount(string building_type, int modifier);
 
   //PRE: buildin_type must be a building valid building.
-  //POS: get building amount.
+  //POS: gets building amount.
   int get_building_amount(string building_type);
 
   //PRE: user_stone, user_wood and user_steel all must be > 0.
-  //POS: Show the attributes of record object.
+  //POS: Shows the attributes of record object.
   void show_record(int user_stone, int user_wood, int user_steel);
 
   //PRE:-
@@ -79,11 +79,11 @@ public:
 
 
   //PRE:-
-  //POS: Reset current node.
+  //POS: Resets current node.
   void reset_current_node();
 
   //PRE: -
-  //POS: Advance to the next node
+  //POS: Advances to the next node
   void next_node();
 
 };

@@ -17,7 +17,7 @@ public:
   }
 
   //PRE: -
-  //POS: Destroy a T object.
+  //POS: Destroys a T object.
   ~Node() {
 
     delete value;

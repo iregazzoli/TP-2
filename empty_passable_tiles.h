@@ -20,19 +20,37 @@ private:
 
 public:
 
+  //PRE:-
+  //POS: Creates a EmptyPassableTiles object, a list of EmptyTile with it's liked list pointers pointing to null 
+  //     and initializes total_of_tiles = 0.
   EmptyPassableTiles();
 
+  //PRE:-
+  //POS: Destroys EmptyPassableTiles object and frees memory from linked list.
   ~EmptyPassableTiles();
 
+  //PRE:-
+  //POS: Creates a new EmptyTile, adds it to the list and increase total_of_tiles.
   void add_empty_tile(int x_coordinate, int y_coordinate);
 
+  //PRE:-
+  //POS: Returns true if the list is empty.
   bool not_empty_tiles();
 
+  //PRE:-
+  //POS:
   bool select_random_tile();
 
+  //PRE:-
+  //POS:
   int get_target_tile_x_coordinate();
+
+  //PRE:-
+  //POS:  
   int get_target_tile_y_coordinate();
 
+  //PRE:-
+  //POS:
   void delete_target_tile();
 
 };

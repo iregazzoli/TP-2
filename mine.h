@@ -8,7 +8,7 @@ class Mine : public Building {
 public:
 
     //PRE:-
-    //POS: Created Mine object.
+    //POS: Creates Mine object.
     Mine(string, string, int, int);
 
     //PRE:-

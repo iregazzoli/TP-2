@@ -9,7 +9,7 @@ public:
 
 
     //PRE:-
-    //POS: Created a InaccesibleTile object.
+    //POS: Creates a InaccesibleTile object.
     InaccesibleTile();
 
     //PRE:-

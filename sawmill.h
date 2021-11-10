@@ -8,7 +8,7 @@ class Sawmill: public Building {
 public:
 
   //PRE:-
-  //POS: Created a Sawmill object.
+  //POS: Creates a Sawmill object.
   Sawmill(string, string, int, int);
 
   //PRE:-

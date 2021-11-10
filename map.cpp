@@ -252,6 +252,20 @@ void Map::show_map() {
   show_map_legend();
 }
 
+void Map::initialize() {
+
+  for (int i = 0; i < total_of_rows; i++) {
+
+    for (int j = 0; j < total_of_columns; j++) {
+
+      map[i][j] = 0;
+
+    }
+
+  }
+
+}
+
 void Map::show_map_legend() {
 
   std::cout << '\n' << BOLD_BLUE  << "════";
@@ -278,21 +292,6 @@ void Map::show_map_legend() {
   std::cout << left << setw(6) << STONE_ICON << ":" << capitalize_word(STONE) << '\n';
   std::cout << left << setw(6) << WOOD_ICON << ":" << capitalize_word(WOOD) << '\n';
   std::cout << left << setw(5) << STEEL_ICON << ":" << capitalize_word(STEEL) << '\n';
-}
-
-
-void Map::initialize(){
-
-  for(int i = 0; i < total_of_rows; i++){
-
-    for(int j = 0; j < total_of_columns; j++){
-
-      map[i][j] = 0;
-
-    }
-
-  }
-
 }
 
 Map::~Map() {

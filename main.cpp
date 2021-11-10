@@ -13,13 +13,13 @@ int main(){
 
   not_end_program = load_buildings_attributes(&andypolis);
 
-  if(not_end_program)
+  if (not_end_program)
     not_end_program = load_materials(&andypolis);
 
-  if(not_end_program)
+  if (not_end_program)
     not_end_program = load_tiles(&andypolis);
 
-  if(not_end_program)
+  if (not_end_program)
     not_end_program = load_buildings(&andypolis);
 
   Menu menu;

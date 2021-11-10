@@ -13,7 +13,7 @@ private:
 public:
 
   //PRE:-
-  //POS: Created Material object whit 'material' = material and 'quantity' = quantity.
+  //POS: Creates Material object whit 'material' = material and 'quantity' = quantity.
   Material(string material, int quantity);
 
   //PRE:-

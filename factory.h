@@ -8,7 +8,7 @@ class Factory : public Building {
 public:
   
   //PRE:-
-  //POS: Created Factory object.
+  //POS: Creates Factory object.
   Factory(string, string, int, int);
 
   //PRE:-

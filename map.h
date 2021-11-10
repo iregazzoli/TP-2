@@ -31,7 +31,7 @@ public:
   ~Map();
 
   //PRE: 'tile_type' must be LAKE, TERRAIN or ROAD.
-  //POS: Load the map with the tiles types. Create InaccesibleTile, BuildableTile or PassableTile objects, as appropriate.
+  //POS: Loads the map with the tiles types. Creates InaccesibleTile, BuildableTile or PassableTile objects, as appropriate.
   void add_tile(char tile_type);
 
   //PRE: x_coordinate' and 'y_coordinate' must be valid map coordinates.
@@ -59,7 +59,7 @@ public:
   bool tile_empty(int x_coordinate, int y_coordinate);
 
   //PRE: x_coordinate' and 'y_coordinate' must be the coordinates of buildable tile.
-  //POS: Create a new Building and save it at those coordinates.
+  //POS: Creates a new Building and saves it at those coordinates.
   void add_building(Building* building, int x_coordinate, int y_coordinate);
 
   //PRE: x_coordinate' and 'y_coordinate' must be the coordinates of buildable tile.
@@ -67,31 +67,31 @@ public:
   void remove_building(int x_coordinate, int y_coordinate);
 
   //PRE: x_coordinate' and 'y_coordinate' must be the coordinates of passable tile.
-  //POS: 
+  //POS: Creates a new Material and saves it at those coordinates.
   void add_material(Material* material, int x_coordinate, int y_coordinate);
 
   //PRE:-
-  //POS:
+  //POS: Returns total_of_rows.
   int get_rows();
 
   //PRE:-
-  //POS:
+  //POS: Returns total_of_columns.
   int get_columns();
 
   //PRE:-
-  //POS:
+  //POS: Shows on screen the map with icons representing buildings, materials and  tiles types. 
   void show_map();
-
-  //PRE:-
-  //POS:
-  void show_map_legend();
 
 
 private:
 
   //PRE:-
-  //POS:
+  //POS: Initializes the dynamic matrix with 0.
   void initialize();
+
+  //PRE:-
+  //POS: Shows on screen  map references.
+  void show_map_legend();
 
 };
 

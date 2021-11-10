@@ -12,7 +12,7 @@ private:
 public:
 
     //PRE:-
-    //POS: Created a PassableTile object and points the pointer 'material_contained' to null   
+    //POS: Creates a PassableTile object and points the pointer 'material_contained' to null   
     PassableTile();
 
     //PRE:-
@@ -20,11 +20,11 @@ public:
     ~PassableTile();
 
     //PRE:-
-    //POS: Assign 'material' to 'material_contained'.
+    //POS: Assigns 'material' to 'material_contained'.
     void add_material(Material* material);
 
     //PRE:-
-    //POS: Remove Material object and points pointer 'material_contained' to null. 
+    //POS: Removes Material object and points pointer 'material_contained' to null. 
     void remove_material();
 
     //PRE:-
@@ -33,7 +33,7 @@ public:
     void show();
 
     //PRE:-
-    //POS: Return true if 'material_contained' is empty, false otherwise.
+    //POS: Returns true if 'material_contained' is empty, false otherwise.
     bool tile_empty();
 
     //PRE:-
