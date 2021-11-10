@@ -24,14 +24,14 @@ public:
   City();
 
   // PRE: -
-  // POS: Destroys City object and calls the destructor of its attributes. 
+  // POS: Destroys City object and calls the destructor of its attributes.
   ~City();
 
 
 //--------------------------Material Management---------------------------------
 
   //PRE: -
-  //POS: Creates a new Material object and adds it to the MaterialHandler. 
+  //POS: Creates a new Material object and adds it to the MaterialHandler.
   void add_material(string new_material, int quantity);
 
   //PRE: -
@@ -49,6 +49,10 @@ public:
   //PRE: -
   //POS: Returns all the materials in the format of 'materiales.txt'.
   string materials_data_to_string();
+
+  //PRE: -
+  //POS: Adds a Material in a PassableTile with said coordinates.
+  void add_material_to_tile(string material_type, int x_coordinate, int y_coordinate);
 
 
 //-----------------------------Building Management------------------------------
@@ -91,11 +95,11 @@ public:
 
 //-------------------------------Map Management---------------------------------
 
-  //PRE: 'row' >= 0 and 'columns' >= 0. 
+  //PRE: 'row' >= 0 and 'columns' >= 0.
   //POS: Create a new map object.
   void generate_map(int rows, int columns);
 
-  //PRE: 'tile_type' must be a LAKE, TERRAIN or ROAD. 'x_coordinate' and 'y_coordinate' 
+  //PRE: 'tile_type' must be a LAKE, TERRAIN or ROAD. 'x_coordinate' and 'y_coordinate'
   //     must be valid map coordinates.
   //POS: Loads 'city_map' with tiles and if tile is ROAD it also loads it in 'passable_tiles'.
   void add_tile(char tile_type, int x_coordinate, int y_coordinate);
@@ -130,12 +134,12 @@ private:
   // //POS: Returns the quantity of the material that has its name = 'material_name_to_obtain'.
   int get_material_amount(string material_name_to_obtain);
 
-  //PRE: 'building_type' must be a valid building.'user_stone', 'user_wood' and 'user_steel' all 
+  //PRE: 'building_type' must be a valid building.'user_stone', 'user_wood' and 'user_steel' all
   //      must be greater than or equal to the cost of construction of the building.
   //POS: Deducts the cost of the building from the total of materials.
   void deduct_building_cost(int user_stone, int user_wood, int user_steel, string building_type);
 
-  //PRE: 'building_type' must be a valid type. 
+  //PRE: 'building_type' must be a valid type.
   //POS: Refunds the building costs / 2.
   void refund_building_cost(string building_type);
 

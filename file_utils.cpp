@@ -103,7 +103,11 @@ bool load_buildings(City* city) {
     getline(file, y_coordinate, ')');
     getline(file, aux);
 
-    city->add_building(building_type, stoi(x_coordinate), stoi(y_coordinate), true);
+    if (city->validate_building_type(building_type))
+      city->add_building(building_type, stoi(x_coordinate), stoi(y_coordinate), true);
+
+    else
+      city->add_material_to_tile(building_type, stoi(x_coordinate), stoi(y_coordinate));
 
   }
 

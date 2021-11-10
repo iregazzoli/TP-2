@@ -13,7 +13,7 @@ private:
   List<Material>* materials;
 
 public:
-  
+
   //PRE:-
   //POS: Creates a MaterialHandler object, with an empty list.
   MaterialHandler();
@@ -31,7 +31,7 @@ public:
   void show_materials();
 
   //PRE: 'material' must be a valid material name.
-  //POS: Replaces the quantity of target material to 'new_quantity'. 
+  //POS: Replaces the quantity of target material to 'new_quantity'.
   void set_material_amount(string material_to_modify, int new_quantity);
 
   //PRE: 'target_material' must be a material valid.

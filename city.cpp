@@ -118,6 +118,12 @@ string City::materials_data_to_string() {
 
 }
 
+void City::add_material_to_tile(string material_type, int x_coordinate, int y_coordinate) {
+
+  city_map->add_material(materials->generate_material(material_type), x_coordinate, y_coordinate);
+
+}
+
 //--------------------------Private Material Methods----------------------------
 
 void City::set_material_amount(string material_to_modify, int new_quantity) {
@@ -198,7 +204,7 @@ void City::add_building(string building_type, int x_coordinate, int y_coordinate
 
   }
 
- 
+
   else
     valid_amount = true;
 
