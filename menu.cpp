@@ -32,7 +32,7 @@ bool Menu::interpretate_user_input(City* city) {
 
   std::cin >> user_option;
 
-  while (!is_numeric(user_option) || stoi(user_option) < 0 || stoi(user_option) > 11) {
+  while (!is_numeric(user_option) || stoi(user_option) < 1 || stoi(user_option) > 11) {
 
     std::cout << BOLD_RED << "ERROR: " << DEFAULT_COLOR
           << "Invalid option, please enter " << BOLD_CYAN <<
